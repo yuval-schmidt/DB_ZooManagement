@@ -1,0 +1,501 @@
+SpeciesID,CommonName,ScientificName,ConservationStatus
+1,African skink,Mabuya spilogaster,Endangered
+2,"Wallaby, agile",Macropus agilis,Near Threatened
+3,"Owl, white-browed",Ninox superciliaris,Near Threatened
+4,"Kiskadee, great",Pitangus sulphuratus,Critically Endangered
+5,African pied wagtail,Motacilla aguimp,Endangered
+6,"Genet, small-spotted",Genetta genetta,Vulnerable
+7,Onager,Equus hemionus,Endangered
+8,"Leopard, indian",Panthera pardus,Endangered
+9,Southern elephant seal,Mirounga leonina,Least Concern
+10,Steenbok,Raphicerus campestris,Least Concern
+11,Chilean flamingo,Phoenicopterus chilensis,Extinct in the Wild
+12,"Boa, mexican",Boa constrictor mexicana,Near Threatened
+13,"Wallaby, dama",Macropus eugenii,Vulnerable
+14,"Colobus, white-mantled",Colobus guerza,Vulnerable
+15,Common genet,Genetta genetta,Endangered
+16,"Stork, greater adjutant",Leptoptilus dubius,Endangered
+17,Slender loris,Loris tardigratus,Near Threatened
+18,Arctic tern,Sterna paradisaea,Extinct in the Wild
+19,"Turkey, common",Meleagris gallopavo,Least Concern
+20,Antelope ground squirrel,Ammospermophilus nelsoni,Least Concern
+21,"Stork, painted",Mycteria leucocephala,Extinct in the Wild
+22,Tarantula,Lasiodora parahybana,Extinct in the Wild
+23,"Vulture, king",Sarcorhamphus papa,Near Threatened
+24,Indian leopard,Panthera pardus,Least Concern
+25,Mocking cliffchat,Thamnolaea cinnmomeiventris,Least Concern
+26,Glossy starling (unidentified),Lamprotornis sp.,Critically Endangered
+27,Cape clawless otter,Aonyx capensis,Least Concern
+28,"Macaque, bonnet",Macaca radiata,Critically Endangered
+29,Sea birds (unidentified),unavailable,Critically Endangered
+30,"Moorhen, purple",Porphyrio porphyrio,Near Threatened
+31,Red and blue macaw,Ara chloroptera,Extinct in the Wild
+32,Hippopotamus,Hippopotamus amphibius,Endangered
+33,"Whale, long-finned pilot",Globicephala melas,Extinct in the Wild
+34,Black-throated cardinal,Paroaria gularis,Vulnerable
+35,Eurasian red squirrel,Sciurus vulgaris,Extinct in the Wild
+36,Argalis,Ovis ammon,Least Concern
+37,"Dolphin, common",Delphinus delphis,Critically Endangered
+38,Crown of thorns starfish,Acanthaster planci,Critically Endangered
+39,Black-collared barbet,Lybius torquatus,Vulnerable
+40,"Racer, blue",Coluber constrictor foxii,Endangered
+41,Mocking cliffchat,Thamnolaea cinnmomeiventris,Least Concern
+42,Brown brocket,Mazama gouazoubira,Least Concern
+43,Japanese macaque,Macaca fuscata,Endangered
+44,Indian star tortoise,Geochelone elegans,Extinct in the Wild
+45,Brolga crane,Grus rubicundus,Endangered
+46,Indian star tortoise,Geochelone elegans,Least Concern
+47,"Lizard, blue-tongued",Tiliqua scincoides,Critically Endangered
+48,Black-capped capuchin,Cebus apella,Least Concern
+49,"Kingfisher, pied",Ceryle rudis,Vulnerable
+50,"Waterbuck, defassa",Kobus defassa,Critically Endangered
+51,"Butterfly, tropical buckeye",Junonia genoveua,Near Threatened
+52,"Goose, cereopsis",Cereopsis novaehollandiae,Vulnerable
+53,"Oystercatcher, blackish",Haematopus ater,Least Concern
+54,Gemsbok,Oryx gazella,Near Threatened
+55,Ocelot,Felis pardalis,Near Threatened
+56,Verreaux's sifaka,Propithecus verreauxi,Critically Endangered
+57,Mouflon,Ovis musimon,Least Concern
+58,"Hornbill, red-billed",Tockus erythrorhyncus,Near Threatened
+59,Tailless tenrec,Tenrec ecaudatus,Least Concern
+60,Black-necked stork,Ephippiorhynchus mycteria,Extinct in the Wild
+61,Two-banded monitor,Varanus salvator,Vulnerable
+62,"Nighthawk, common",Chordeiles minor,Least Concern
+63,Springhare,Pedetes capensis,Least Concern
+64,Common raccoon,Procyon lotor,Vulnerable
+65,"Rhinoceros, black",Diceros bicornis,Near Threatened
+66,"Teal, hottentot",Anas punctata,Endangered
+67,African red-eyed bulbul,Pycnonotus nigricans,Least Concern
+68,"Vulture, king",Sarcorhamphus papa,Vulnerable
+69,Southern ground hornbill,Bucorvus leadbeateri,Critically Endangered
+70,"Nighthawk, common",Chordeiles minor,Near Threatened
+71,Crab-eating raccoon,Procyon cancrivorus,Endangered
+72,Native cat,Dasyurus viverrinus,Near Threatened
+73,Dusky gull,Larus fuliginosus,Extinct in the Wild
+74,"Buffalo, african",Snycerus caffer,Least Concern
+75,Golden-mantled ground squirrel,Spermophilus lateralis,Extinct in the Wild
+76,"Waxbill, blue",Uraeginthus angolensis,Extinct in the Wild
+77,Indian mynah,Acridotheres tristis,Vulnerable
+78,"Goose, knob-nosed",Sarkidornis melanotos,Least Concern
+79,"Dik, kirk's dik",Madoqua kirkii,Vulnerable
+80,North American beaver,Castor canadensis,Least Concern
+81,"Jaeger, long-tailed",Stercorarius longicausus,Near Threatened
+82,Elegant crested tinamou,Eudromia elegans,Critically Endangered
+83,Grison,Galictis vittata,Endangered
+84,"Drongo, fork-tailed",Dicrurus adsimilis,Near Threatened
+85,Dama wallaby,Macropus eugenii,Endangered
+86,Slender loris,Loris tardigratus,Critically Endangered
+87,Paca,Agouti paca,Endangered
+88,Black-crowned night heron,Nycticorax nycticorax,Extinct in the Wild
+89,"Dog, black-tailed prairie",Cynomys ludovicianus,Critically Endangered
+90,"Eagle, bald",Haliaeetus leucocephalus,Endangered
+91,Seven-banded armadillo,Dasypus septemcincus,Vulnerable
+92,"Armadillo, giant",Priodontes maximus,Near Threatened
+93,River wallaby,Macropus agilis,Critically Endangered
+94,"Vulture, griffon",Gyps fulvus,Critically Endangered
+95,Scaly-breasted lorikeet,Trichoglossus chlorolepidotus,Least Concern
+96,Native cat,Dasyurus viverrinus,Endangered
+97,Red-billed toucan,Ramphastos tucanus,Least Concern
+98,"Partridge, coqui",Francolinus coqui,Vulnerable
+99,"Wolf, mexican",Canis lupus baileyi,Vulnerable
+100,American beaver,Castor canadensis,Endangered
+101,"Deer, swamp",Cervus duvauceli,Least Concern
+102,"Vulture, turkey",Cathartes aura,Near Threatened
+103,Water legaan,Varanus salvator,Near Threatened
+104,Ground legaan,Varanus sp.,Critically Endangered
+105,"Crake, african black",Limnocorax flavirostra,Least Concern
+106,Chameleon (unidentified),Chamaelo sp.,Endangered
+107,"Coot, red-knobbed",Fulica cristata,Least Concern
+108,"Monitor, two-banded",Varanus salvator,Least Concern
+109,Mocking cliffchat,Thamnolaea cinnmomeiventris,Critically Endangered
+110,"Vulture, bengal",Gyps bengalensis,Near Threatened
+111,"Waxbill, black-cheeked",Estrilda erythronotos,Endangered
+112,Python (unidentified),unavailable,Least Concern
+113,"Armadillo, seven-banded",Dasypus septemcincus,Critically Endangered
+114,Canadian tiger swallowtail butterfly,Papilio canadensis,Vulnerable
+115,"Coot, red-knobbed",Fulica cristata,Extinct in the Wild
+116,Paddy heron (unidentified),unavailable,Extinct in the Wild
+117,"Snake, tiger",Notechis semmiannulatus,Endangered
+118,Pine siskin,Carduelis pinus,Near Threatened
+119,Crested bunting,Melophus lathami,Extinct in the Wild
+120,"Stork, marabou",Leptoptilos crumeniferus,Extinct in the Wild
+121,"Sparrow, rufous-collared",Zonotrichia capensis,Endangered
+122,Eurasian red squirrel,Sciurus vulgaris,Extinct in the Wild
+123,"Vulture, griffon",Gyps fulvus,Least Concern
+124,"Squirrel, african bush",Paraxerus cepapi,Critically Endangered
+125,"Spoonbill, european",Platalea leucordia,Near Threatened
+126,"Skink, african",Mabuya spilogaster,Endangered
+127,"Wallaby, dama",Macropus eugenii,Vulnerable
+128,Mountain lion,Felis concolor,Endangered
+129,Praying mantis (unidentified),unavailable,Endangered
+130,"Lemur, lesser mouse",Microcebus murinus,Critically Endangered
+131,Royal tern,Thalasseus maximus,Vulnerable
+132,Gambel's quail,Callipepla gambelii,Near Threatened
+133,"Legaan, ground",Varanus sp.,Least Concern
+134,Giant heron,Ardea golieth,Critically Endangered
+135,Yellow-bellied marmot,Marmota flaviventris,Least Concern
+136,"Bird, secretary",Sagittarius serpentarius,Least Concern
+137,Wild water buffalo,Bubalus arnee,Least Concern
+138,"Insect, stick",Leprocaulinus vipera,Critically Endangered
+139,River wallaby,Macropus agilis,Vulnerable
+140,"Skunk, western spotted",Spilogale gracilis,Vulnerable
+141,"Rhea, greater",Rhea americana,Critically Endangered
+142,"Albatross, waved",Diomedea irrorata,Critically Endangered
+143,"Buffalo, wild water",Bubalus arnee,Least Concern
+144,"Mongoose, eastern dwarf",Helogale undulata,Least Concern
+145,"Rat, arboral spiny",Echimys chrysurus,Vulnerable
+146,Grey phalarope,Phalaropus fulicarius,Extinct in the Wild
+147,Black-backed jackal,Canis mesomelas,Near Threatened
+148,"Dragon, western bearded",Amphibolurus barbatus,Near Threatened
+149,"Dragon, frilled",Chlamydosaurus kingii,Least Concern
+150,"Bat, madagascar fruit",Pteropus rufus,Vulnerable
+151,"Skink, african",Mabuya spilogaster,Critically Endangered
+152,"Kingfisher, pied",Ceryle rudis,Extinct in the Wild
+153,"Goose, canada",Branta canadensis,Critically Endangered
+154,Malachite kingfisher,Corythornis cristata,Critically Endangered
+155,"Caracara, yellow-headed",Milvago chimachima,Critically Endangered
+156,"Owl, burrowing",Speotyte cuniculata,Critically Endangered
+157,"Monitor, water",Varanus salvator,Extinct in the Wild
+158,"Crab, sally lightfoot",Graspus graspus,Extinct in the Wild
+159,Sockeye salmon,Oncorhynchus nerka,Near Threatened
+160,"Antelope, sable",Hippotragus niger,Vulnerable
+161,"Hornbill, southern ground",Bucorvus leadbeateri,Critically Endangered
+162,"Vulture, king",Sarcorhamphus papa,Vulnerable
+163,Anaconda (unidentified),Eunectes sp.,Extinct in the Wild
+164,"Bulbul, african red-eyed",Pycnonotus nigricans,Endangered
+165,"Snake, buttermilk",Coluber constrictor,Extinct in the Wild
+166,Rainbow lory,Trichoglossus haematodus moluccanus,Endangered
+167,Caribou,Rangifer tarandus,Vulnerable
+168,Common green iguana,Iguana iguana,Vulnerable
+169,Canada goose,Branta canadensis,Near Threatened
+170,Greater kudu,Tragelaphus strepsiceros,Endangered
+171,Northern elephant seal,Mirounga angustirostris,Critically Endangered
+172,Blackbuck,Antilope cervicapra,Extinct in the Wild
+173,Yellow-headed caracara,Milvago chimachima,Extinct in the Wild
+174,"Crane, wattled",Bugeranus caruncalatus,Least Concern
+175,Red-capped cardinal,Paroaria gularis,Endangered
+176,"Flamingo, chilean",Phoenicopterus chilensis,Vulnerable
+177,"Cockatoo, red-tailed",Calyptorhynchus magnificus,Least Concern
+178,Long-crested hawk eagle,Lophoaetus occipitalis,Extinct in the Wild
+179,Knob-nosed goose,Sarkidornis melanotos,Endangered
+180,African red-eyed bulbul,Pycnonotus nigricans,Near Threatened
+181,"Meerkat, red",Cynictis penicillata,Extinct in the Wild
+182,"Seal, common",Phoca vitulina,Endangered
+183,"Rhea, gray",Rhea americana,Endangered
+184,"Skunk, western spotted",Spilogale gracilis,Vulnerable
+185,Canadian river otter,Lutra canadensis,Near Threatened
+186,White-mantled colobus,Colobus guerza,Endangered
+187,Pacific gull,Gabianus pacificus,Least Concern
+188,"Gull, southern black-backed",Larus dominicanus,Least Concern
+189,"Dove, little brown",Streptopelia senegalensis,Least Concern
+190,European red squirrel,Sciurus vulgaris,Vulnerable
+191,Common eland,Taurotagus oryx,Least Concern
+192,"Cliffchat, mocking",Thamnolaea cinnmomeiventris,Least Concern
+193,Ringtail cat,Bassariscus astutus,Vulnerable
+194,"Lizard, collared",Crotaphytus collaris,Near Threatened
+195,"Wallaby, bennett's",Macropus rufogriseus,Least Concern
+196,Black-cheeked waxbill,Estrilda erythronotos,Least Concern
+197,"Wombat, southern hairy-nosed",Lasiorhinus latifrons,Extinct in the Wild
+198,Tayra,Eira barbata,Extinct in the Wild
+199,Spotted wood sandpiper,Tringa glareola,Vulnerable
+200,White-rumped vulture,Gyps bengalensis,Endangered
+201,"Baboon, chacma",Papio ursinus,Extinct in the Wild
+202,"Mongoose, banded",Mungos mungo,Extinct in the Wild
+203,"Heron, giant",Ardea golieth,Near Threatened
+204,White-nosed coatimundi,Nasua narica,Endangered
+205,Yellow-billed hornbill,Tockus flavirostris,Extinct in the Wild
+206,"Skua, great",Catharacta skua,Near Threatened
+207,Black rhinoceros,Diceros bicornis,Near Threatened
+208,"Flicker, campo",Colaptes campestroides,Extinct in the Wild
+209,Sally lightfoot crab,Graspus graspus,Critically Endangered
+210,"Civet, common palm",Paradoxurus hermaphroditus,Critically Endangered
+211,"Sungazer, yellow-brown",Cordylus giganteus,Critically Endangered
+212,Wattled crane,Bugeranus caruncalatus,Extinct in the Wild
+213,Cattle egret,Bubulcus ibis,Critically Endangered
+214,"Buffalo, wild water",Bubalus arnee,Endangered
+215,"Starling, cape",Lamprotornis nitens,Near Threatened
+216,Red-tailed hawk,Buteo jamaicensis,Least Concern
+217,"Gull, herring",unavailable,Critically Endangered
+218,Eastern fox squirrel,Sciurus niger,Vulnerable
+219,Mexican boa,Boa constrictor mexicana,Critically Endangered
+220,"Booby, blue-faced",Sula dactylatra,Least Concern
+221,Weeper capuchin,Cebus nigrivittatus,Least Concern
+222,European beaver,Castor fiber,Near Threatened
+223,"Snake, green vine",Oxybelis fulgidus,Near Threatened
+224,"Kangaroo, red",Macropus rufus,Extinct in the Wild
+225,"Sheep, american bighorn",Ovis canadensis,Extinct in the Wild
+226,"Starling, cape",Lamprotornis nitens,Critically Endangered
+227,"Grenadier, common",Uraeginthus granatina,Vulnerable
+228,"Goose, snow",Anser caerulescens,Least Concern
+229,Barasingha deer,Cervus duvauceli,Endangered
+230,Greater blue-eared starling,Lamprotornis chalybaeus,Endangered
+231,"Heron, gray",Ardea cinerea,Critically Endangered
+232,"Racer, blue",Coluber constrictor foxii,Near Threatened
+233,Snowy owl,Nyctea scandiaca,Critically Endangered
+234,"Kookaburra, laughing",Dacelo novaeguineae,Least Concern
+235,Sarus crane,Grus antigone,Least Concern
+236,Galapagos penguin,Spheniscus mendiculus,Near Threatened
+237,White-throated robin,Irania gutteralis,Extinct in the Wild
+238,Bird (unidentified),unavailable,Near Threatened
+239,"Glider, squirrel",Petaurus norfolcensis,Near Threatened
+240,"Catfish, blue",Ictalurus furcatus,Extinct in the Wild
+241,Oriental short-clawed otter,Aonyx cinerea,Endangered
+242,Black-capped capuchin,Cebus apella,Near Threatened
+243,Cormorant (unidentified),unavailable,Least Concern
+244,Grey heron,Ardea cinerea,Vulnerable
+245,Greater roadrunner,Geococcyx californianus,Endangered
+246,Galapagos penguin,Spheniscus mendiculus,Vulnerable
+247,"Bulbul, african red-eyed",Pycnonotus nigricans,Vulnerable
+248,Burmese brown mountain tortoise,Manouria emys,Least Concern
+249,Magnificent frigate bird,Fregata magnificans,Endangered
+250,Blue-tongued lizard,Tiliqua scincoides,Near Threatened
+251,"Ferret, black-footed",Mustela nigripes,Critically Endangered
+252,Harbor seal,Phoca vitulina,Extinct in the Wild
+253,Gerenuk,Litrocranius walleri,Critically Endangered
+254,African red-eyed bulbul,Pycnonotus nigricans,Extinct in the Wild
+255,"Lizard, desert spiny",Sceloporus magister,Critically Endangered
+256,Little brown bat,Myotis lucifugus,Extinct in the Wild
+257,Bennett's wallaby,Macropus rufogriseus,Near Threatened
+258,"Albatross, galapagos",Diomedea irrorata,Endangered
+259,Helmeted guinea fowl,Numida meleagris,Near Threatened
+260,Glossy starling (unidentified),Lamprotornis sp.,Vulnerable
+261,Cobra (unidentified),Naja sp.,Near Threatened
+262,Malagasy ground boa,Acrantophis madagascariensis,Extinct in the Wild
+263,Field flicker,Colaptes campestroides,Least Concern
+264,Tiger,Panthera tigris,Near Threatened
+265,Great kiskadee,Pitangus sulphuratus,Vulnerable
+266,Tailless tenrec,Tenrec ecaudatus,Vulnerable
+267,"Bat, madagascar fruit",Pteropus rufus,Critically Endangered
+268,"Capuchin, weeper",Cebus nigrivittatus,Extinct in the Wild
+269,Small-spotted genet,Genetta genetta,Extinct in the Wild
+270,"Monitor, two-banded",Varanus salvator,Least Concern
+271,"Sheep, stone",Ovis dalli stonei,Least Concern
+272,"Crane, sandhill",Grus canadensis,Endangered
+273,Scarlet macaw,Ara macao,Critically Endangered
+274,Australian pelican,Pelecanus conspicillatus,Extinct in the Wild
+275,"Corella, long-billed",Cacatua tenuirostris,Least Concern
+276,House sparrow,Passer domesticus,Endangered
+277,"Heron, goliath",Ardea golieth,Endangered
+278,Chameleon (unidentified),Chamaelo sp.,Least Concern
+279,Great horned owl,Bubo virginianus,Vulnerable
+280,Ornate rock dragon,Ctenophorus ornatus,Vulnerable
+281,Comb duck,Sarkidornis melanotos,Vulnerable
+282,"Owl, madagascar hawk",Ninox superciliaris,Near Threatened
+283,"Camel, dromedary",Camelus dromedarius,Critically Endangered
+284,"Flamingo, lesser",Phoeniconaias minor,Critically Endangered
+285,Red-tailed wambenger,Phascogale calura,Near Threatened
+286,"Bat, little brown",Myotis lucifugus,Endangered
+287,Black bear,Ursus americanus,Near Threatened
+288,Red-tailed wambenger,Phascogale calura,Extinct in the Wild
+289,Curve-billed thrasher,Toxostoma curvirostre,Extinct in the Wild
+290,"Kangaroo, jungle",Macropus agilis,Extinct in the Wild
+291,South American meadowlark (unidentified),unavailable,Near Threatened
+292,Southern right whale,Eubalaena australis,Extinct in the Wild
+293,Indian star tortoise,Geochelone elegans,Endangered
+294,"Dove, little brown",Streptopelia senegalensis,Least Concern
+295,Gila monster,Heloderma horridum,Extinct in the Wild
+296,Southern elephant seal,Mirounga leonina,Least Concern
+297,"Weaver, chestnut",Ploceus rubiginosus,Least Concern
+298,"Buffalo, american",Bison bison,Critically Endangered
+299,"Eagle, long-crested hawk",Lophoaetus occipitalis,Critically Endangered
+300,"Partridge, coqui",Francolinus coqui,Extinct in the Wild
+301,Huron,Galictis vittata,Vulnerable
+302,Ground monitor (unidentified),Varanus sp.,Critically Endangered
+303,Brown antechinus,Antechinus flavipes,Vulnerable
+304,"Gull, silver",Larus novaehollandiae,Vulnerable
+305,"Possum, pygmy",Acrobates pygmaeus,Near Threatened
+306,Arboral spiny rat,Echimys chrysurus,Least Concern
+307,"Dove, ring",Columba palumbus,Near Threatened
+308,"Ringtail, common",Pseudocheirus peregrinus,Least Concern
+309,"Turkey, australian brush",Alectura lathami,Extinct in the Wild
+310,"Flicker, field",Colaptes campestroides,Least Concern
+311,"Vulture, white-headed",Aegypius occipitalis,Critically Endangered
+312,Cook's tree boa,Corallus hortulanus cooki,Critically Endangered
+313,Red-legged pademelon,Thylogale stigmatica,Near Threatened
+314,Australian sea lion,Neophoca cinerea,Extinct in the Wild
+315,Tayra,Eira barbata,Vulnerable
+316,"Kangaroo, black-faced",Macropus fuliginosus,Critically Endangered
+317,Black-capped chickadee,Parus atricapillus,Critically Endangered
+318,Great egret,Casmerodius albus,Extinct in the Wild
+319,"Wapiti, elk,",Cervus canadensis,Endangered
+320,Royal tern,Thalasseus maximus,Endangered
+321,"Zebra, plains",Equus burchelli,Vulnerable
+322,"Sloth, two-toed",Choloepus hoffmani,Critically Endangered
+323,Yellow-necked spurfowl,Francolinus leucoscepus,Endangered
+324,"Fox, savanna",Dusicyon thous,Endangered
+325,"Gecko, ring-tailed",Cyrtodactylus louisiadensis,Extinct in the Wild
+326,Urial,Ovis orientalis,Endangered
+327,"Possum, common brushtail",Trichosurus vulpecula,Endangered
+328,"Gull, silver",Larus novaehollandiae,Endangered
+329,"Goose, egyptian",Alopochen aegyptiacus,Vulnerable
+330,"Gull, southern black-backed",Larus dominicanus,Extinct in the Wild
+331,Red brocket,Mazama americana,Vulnerable
+332,Silver-backed fox,Vulpes chama,Extinct in the Wild
+333,"Phalarope, red-necked",Phalaropus lobatus,Extinct in the Wild
+334,Ringtail,Bassariscus astutus,Near Threatened
+335,"Crab, sally lightfoot",Graspus graspus,Endangered
+336,Bottle-nose dolphin,Tursiops truncatus,Least Concern
+337,Horned puffin,Fratercula corniculata,Vulnerable
+338,"Bat, asian false vampire",Megaderma spasma,Endangered
+339,Lesser masked weaver,Ploceus intermedius,Extinct in the Wild
+340,Bohor reedbuck,Redunca redunca,Least Concern
+341,"Starfish, crown of thorns",Acanthaster planci,Near Threatened
+342,"Heron, giant",Ardea golieth,Least Concern
+343,Wild water buffalo,Bubalus arnee,Least Concern
+344,Rose-ringed parakeet,Psittacula krameri,Critically Endangered
+345,"Marmot, hoary",Marmota caligata,Near Threatened
+346,Black-throated butcher bird,Cracticus nigroagularis,Near Threatened
+347,"Sifaka, verreaux's",Propithecus verreauxi,Near Threatened
+348,American badger,Taxidea taxus,Vulnerable
+349,"Bird, secretary",Sagittarius serpentarius,Near Threatened
+350,Greater adjutant stork,Leptoptilus dubius,Near Threatened
+351,Swainson's francolin,Francolinus swainsonii,Extinct in the Wild
+352,Greater adjutant stork,Leptoptilus dubius,Near Threatened
+353,Blue wildebeest,Connochaetus taurinus,Vulnerable
+354,Sloth bear,Melursus ursinus,Endangered
+355,Giraffe,Giraffe camelopardalis,Near Threatened
+356,River wallaby,Macropus agilis,Critically Endangered
+357,Red-cheeked cordon bleu,Uraeginthus bengalus,Least Concern
+358,"Badger, european",Meles meles,Near Threatened
+359,Turkey vulture,Cathartes aura,Extinct in the Wild
+360,"Bat, asian false vampire",Megaderma spasma,Endangered
+361,"Turtle, long-necked",Chelodina longicollis,Endangered
+362,Water monitor,Varanus salvator,Endangered
+363,"Rat, desert kangaroo",Dipodomys deserti,Extinct in the Wild
+364,Crested barbet,Trachyphonus vaillantii,Least Concern
+365,American marten,Martes americana,Least Concern
+366,"Tortoise, burmese brown mountain",Manouria emys,Endangered
+367,White-fronted bee-eater,Merops bullockoides,Least Concern
+368,"Armadillo, nine-banded",Dasypus novemcinctus,Near Threatened
+369,"Possum, golden brush-tailed",Trichosurus vulpecula,Endangered
+370,"Corella, long-billed",Cacatua tenuirostris,Vulnerable
+371,"Eagle, tawny",Anitibyx armatus,Extinct in the Wild
+372,Mallard,Anas platyrhynchos,Vulnerable
+373,Mule deer,Odocoileus hemionus,Extinct in the Wild
+374,European wild cat,Felis silvestris lybica,Near Threatened
+375,Common rhea,Rhea americana,Critically Endangered
+376,"Butterfly, canadian tiger swallowtail",Papilio canadensis,Endangered
+377,Common seal,Phoca vitulina,Extinct in the Wild
+378,Bontebok,Damaliscus dorcas,Near Threatened
+379,"Dog, raccoon",Nyctereutes procyonoides,Extinct in the Wild
+380,Red-necked phalarope,Phalaropus lobatus,Endangered
+381,"Puma, south american",Felis concolor,Extinct in the Wild
+382,Two-toed sloth,Choloepus hoffmani,Critically Endangered
+383,"Stork, greater adjutant",Leptoptilus dubius,Least Concern
+384,"Lemming, arctic",Dicrostonyx groenlandicus,Vulnerable
+385,Yellow-headed caracara,Milvago chimachima,Least Concern
+386,Brown pelican,Pelecanus occidentalis,Vulnerable
+387,"Vulture, oriental white-backed",Gyps bengalensis,Extinct in the Wild
+388,White-rumped vulture,Gyps bengalensis,Extinct in the Wild
+389,Western bearded dragon,Amphibolurus barbatus,Extinct in the Wild
+390,Northern fur seal,Callorhinus ursinus,Critically Endangered
+391,"Sparrow, house",Passer domesticus,Endangered
+392,Saddle-billed stork,Ephipplorhynchus senegalensis,Vulnerable
+393,Indian leopard,Panthera pardus,Vulnerable
+394,"Flycatcher, tyrant",Myiarchus tuberculifer,Least Concern
+395,"Raccoon, crab-eating",Procyon cancrivorus,Near Threatened
+396,Asian elephant,Elephas maximus bengalensis,Critically Endangered
+397,"Porcupine, african",Hystrix cristata,Near Threatened
+398,Egyptian cobra,Naja haje,Least Concern
+399,Squirrel glider,Petaurus norfolcensis,Near Threatened
+400,Red-headed woodpecker,Melanerpes erythrocephalus,Least Concern
+401,Brown pelican,Pelecanus occidentalis,Extinct in the Wild
+402,Red meerkat,Cynictis penicillata,Near Threatened
+403,Bird (unidentified),unavailable,Least Concern
+404,California sea lion,Zalophus californicus,Extinct in the Wild
+405,"Grebe, little",Tachybaptus ruficollis,Endangered
+406,"Genet, common",Genetta genetta,Critically Endangered
+407,Blue-breasted cordon bleu,Uraeginthus angolensis,Critically Endangered
+408,Giant otter,Pteronura brasiliensis,Least Concern
+409,Helmeted guinea fowl,Numida meleagris,Endangered
+410,Nubian bee-eater,Merops nubicus,Extinct in the Wild
+411,South American puma,Felis concolor,Endangered
+412,Llama,Lama glama,Vulnerable
+413,"Buffalo, american",Bison bison,Least Concern
+414,"Tamandua, southern",Tamandua tetradactyla,Near Threatened
+415,Cape fox,Vulpes chama,Vulnerable
+416,"Racer, american",Coluber constrictor,Endangered
+417,Burchell's gonolek,Laniaurius atrococcineus,Near Threatened
+418,"Goose, spur-winged",Plectopterus gambensis,Vulnerable
+419,Royal tern,Thalasseus maximus,Near Threatened
+420,"Lizard, blue-tongued",Tiliqua scincoides,Vulnerable
+421,"Dove, white-winged",Zenaida asiatica,Critically Endangered
+422,"Heron, gray",Ardea cinerea,Vulnerable
+423,Eurasian badger,Meles meles,Endangered
+424,"Raccoon, crab-eating",Procyon cancrivorus,Vulnerable
+425,Uinta ground squirrel,Spermophilus armatus,Critically Endangered
+426,Malay squirrel (unidentified),unavailable,Endangered
+427,Red kangaroo,Macropus rufus,Endangered
+428,"Turkey, common",Meleagris gallopavo,Near Threatened
+429,"Cockatoo, red-breasted",Eolophus roseicapillus,Endangered
+430,"Squirrel, uinta ground",Spermophilus armatus,Least Concern
+431,Paca,Agouti paca,Least Concern
+432,"Racer, american",Coluber constrictor,Critically Endangered
+433,Tsessebe,Damaliscus lunatus,Least Concern
+434,"Snake, racer",Coluber constrictor,Endangered
+435,"Boa, mexican",Boa constrictor mexicana,Extinct in the Wild
+436,Snowy owl,Nyctea scandiaca,Extinct in the Wild
+437,"Grenadier, common",Uraeginthus granatina,Extinct in the Wild
+438,Black-collared barbet,Lybius torquatus,Critically Endangered
+439,"Starling, superb",Lamprotornis superbus,Vulnerable
+440,"Hornbill, yellow-billed",Tockus flavirostris,Extinct in the Wild
+441,African lion,Panthera leo,Least Concern
+442,"Jackrabbit, white-tailed",Lepus townsendii,Vulnerable
+443,"Vulture, white-headed",Aegypius occipitalis,Extinct in the Wild
+444,White-tailed jackrabbit,Lepus townsendii,Extinct in the Wild
+445,Ring-tailed lemur,Lemur catta,Least Concern
+446,"Skink, african",Mabuya spilogaster,Extinct in the Wild
+447,Downy woodpecker,Picoides pubescens,Vulnerable
+448,"Stork, white",Ciconia ciconia,Critically Endangered
+449,Tayra,Eira barbata,Near Threatened
+450,Margay,Felis wiedi or Leopardus weidi,Near Threatened
+451,Hyrax,Dendrohyrax brucel,Least Concern
+452,"Skink, african",Mabuya spilogaster,Near Threatened
+453,Masked booby,Sula dactylatra,Least Concern
+454,"Macaw, red and blue",Ara chloroptera,Near Threatened
+455,Mocking cliffchat,Thamnolaea cinnmomeiventris,Least Concern
+456,Prehensile-tailed porcupine,Coendou prehensilis,Vulnerable
+457,"Drongo, fork-tailed",Dicrurus adsimilis,Critically Endangered
+458,Chital,Axis axis,Extinct in the Wild
+459,"Possum, ring-tailed",Pseudocheirus peregrinus,Critically Endangered
+460,Common zebra,Equus burchelli,Vulnerable
+461,Red squirrel,Tamiasciurus hudsonicus,Endangered
+462,American alligator,Alligator mississippiensis,Extinct in the Wild
+463,Gray heron,Ardea cinerea,Extinct in the Wild
+464,Arctic ground squirrel,Spermophilus parryii,Near Threatened
+465,Northern fur seal,Callorhinus ursinus,Extinct in the Wild
+466,"Cockatoo, roseate",Eolophus roseicapillus,Critically Endangered
+467,Serval,Felis serval,Critically Endangered
+468,Ground monitor (unidentified),Varanus sp.,Least Concern
+469,"Bear, grizzly",Ursus arctos,Near Threatened
+470,Barrows goldeneye,Bucephala clangula,Extinct in the Wild
+471,Weeper capuchin,Cebus nigrivittatus,Near Threatened
+472,Black-tailed tree creeper,Climacteris melanura,Least Concern
+473,Asian water dragon,Physignathus cocincinus,Vulnerable
+474,Giant girdled lizard,Cordylus giganteus,Vulnerable
+475,"Bat, little brown",Myotis lucifugus,Least Concern
+476,"Macaw, blue and yellow",Ara ararauna,Critically Endangered
+477,Spotted hyena,Crocuta crocuta,Least Concern
+478,Blue and yellow macaw,Ara ararauna,Extinct in the Wild
+479,Scarlet macaw,Ara macao,Vulnerable
+480,"Fox, savanna",Dusicyon thous,Least Concern
+481,"Squirrel, arctic ground",Spermophilus parryii,Least Concern
+482,Stick insect,Leprocaulinus vipera,Critically Endangered
+483,"Cormorant, javanese",Phalacrocorax niger,Extinct in the Wild
+484,"Pie, indian tree",Dendrocitta vagabunda,Endangered
+485,Carpet snake,Morelia spilotes variegata,Critically Endangered
+486,"Rhinoceros, white",Ceratotherium simum,Near Threatened
+487,"Lion, steller sea",Eumetopias jubatus,Critically Endangered
+488,Desert spiny lizard,Sceloporus magister,Endangered
+489,Marabou stork,Leptoptilos crumeniferus,Least Concern
+490,Snow goose,Anser caerulescens,Near Threatened
+491,"Mynah, indian",Acridotheres tristis,Vulnerable
+492,Grey phalarope,Phalaropus fulicarius,Vulnerable
+493,"Bleu, blue-breasted cordon",Uraeginthus angolensis,Critically Endangered
+494,Barasingha deer,Cervus duvauceli,Extinct in the Wild
+495,Spotted hyena,Crocuta crocuta,Endangered
+496,"Monitor, two-banded",Varanus salvator,Vulnerable
+497,Bottle-nose dolphin,Tursiops truncatus,Endangered
+498,Indian peacock,Pavo cristatus,Extinct in the Wild
+499,"Turkey, australian brush",Alectura lathami,Least Concern
+500,"Heron, gray",Ardea cinerea,Near Threatened

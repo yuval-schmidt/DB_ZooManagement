@@ -1,0 +1,28 @@
+[
+  {
+    "name": "SPECIES",
+    "columns": [
+      {"name": "SpeciesID", "type": "Row Number"},
+      {"name": "CommonName", "type": "Animal Common Name"},
+      {"name": "ScientificName", "type": "Animal Scientific Name"},
+      {"name": "ConservationStatus", "type": "Custom List", "values": ["Least Concern", "Near Threatened", "Vulnerable", "Endangered", "Critically Endangered", "Extinct in the Wild"]}
+    ]
+  },
+  {
+    "name": "DIETPLAN",
+    "columns": [
+      {"name": "DietPlanID", "type": "Row Number"},
+      {"name": "PlanName", "type": "Words", "min": 1, "max": 3},
+      {"name": "DailyCost", "type": "Number", "min": 5, "max": 100, "decimals": 2}
+    ]
+  },
+  {
+    "name": "DAILYFEEDING",
+    "columns": [
+      {"name": "FeedingID", "type": "Row Number"},
+      {"name": "FeedingDate", "type": "Date", "min": "01/01/2023", "max": "12/31/2025", "format": "%Y-%m-%d"},
+      {"name": "FoodConsumedQty", "type": "Number", "min": 1, "max": 50, "decimals": 2},
+      {"name": "AnimalID", "type": "Number", "min": 1, "max": 20000, "decimals": 0}
+    ]
+  }
+]
