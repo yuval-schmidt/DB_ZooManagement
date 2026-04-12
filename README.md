@@ -5,8 +5,7 @@
 ## Zoo Animal Management System
 
 **Submitted by:**  
-Yedidya Bar-Gad
-Yuval Schmidet
+Yedidya Bar-Gad & Yuval Schmidet
 
 </div>
 
@@ -31,18 +30,23 @@ The system stores interconnected data across several key domains:
 *   **Habitats:** Managing the various enclosure zones, their specific climate types, and maximum holding capacities.
 *   **Medical and Dietary Management:** Logging periodic health checkups, recording animal weights and health statuses over time, as well as assigning specific nutritional diet plans and tracking daily food consumption metrics.
 
-The overarching purpose of this platform is to provide zoo administrators, veterinarians, and zookeepers with a reliable, structured data foundation to ensure the well-being of the animals and the efficient operation of the facility's enclosures.
-
 ---
 
 ## 2. User Interface (AI Studio)
 
 This section presents the initial mockups and user interface screens designed to interact with the database, allowing users to efficiently retrieve, insert, and update system records.
 
-[Insert UI Screenshots Here]
+![alt text](image.png)
+
+![alt text](<צילום מסך 2026-04-12 212610.png>)
+
+![alt text](<צילום מסך 2026-04-12 212622.png>)
+
+![alt text](image-1.png)
+
 
 **Interactive Prototype:**  
-[INSERT YOUR AI STUDIO LINK HERE]
+https://ai.studio/apps/2c40fd05-35c4-457c-aa3e-f2515040b0b5
 
 ---
 
@@ -51,12 +55,10 @@ This section presents the initial mockups and user interface screens designed to
 The architectural design of the database is visualized in the following diagrams, illustrating the entities, their attributes, and the relational mapping between them.
 
 **Entity Relationship Diagram (ERD)**  
-[Insert ERD (Entity Relationship Diagram) Here]
+![alt text](erdplus(1).png)
 
 **Data Structure Diagram (DSD)**  
-[Insert DSD (Data Structure Diagram) Here]
-
----
+![alt text](ZOO_DSD.png)
 
 ## 4. Design Decisions & Justifications
 
