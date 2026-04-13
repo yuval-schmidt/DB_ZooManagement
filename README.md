@@ -100,3 +100,40 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Restore Execution Log:**  
 ![alt text](images/image-6.png)
+---
+
+## 7. Phase B: Queries and Constraints
+
+### Setup & Requirements Fulfillment
+During this phase, we implemented advanced schema logic. We added constraints to ensure valid data entry and crafted complex SQL queries matching specific business requirements of the Zoo Management system.
+
+### Constraints Implemented
+We implemented two Non-Trivial constraints using `ALTER TABLE`:
+1. `check_dob_past`: Ensures that an animal's `DateOfBirth` cannot be in the future.
+2. `check_valid_status`: Ensures that `HealthRecord` values for `HealthStatus` strictly follow our predefined subset ('Healthy', 'Sick', 'Recovering', 'Critical', 'Deceased').
+
+### Selected Double Queries Analysis
+
+**1. Tropical Rain Habitat Breakdown (JOIN vs IN Subquery)**
+*Description*: Find the animals and their species details that live in the 'Tropical Rain' climate.
+*Efficiency Analysis*: 
+- The `JOIN` approach is consistently optimized well by the PostgreSQL planner, generally utilizing a Hash Join because we are connecting three primary tables.
+- The `IN` subquery typically forces a sequential scan combined with a lookup. 
+- **Conclusion:** `JOIN` is strictly preferred here, especially since we must retrieve `Species` columns anyway.
+
+**2. Unassigned Diet Plans (NOT IN vs NOT EXISTS)**
+*Description*: Find diet plans that are currently not assigned to any living animal.
+*Efficiency Analysis*: 
+- `NOT IN` struggles with NULL values (if `DietPlanID` has NULLs, it yields no records) and reads the entire subquery first.
+- `NOT EXISTS` stops evaluating as soon as it finds a single matching row (short-circuiting).
+- **Conclusion:** `NOT EXISTS` is the safer and faster choice in PostgreSQL schema relations.
+
+**3. Habitat Feeding Costs (GROUP BY/JOIN vs Subquery in SELECT)**
+*Description*: Find the total daily food consumption cost per habitat.
+*Efficiency Analysis*:
+- `GROUP BY` with `JOIN` computes the aggregation in a single pass after connecting the tables, which scales very well.
+- Using a `Subquery in SELECT` evaluates the inner query iteratively per each row of `HABITAT`, essentially an N+1 query pattern.
+- **Conclusion:** The `GROUP BY` approach significantly outperforms the correlated SELECT subquery.
+
+### DML & Transaction Scripts
+We implemented Update/Delete DML queries with nested queries, and proved transaction safety through explicit execution of `BEGIN/ROLLBACK` and `BEGIN/COMMIT` flows using interactive `psql`. All interactions were permanently recorded in our backup files `backup2.sql`.
