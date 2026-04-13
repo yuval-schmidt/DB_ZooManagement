@@ -20,9 +20,9 @@ Yedidya Bar-Gad & Yuval Schmidet
 6. [Backup & Restore Operations](#6-backup--restore-operations)
 7. [Phase B: Queries and Constraints](#7-phase-b-queries-and-constraints)
    * [Dual-Form SELECT Queries](#1-dual-form-select-queries)
-   * [Additional SELECT Queries (שאילתות רגילות)](#2-additional-select-queries-שאילתות-רגילות)
-   * [UPDATE & DELETE Queries (עדכון ומחיקה)](#3-update--delete-queries-עדכון-ומחיקה)
-   * [Constraints (אילוצי מסד נתונים)](#4-constraints-אילוצי-מסד-נתונים)
+   * [Additional SELECT Queries](#2-additional-select-queries)
+   * [UPDATE & DELETE Queries](#3-update--delete-queries)
+   * [Constraints](#4-constraints)
 
 ---
 
