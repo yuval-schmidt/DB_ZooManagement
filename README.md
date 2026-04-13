@@ -18,6 +18,11 @@ Yedidya Bar-Gad & Yuval Schmidet
 4. [Design Decisions & Justifications](#4-design-decisions--justifications)
 5. [Data Population Methods](#5-data-population-methods)
 6. [Backup & Restore Operations](#6-backup--restore-operations)
+7. [Phase B: Queries and Constraints](#7-phase-b-queries-and-constraints)
+   * [Dual-Form SELECT Queries](#1-dual-form-select-queries)
+   * [Additional SELECT Queries (שאילתות רגילות)](#2-additional-select-queries-שאילתות-רגילות)
+   * [UPDATE & DELETE Queries (עדכון ומחיקה)](#3-update--delete-queries-עדכון-ומחיקה)
+   * [Constraints (אילוצי מסד נתונים)](#4-constraints-אילוצי-מסד-נתונים)
 
 ---
 
@@ -36,13 +41,13 @@ The system stores interconnected data across several key domains:
 
 This section presents the initial mockups and user interface screens designed to interact with the database, allowing users to efficiently retrieve, insert, and update system records.
 
-![alt text](images/image.png)
+![alt text](images/StageA/image.png)
 
-![alt text](<images/צילום מסך 2026-04-12 212610.png>)
+![alt text](<images/StageA/צילום מסך 2026-04-12 212610.png>)
 
-![alt text](<images/צילום מסך 2026-04-12 212622.png>)
+![alt text](<images/StageA/צילום מסך 2026-04-12 212622.png>)
 
-![alt text](images/image-1.png)
+![alt text](images/StageA/image-1.png)
 
 
 **Interactive Prototype:**  
@@ -55,10 +60,10 @@ https://ai.studio/apps/2c40fd05-35c4-457c-aa3e-f2515040b0b5
 The architectural design of the database is visualized in the following diagrams, illustrating the entities, their attributes, and the relational mapping between them.
 
 **Entity Relationship Diagram (ERD)**  
-![alt text](images/erdplus(1).png)
+![alt text](images/StageA/erdplus(1).png)
 
 **Data Structure Diagram (DSD)**  
-![alt text](images/ZOO_DSD.png)
+![alt text](images/StageA/ZOO_DSD.png)
 
 ## 4. Design Decisions & Justifications
 
@@ -79,15 +84,15 @@ To thoroughly stress-test the schema and simulate a production-grade environment
 
 1.  **Algorithmic Data Generation (Python Script):**  
     We developed a custom Python script (`generate_data.py`) using the `csv` and `datetime` libraries to programmatically generate **20,000 records** for both the `ANIMAL` and `HEALTHRECORD` tables. This ensured the generation of heavy, realistic historical data.  
-    ![alt text](images/image-2.png)
+    ![alt text](images/StageA/image-2.png)
 
 2.  **Mockaroo API (JSON Schema):**  
     For categorical lookup tables requiring realistic but varied string data (such as `SPECIES` and `DIETPLAN`), we leveraged Mockaroo. We defined a specific JSON schema to automatically generate over **500 records** per table.  
-    ![alt text](images/image-3.png)
+    ![alt text](images/StageA/image-3.png)
 
 3.  **Manual SQL INSERTs:**  
     For the `HABITAT` table, we utilized a massive batch of explicit manual `INSERT INTO` SQL statements mapping out 500 distinct habitat zones, their respective climates, and capacities.  
-    ![alt text](images/image-4.png)
+    ![alt text](images/StageA/image-4.png)
 
 ---
 
@@ -96,44 +101,333 @@ To thoroughly stress-test the schema and simulate a production-grade environment
 To ensure data resilience and disaster recovery compliance, a full backup and restore procedure was successfully executed on the completed database structure and its populated records.
 
 **Backup Execution Log:**  
-![alt text](images/image-5.png)
+![alt text](images/StageA/image-5.png)
 
 **Restore Execution Log:**  
-![alt text](images/image-6.png)
+![alt text](images/StageA/image-6.png)
 ---
 
 ## 7. Phase B: Queries and Constraints
 
-### Setup & Requirements Fulfillment
-During this phase, we implemented advanced schema logic. We added constraints to ensure valid data entry and crafted complex SQL queries matching specific business requirements of the Zoo Management system.
+### 1. Dual-Form SELECT Queries
 
-### Constraints Implemented
-We implemented two Non-Trivial constraints using `ALTER TABLE`:
-1. `check_dob_past`: Ensures that an animal's `DateOfBirth` cannot be in the future.
-2. `check_valid_status`: Ensures that `HealthRecord` values for `HealthStatus` strictly follow our predefined subset ('Healthy', 'Sick', 'Recovering', 'Critical', 'Deceased').
+**Double Query 1: Total food consumed per species for animals born after 2020**  
+**תיאור:** חישוב סך הכל כמויות המזון שנצרכו לכל מין (Species), עבור חיות שנולדו לאחר שנת 2020.
+*   **Version A (JOIN):**
+    ```sql
+    SELECT S.CommonName, S.ScientificName, SUM(DF.FoodConsumedQty) AS TotalFoodConsumed
+    FROM SPECIES S
+    JOIN ANIMAL A ON S.SpeciesID = A.SpeciesID
+    JOIN DAILYFEEDING DF ON A.AnimalID = DF.AnimalID
+    WHERE EXTRACT(YEAR FROM A.DateOfBirth) > 2020
+    GROUP BY S.CommonName, S.ScientificName
+    ORDER BY TotalFoodConsumed DESC;
+    ```
+*   **Version B (Derived Table Subquery):**
+    ```sql
+    SELECT S.CommonName, S.ScientificName, Agg.TotalQty AS TotalFoodConsumed
+    FROM SPECIES S
+    JOIN (
+        SELECT A.SpeciesID, SUM(DF.FoodConsumedQty) as TotalQty
+        FROM ANIMAL A
+        JOIN DAILYFEEDING DF ON A.AnimalID = DF.AnimalID
+        WHERE EXTRACT(YEAR FROM A.DateOfBirth) > 2020
+        GROUP BY A.SpeciesID
+    ) Agg ON S.SpeciesID = Agg.SpeciesID
+    ORDER BY TotalFoodConsumed DESC;
+    ```
+*   **Execution Screenshots:**
+    > ![alt text](images/StageB/image.png)
+*   **Efficiency Analysis:** JOIN typically optimizes into a Hash/Merge Join gracefully performing single-sweep connections utilizing indices. However, the Subquery (Derived table) creates an obscure aggregation first which ignores global indexing initially, making standard JOIN preferred and safer for larger tables.
 
-### Selected Double Queries Analysis
+---
 
-**1. Tropical Rain Habitat Breakdown (JOIN vs IN Subquery)**
-*Description*: Find the animals and their species details that live in the 'Tropical Rain' climate.
-*Efficiency Analysis*: 
-- The `JOIN` approach is consistently optimized well by the PostgreSQL planner, generally utilizing a Hash Join because we are connecting three primary tables.
-- The `IN` subquery typically forces a sequential scan combined with a lookup. 
-- **Conclusion:** `JOIN` is strictly preferred here, especially since we must retrieve `Species` columns anyway.
+**Double Query 2: Habitat population count for animals missing checkups this year**  
+**תיאור:** ספירת כמות החיות בכל אזור מחיה (Habitat), עבור חיות שלא עברו שום בדיקה רפואית בשנה הנוכחית.
+*   **Version A (NOT IN):**
+    ```sql
+    SELECT H.HabitatName, H.ClimateType, COUNT(A.AnimalID) AS AnimalCount
+    FROM HABITAT H
+    JOIN ANIMAL A ON H.HabitatID = A.HabitatID
+    WHERE H.HabitatID NOT IN (
+        SELECT DISTINCT A2.HabitatID
+        FROM ANIMAL A2
+        JOIN HEALTHRECORD HR ON A2.AnimalID = HR.AnimalID
+        WHERE EXTRACT(YEAR FROM HR.CheckupDate) = EXTRACT(YEAR FROM CURRENT_DATE)
+    )
+    GROUP BY H.HabitatName, H.ClimateType
+    ORDER BY AnimalCount DESC;
+    ```
+*   **Version B (NOT EXISTS):**
+    ```sql
+    SELECT H.HabitatName, H.ClimateType, COUNT(A.AnimalID) AS AnimalCount
+    FROM HABITAT H
+    JOIN ANIMAL A ON H.HabitatID = A.HabitatID
+    WHERE NOT EXISTS (
+        SELECT 1 FROM ANIMAL A2
+        JOIN HEALTHRECORD HR ON A2.AnimalID = HR.AnimalID
+        WHERE A2.HabitatID = H.HabitatID 
+          AND EXTRACT(YEAR FROM HR.CheckupDate) = EXTRACT(YEAR FROM CURRENT_DATE)
+    )
+    GROUP BY H.HabitatName, H.ClimateType
+    ORDER BY AnimalCount DESC;
+    ```
+*   **Execution Screenshots:**
+    > ![alt text](images/StageB/image-1.png)
+*   **Efficiency Analysis:** `NOT EXISTS` vastly outperforms `NOT IN` because it leverages an internal short-circuit mechanism (it immediately quits scanning exactly when it spots 1 match), preventing NULL contamination risk which completely zeroes-out `NOT IN` execution plans.
 
-**2. Unassigned Diet Plans (NOT IN vs NOT EXISTS)**
-*Description*: Find diet plans that are currently not assigned to any living animal.
-*Efficiency Analysis*: 
-- `NOT IN` struggles with NULL values (if `DietPlanID` has NULLs, it yields no records) and reads the entire subquery first.
-- `NOT EXISTS` stops evaluating as soon as it finds a single matching row (short-circuiting).
-- **Conclusion:** `NOT EXISTS` is the safer and faster choice in PostgreSQL schema relations.
+---
 
-**3. Habitat Feeding Costs (GROUP BY/JOIN vs Subquery in SELECT)**
-*Description*: Find the total daily food consumption cost per habitat.
-*Efficiency Analysis*:
-- `GROUP BY` with `JOIN` computes the aggregation in a single pass after connecting the tables, which scales very well.
-- Using a `Subquery in SELECT` evaluates the inner query iteratively per each row of `HABITAT`, essentially an N+1 query pattern.
-- **Conclusion:** The `GROUP BY` approach significantly outperforms the correlated SELECT subquery.
+**Double Query 3: Average dietary cost per habitat for feedings in May**  
+**תיאור:** מציאת העלות התזונתית היומית הממוצעת עבור חיות שקיבלו הזנה במהלך חודש מאי, מקובץ לפי אזורי מחיה.
+*   **Version A (GROUP BY with JOIN):**
+    ```sql
+    SELECT H.HabitatName, H.ClimateType, AVG(D.DailyCost) AS AverageDietCost
+    FROM HABITAT H
+    JOIN ANIMAL A ON H.HabitatID = A.HabitatID
+    JOIN DIETPLAN D ON A.DietPlanID = D.DietPlanID
+    JOIN DAILYFEEDING DF ON A.AnimalID = DF.AnimalID
+    WHERE EXTRACT(MONTH FROM DF.FeedingDate) = 5
+    GROUP BY H.HabitatName, H.ClimateType
+    ORDER BY AverageDietCost DESC;
+    ```
+*   **Version B (Correlated Subquery in SELECT):**
+    ```sql
+    SELECT H.HabitatName, H.ClimateType, 
+           (SELECT AVG(D2.DailyCost)
+            FROM ANIMAL A2
+            JOIN DIETPLAN D2 ON A2.DietPlanID = D2.DietPlanID
+            JOIN DAILYFEEDING DF2 ON A2.AnimalID = DF2.AnimalID
+            WHERE A2.HabitatID = H.HabitatID 
+              AND EXTRACT(MONTH FROM DF2.FeedingDate) = 5) AS AverageDietCost
+    FROM HABITAT H
+    GROUP BY H.HabitatName, H.ClimateType
+    ORDER BY AverageDietCost DESC;
+    ```
+*   **Execution Screenshots:**
+    > !![alt text](images/StageB/image-2.png)
+*   **Efficiency Analysis:** The JOIN method is significantly faster due to native subset hashing logic. Using an internal correlated SELECT sub-query generates an "N+1 Execution Flaw," running the calculation loop redundantly for every single Habitat outputted. 
 
-### DML & Transaction Scripts
-We implemented Update/Delete DML queries with nested queries, and proved transaction safety through explicit execution of `BEGIN/ROLLBACK` and `BEGIN/COMMIT` flows using interactive `psql`. All interactions were permanently recorded in our backup files `backup2.sql`.
+---
+
+**Double Query 4: Most frequent health status per species in 2024**  
+**תיאור:** מציאת הסטטוס הרפואי השכיח ביותר עבור כל מין של חיה במהלך שנת 2024.
+*   **Version A (Window Function):**
+    ```sql
+    WITH StatusAgg AS (
+        SELECT S.CommonName, HR.HealthStatus, COUNT(HR.RecordID) AS StatusOccurrences,
+               EXTRACT(YEAR FROM HR.CheckupDate) AS CheckupYear
+        FROM SPECIES S
+        JOIN ANIMAL A ON S.SpeciesID = A.SpeciesID
+        JOIN HEALTHRECORD HR ON A.AnimalID = HR.AnimalID
+        GROUP BY S.CommonName, HR.HealthStatus, EXTRACT(YEAR FROM HR.CheckupDate)
+    )
+    SELECT CommonName, HealthStatus, StatusOccurrences FROM (
+        SELECT CommonName, HealthStatus, StatusOccurrences,
+               ROW_NUMBER() OVER(PARTITION BY CommonName ORDER BY StatusOccurrences DESC) as rn
+        FROM StatusAgg
+        WHERE CheckupYear = 2024
+    ) Ranked
+    WHERE rn = 1
+    ORDER BY StatusOccurrences DESC;
+    ```
+*   **Version B (MAX Subquery in HAVING):**
+    ```sql
+    SELECT S.CommonName, HR.HealthStatus, COUNT(HR.RecordID) AS StatusOccurrences
+    FROM SPECIES S
+    JOIN ANIMAL A ON S.SpeciesID = A.SpeciesID
+    JOIN HEALTHRECORD HR ON A.AnimalID = HR.AnimalID
+    WHERE EXTRACT(YEAR FROM HR.CheckupDate) = 2024
+    GROUP BY S.CommonName, HR.HealthStatus
+    HAVING COUNT(HR.RecordID) = (
+        SELECT MAX(Occurrences)
+        FROM (
+            SELECT COUNT(HR2.RecordID) AS Occurrences FROM ANIMAL A2
+            JOIN HEALTHRECORD HR2 ON A2.AnimalID = HR2.AnimalID
+            WHERE A2.SpeciesID = S.SpeciesID 
+              AND EXTRACT(YEAR FROM HR2.CheckupDate) = 2024
+            GROUP BY HR2.HealthStatus
+        ) InnerAgg
+    )
+    ORDER BY StatusOccurrences DESC;
+    ```
+*   **Execution Screenshots:**
+    > ![alt text](images/StageB/image-3.png)
+*   **Efficiency Analysis:** Window functions execute natively parsing datasets inside cache streams simultaneously whereas the `HAVING(MAX)` alternative brutally scans physical records iteratively multiple times representing atrocious algorithmic scaleability.
+
+---
+
+### 2. Additional SELECT Queries (שאילתות רגילות)
+
+**Regular Query 1**
+**תיאור:** סך הכל עלות התזונה היומית לכל מין, בהתחשב אך ורק בחיות שעברו בדיקה רפואית בחודש אפריל.
+```sql
+SELECT S.CommonName, S.ScientificName, SUM(D.DailyCost) AS TotalSpeciesDietCost
+FROM SPECIES S
+JOIN ANIMAL A ON S.SpeciesID = A.SpeciesID
+JOIN DIETPLAN D ON A.DietPlanID = D.DietPlanID
+JOIN HEALTHRECORD HR ON A.AnimalID = HR.AnimalID
+WHERE EXTRACT(MONTH FROM HR.CheckupDate) = 4
+GROUP BY S.CommonName, S.ScientificName
+ORDER BY TotalSpeciesDietCost DESC;
+```
+> ![alt text](images/StageB/image-4.png)
+
+**Regular Query 2**
+**תיאור:** מציאת הקיבולת הממוצעת של אזורי מחיה, מקובץ לפי סוג אקלים, עבור אזורים בהם חיות הוזנו ב-15 לכל חודש.
+```sql
+SELECT H.ClimateType, S.CommonName, AVG(H.MaxCapacity) AS AvgCapacity
+FROM HABITAT H
+JOIN ANIMAL A ON H.HabitatID = A.HabitatID
+JOIN SPECIES S ON A.SpeciesID = S.SpeciesID
+JOIN DAILYFEEDING DF ON A.AnimalID = DF.AnimalID
+WHERE EXTRACT(DAY FROM DF.FeedingDate) = 15
+GROUP BY H.ClimateType, S.CommonName
+ORDER BY AvgCapacity DESC;
+```
+> ![alt text](images/StageB/image-5.png)
+
+**Regular Query 3**
+**תיאור:** ספירת מספר החיות החיות (שאינן מתות) המשויכות לכל תוכנית תזונה, אשר תאריך הלידה שלהן אינו בשנת 2020.
+```sql
+SELECT DP.PlanName, DP.DailyCost, COUNT(A.AnimalID) AS AssignedAnimalsCount
+FROM DIETPLAN DP
+JOIN ANIMAL A ON DP.DietPlanID = A.DietPlanID
+JOIN HEALTHRECORD HR ON A.AnimalID = HR.AnimalID
+WHERE EXTRACT(YEAR FROM A.DateOfBirth) <> 2020
+  AND HR.HealthStatus <> 'Deceased'
+GROUP BY DP.PlanName, DP.DailyCost
+ORDER BY AssignedAnimalsCount DESC;
+```
+> ![alt text](images/StageB/image-6.png)
+
+**Regular Query 4**
+**תיאור:** חישוב סך כל המשקל שנמדד בבדיקות רפואיות שנערכו בחודש דצמבר, מקובץ לפי אזורי מחיה.
+```sql
+SELECT H.HabitatName, H.ClimateType, SUM(HR.Weight) AS TotalWeightRecorded
+FROM HABITAT H
+JOIN ANIMAL A ON H.HabitatID = A.HabitatID
+JOIN HEALTHRECORD HR ON A.AnimalID = HR.AnimalID
+WHERE EXTRACT(MONTH FROM HR.CheckupDate) = 12
+GROUP BY H.HabitatName, H.ClimateType
+ORDER BY TotalWeightRecorded DESC;
+```
+> ![alt text](images/StageB/image-7.png)
+
+---
+
+### 3. UPDATE & DELETE Queries (עדכון ומחיקה)
+
+#### UPDATE Queries
+**UPDATE 1:** העלאת העלות היומית ב-15% עבור תוכניות תזונה המשויכות לחייות שמוגדרות בסכנת הכחדה (Endangered).
+```sql
+UPDATE DIETPLAN SET DailyCost = DailyCost * 1.15
+WHERE DietPlanID IN (
+    SELECT A.DietPlanID FROM ANIMAL A
+    JOIN SPECIES S ON A.SpeciesID = S.SpeciesID
+    WHERE S.ConservationStatus = 'Endangered'
+);
+```
+>![alt text](images/StageB/image-8.png) | ![alt text](images/StageB/image-9.png)
+> ![alt text](images/StageB/image-10.png)
+
+
+**UPDATE 2:** העברת חיות שנולדו לפני שנת 2015 לאזור המחיה בעל הקיבולת המקסימלית הגדולה ביותר.
+```sql
+UPDATE ANIMAL SET HabitatID = (
+    SELECT HabitatID FROM HABITAT ORDER BY MaxCapacity DESC LIMIT 1
+)
+WHERE EXTRACT(YEAR FROM DateOfBirth) < 2015;
+```
+> ![alt text](images/StageB/image-11.png) | ![alt text](images/StageB/image-13.png)
+> ![alt text](images/StageB/image-12.png)
+
+**UPDATE 3:** עדכון הסטטוס הרפואי ל-'Critical' (קריטי) עבור חיות שצרכו כמות מזון נמוכה במיוחד במהלך החודש הנוכחי.
+```sql
+UPDATE HEALTHRECORD SET HealthStatus = 'Critical'
+WHERE AnimalID IN (
+    SELECT DF.AnimalID FROM DAILYFEEDING DF
+    WHERE DF.FoodConsumedQty < 2.0 AND EXTRACT(MONTH FROM DF.FeedingDate) = EXTRACT(MONTH FROM CURRENT_DATE)
+);
+```
+> ![alt text](images/StageB/image-14.png) | ![alt text](images/StageB/image-16.png)
+> ![alt text](images/StageB/image-15.png)
+
+#### DELETE Queries
+**DELETE 1:** מחיקת תיעודי הזנה משנים קודמות עבור חיות הנמצאות באזורי מחיה בעלי אקלים 'Continental'.
+```sql
+DELETE FROM DAILYFEEDING
+WHERE EXTRACT(YEAR FROM FeedingDate) < EXTRACT(YEAR FROM CURRENT_DATE)
+  AND AnimalID IN (
+      SELECT A.AnimalID FROM ANIMAL A
+      JOIN HABITAT H ON A.HabitatID = H.HabitatID WHERE H.ClimateType = 'Continental'
+  );
+```
+> ![alt text](images/StageB/image-19.png) |![alt text](images/StageB/image-18.png)
+> ![alt text](images/StageB/image-17.png)
+
+**DELETE 2:** מחיקת רשומות רפואיות של חיות שצרכו מתחת ל10 יחידות מזון בשנים האחרונות.
+```sql
+DELETE FROM HEALTHRECORD
+WHERE AnimalID IN (
+    SELECT AnimalID FROM DAILYFEEDING 
+    WHERE FoodConsumedQty < 10 AND EXTRACT(YEAR FROM FeedingDate) < EXTRACT(YEAR FROM CURRENT_DATE)
+);
+```
+> ![alt text](images/StageB/image-20.png) | ![alt text](images/StageB/image-22.png)
+> ![alt text](images/StageB/image-21.png)
+
+**DELETE 3:** מחיקת רשומות הזנה יומיות מהרבעון הראשון של השנה (ינואר-מרץ) עבור חיות באזורי מחיה בעלי אקלים 'Arid'.
+```sql
+DELETE FROM DAILYFEEDING
+WHERE EXTRACT(MONTH FROM FeedingDate) IN (1, 2, 3)
+  AND AnimalID IN (
+      SELECT A.AnimalID FROM ANIMAL A
+      JOIN HABITAT H ON A.HabitatID = H.HabitatID 
+      WHERE H.ClimateType = 'Arid'
+  );
+```
+> ![alt text](images/StageB/image-23.png) | ![alt text](images/StageB/image-25.png)
+> ![alt text](images/StageB/image-24.png)
+
+---
+
+### 4. Constraints (אילוצי מסד נתונים)
+
+**Constraint 1: `check_dob_past`**
+**תיאור השינוי:** אילוץ `ALTER TABLE` המוודא שתאריך הלידה של בעל חיים אינו יכול להתרחש בעתיד.
+```sql
+ALTER TABLE ANIMAL ADD CONSTRAINT check_dob_past CHECK (DateOfBirth <= CURRENT_DATE);
+```
+**Violation Test:** 
+```sql
+INSERT INTO ANIMAL (AnimalID, Name, DateOfBirth, Gender, HabitatID, SpeciesID, DietPlanID)
+VALUES (9999, 'Future Animal', CURRENT_DATE + INTERVAL '10 days', 'Male', 1, 1, 1);
+```
+> ![alt text](images/StageB/image-26.png)
+
+**Constraint 2: `check_valid_status`**
+**תיאור השינוי:** הגבלת ערכי 'HealthStatus' לאוסף ערכים מורשים בלבד בכדי למנוע טעויות הקלדה.
+```sql
+ALTER TABLE HEALTHRECORD ADD CONSTRAINT check_valid_status CHECK (HealthStatus IN ('Healthy', 'Sick', 'Recovering', 'Critical', 'Deceased'));
+```
+**Violation Test:** 
+```sql
+INSERT INTO HEALTHRECORD (RecordID, CheckupDate, Weight, HealthStatus, AnimalID)
+VALUES (9999, CURRENT_DATE, 50.0, 'Super Healthy', 1);
+```
+> ![alt text](images/StageB/image-27.png)
+
+**Constraint 3: `check_feeding_past`**
+**תיאור השינוי:** אילוץ המונע הכנסת תאריכי הזנה עתידיים לטבלת תעודי ההזנה היומיים בניגוד להיגיון הזמן.
+```sql
+ALTER TABLE DAILYFEEDING ADD CONSTRAINT check_feeding_past CHECK (FeedingDate <= CURRENT_DATE);
+```
+**Violation Test:** 
+```sql
+INSERT INTO DAILYFEEDING (FeedingID, FeedingDate, FoodConsumedQty, AnimalID)
+VALUES (9999, CURRENT_DATE + INTERVAL '5 days', 10.0, 1);
+```
+> ![alt text](images/StageB/image-28.png)
+
+---
