@@ -36,13 +36,13 @@ The system stores interconnected data across several key domains:
 
 This section presents the initial mockups and user interface screens designed to interact with the database, allowing users to efficiently retrieve, insert, and update system records.
 
-![alt text](image.png)
+![alt text](images/image.png)
 
-![alt text](<צילום מסך 2026-04-12 212610.png>)
+![alt text](<images/צילום מסך 2026-04-12 212610.png>)
 
-![alt text](<צילום מסך 2026-04-12 212622.png>)
+![alt text](<images/צילום מסך 2026-04-12 212622.png>)
 
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 
 **Interactive Prototype:**  
@@ -55,10 +55,10 @@ https://ai.studio/apps/2c40fd05-35c4-457c-aa3e-f2515040b0b5
 The architectural design of the database is visualized in the following diagrams, illustrating the entities, their attributes, and the relational mapping between them.
 
 **Entity Relationship Diagram (ERD)**  
-![alt text](erdplus(1).png)
+![alt text](images/erdplus(1).png)
 
 **Data Structure Diagram (DSD)**  
-![alt text](ZOO_DSD.png)
+![alt text](images/ZOO_DSD.png)
 
 ## 4. Design Decisions & Justifications
 
@@ -79,15 +79,15 @@ To thoroughly stress-test the schema and simulate a production-grade environment
 
 1.  **Algorithmic Data Generation (Python Script):**  
     We developed a custom Python script (`generate_data.py`) using the `csv` and `datetime` libraries to programmatically generate **20,000 records** for both the `ANIMAL` and `HEALTHRECORD` tables. This ensured the generation of heavy, realistic historical data.  
-    [Insert Screenshot: Data Insertion Method 1 (e.g., Python Script)]
+    ![alt text](images/image-2.png)
 
 2.  **Mockaroo API (JSON Schema):**  
     For categorical lookup tables requiring realistic but varied string data (such as `SPECIES` and `DIETPLAN`), we leveraged Mockaroo. We defined a specific JSON schema to automatically generate over **500 records** per table.  
-    [Insert Screenshot: Data Insertion Method 2 (e.g., Mockaroo API)]
+    ![alt text](images/image-3.png)
 
 3.  **Manual SQL INSERTs:**  
     For the `HABITAT` table, we utilized a massive batch of explicit manual `INSERT INTO` SQL statements mapping out 500 distinct habitat zones, their respective climates, and capacities.  
-    [Insert Screenshot: Data Insertion Method 3 (e.g., Manual SQL INSERTs)]
+    ![alt text](images/image-4.png)
 
 ---
 
@@ -96,7 +96,7 @@ To thoroughly stress-test the schema and simulate a production-grade environment
 To ensure data resilience and disaster recovery compliance, a full backup and restore procedure was successfully executed on the completed database structure and its populated records.
 
 **Backup Execution Log:**  
-[Insert Screenshot: Database Backup Execution]
+![alt text](images/image-5.png)
 
 **Restore Execution Log:**  
-[Insert Screenshot: Database Restore Execution]
+![alt text](images/image-6.png)
