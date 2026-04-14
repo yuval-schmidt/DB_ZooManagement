@@ -63,7 +63,7 @@ The architectural design of the database is visualized in the following diagrams
 **Entity Relationship Diagram (ERD)**  
 ![alt text](images/StageA/image22.png)
 **Data Structure Diagram (DSD)**  
-![alt text](images/StageA/ZOO_DSD.png)
+![alt text](images/StageA/ZOO_DSD1.png)
 
 ## 4. Design Decisions & Justifications
 
