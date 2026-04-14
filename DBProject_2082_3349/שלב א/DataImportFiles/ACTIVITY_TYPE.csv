@@ -1,0 +1,501 @@
+ActivityTypeID,TypeName,GeneralDetails
+1,Weigh-in Type 1,General procedure for Weigh-in Type 1. Must strictly follow safety guidelines.
+2,Weigh-in Type 2,General procedure for Weigh-in Type 2. Must strictly follow safety guidelines.
+3,Weigh-in Type 3,General procedure for Weigh-in Type 3. Must strictly follow safety guidelines.
+4,Weigh-in Type 4,General procedure for Weigh-in Type 4. Must strictly follow safety guidelines.
+5,Public Show Type 5,General procedure for Public Show Type 5. Must strictly follow safety guidelines.
+6,Habitat Cleaning Type 6,General procedure for Habitat Cleaning Type 6. Must strictly follow safety guidelines.
+7,Feeding Type 7,General procedure for Feeding Type 7. Must strictly follow safety guidelines.
+8,Enrichment Type 8,General procedure for Enrichment Type 8. Must strictly follow safety guidelines.
+9,Feeding Type 9,General procedure for Feeding Type 9. Must strictly follow safety guidelines.
+10,Medical Checkup Type 10,General procedure for Medical Checkup Type 10. Must strictly follow safety guidelines.
+11,Public Show Type 11,General procedure for Public Show Type 11. Must strictly follow safety guidelines.
+12,Habitat Cleaning Type 12,General procedure for Habitat Cleaning Type 12. Must strictly follow safety guidelines.
+13,Enrichment Type 13,General procedure for Enrichment Type 13. Must strictly follow safety guidelines.
+14,Public Show Type 14,General procedure for Public Show Type 14. Must strictly follow safety guidelines.
+15,Medical Checkup Type 15,General procedure for Medical Checkup Type 15. Must strictly follow safety guidelines.
+16,Habitat Cleaning Type 16,General procedure for Habitat Cleaning Type 16. Must strictly follow safety guidelines.
+17,Habitat Cleaning Type 17,General procedure for Habitat Cleaning Type 17. Must strictly follow safety guidelines.
+18,Training Type 18,General procedure for Training Type 18. Must strictly follow safety guidelines.
+19,Training Type 19,General procedure for Training Type 19. Must strictly follow safety guidelines.
+20,Habitat Cleaning Type 20,General procedure for Habitat Cleaning Type 20. Must strictly follow safety guidelines.
+21,Medical Checkup Type 21,General procedure for Medical Checkup Type 21. Must strictly follow safety guidelines.
+22,Training Type 22,General procedure for Training Type 22. Must strictly follow safety guidelines.
+23,Habitat Cleaning Type 23,General procedure for Habitat Cleaning Type 23. Must strictly follow safety guidelines.
+24,Habitat Cleaning Type 24,General procedure for Habitat Cleaning Type 24. Must strictly follow safety guidelines.
+25,Habitat Cleaning Type 25,General procedure for Habitat Cleaning Type 25. Must strictly follow safety guidelines.
+26,Enrichment Type 26,General procedure for Enrichment Type 26. Must strictly follow safety guidelines.
+27,Medical Checkup Type 27,General procedure for Medical Checkup Type 27. Must strictly follow safety guidelines.
+28,Medical Checkup Type 28,General procedure for Medical Checkup Type 28. Must strictly follow safety guidelines.
+29,Medical Checkup Type 29,General procedure for Medical Checkup Type 29. Must strictly follow safety guidelines.
+30,Training Type 30,General procedure for Training Type 30. Must strictly follow safety guidelines.
+31,Feeding Type 31,General procedure for Feeding Type 31. Must strictly follow safety guidelines.
+32,Training Type 32,General procedure for Training Type 32. Must strictly follow safety guidelines.
+33,Training Type 33,General procedure for Training Type 33. Must strictly follow safety guidelines.
+34,Feeding Type 34,General procedure for Feeding Type 34. Must strictly follow safety guidelines.
+35,Training Type 35,General procedure for Training Type 35. Must strictly follow safety guidelines.
+36,Habitat Cleaning Type 36,General procedure for Habitat Cleaning Type 36. Must strictly follow safety guidelines.
+37,Weigh-in Type 37,General procedure for Weigh-in Type 37. Must strictly follow safety guidelines.
+38,Public Show Type 38,General procedure for Public Show Type 38. Must strictly follow safety guidelines.
+39,Training Type 39,General procedure for Training Type 39. Must strictly follow safety guidelines.
+40,Training Type 40,General procedure for Training Type 40. Must strictly follow safety guidelines.
+41,Training Type 41,General procedure for Training Type 41. Must strictly follow safety guidelines.
+42,Habitat Cleaning Type 42,General procedure for Habitat Cleaning Type 42. Must strictly follow safety guidelines.
+43,Feeding Type 43,General procedure for Feeding Type 43. Must strictly follow safety guidelines.
+44,Feeding Type 44,General procedure for Feeding Type 44. Must strictly follow safety guidelines.
+45,Public Show Type 45,General procedure for Public Show Type 45. Must strictly follow safety guidelines.
+46,Training Type 46,General procedure for Training Type 46. Must strictly follow safety guidelines.
+47,Weigh-in Type 47,General procedure for Weigh-in Type 47. Must strictly follow safety guidelines.
+48,Weigh-in Type 48,General procedure for Weigh-in Type 48. Must strictly follow safety guidelines.
+49,Enrichment Type 49,General procedure for Enrichment Type 49. Must strictly follow safety guidelines.
+50,Training Type 50,General procedure for Training Type 50. Must strictly follow safety guidelines.
+51,Medical Checkup Type 51,General procedure for Medical Checkup Type 51. Must strictly follow safety guidelines.
+52,Weigh-in Type 52,General procedure for Weigh-in Type 52. Must strictly follow safety guidelines.
+53,Public Show Type 53,General procedure for Public Show Type 53. Must strictly follow safety guidelines.
+54,Habitat Cleaning Type 54,General procedure for Habitat Cleaning Type 54. Must strictly follow safety guidelines.
+55,Habitat Cleaning Type 55,General procedure for Habitat Cleaning Type 55. Must strictly follow safety guidelines.
+56,Public Show Type 56,General procedure for Public Show Type 56. Must strictly follow safety guidelines.
+57,Training Type 57,General procedure for Training Type 57. Must strictly follow safety guidelines.
+58,Habitat Cleaning Type 58,General procedure for Habitat Cleaning Type 58. Must strictly follow safety guidelines.
+59,Training Type 59,General procedure for Training Type 59. Must strictly follow safety guidelines.
+60,Public Show Type 60,General procedure for Public Show Type 60. Must strictly follow safety guidelines.
+61,Training Type 61,General procedure for Training Type 61. Must strictly follow safety guidelines.
+62,Training Type 62,General procedure for Training Type 62. Must strictly follow safety guidelines.
+63,Training Type 63,General procedure for Training Type 63. Must strictly follow safety guidelines.
+64,Public Show Type 64,General procedure for Public Show Type 64. Must strictly follow safety guidelines.
+65,Weigh-in Type 65,General procedure for Weigh-in Type 65. Must strictly follow safety guidelines.
+66,Feeding Type 66,General procedure for Feeding Type 66. Must strictly follow safety guidelines.
+67,Feeding Type 67,General procedure for Feeding Type 67. Must strictly follow safety guidelines.
+68,Weigh-in Type 68,General procedure for Weigh-in Type 68. Must strictly follow safety guidelines.
+69,Medical Checkup Type 69,General procedure for Medical Checkup Type 69. Must strictly follow safety guidelines.
+70,Weigh-in Type 70,General procedure for Weigh-in Type 70. Must strictly follow safety guidelines.
+71,Public Show Type 71,General procedure for Public Show Type 71. Must strictly follow safety guidelines.
+72,Public Show Type 72,General procedure for Public Show Type 72. Must strictly follow safety guidelines.
+73,Training Type 73,General procedure for Training Type 73. Must strictly follow safety guidelines.
+74,Medical Checkup Type 74,General procedure for Medical Checkup Type 74. Must strictly follow safety guidelines.
+75,Public Show Type 75,General procedure for Public Show Type 75. Must strictly follow safety guidelines.
+76,Enrichment Type 76,General procedure for Enrichment Type 76. Must strictly follow safety guidelines.
+77,Feeding Type 77,General procedure for Feeding Type 77. Must strictly follow safety guidelines.
+78,Training Type 78,General procedure for Training Type 78. Must strictly follow safety guidelines.
+79,Habitat Cleaning Type 79,General procedure for Habitat Cleaning Type 79. Must strictly follow safety guidelines.
+80,Enrichment Type 80,General procedure for Enrichment Type 80. Must strictly follow safety guidelines.
+81,Public Show Type 81,General procedure for Public Show Type 81. Must strictly follow safety guidelines.
+82,Habitat Cleaning Type 82,General procedure for Habitat Cleaning Type 82. Must strictly follow safety guidelines.
+83,Medical Checkup Type 83,General procedure for Medical Checkup Type 83. Must strictly follow safety guidelines.
+84,Medical Checkup Type 84,General procedure for Medical Checkup Type 84. Must strictly follow safety guidelines.
+85,Habitat Cleaning Type 85,General procedure for Habitat Cleaning Type 85. Must strictly follow safety guidelines.
+86,Training Type 86,General procedure for Training Type 86. Must strictly follow safety guidelines.
+87,Training Type 87,General procedure for Training Type 87. Must strictly follow safety guidelines.
+88,Habitat Cleaning Type 88,General procedure for Habitat Cleaning Type 88. Must strictly follow safety guidelines.
+89,Enrichment Type 89,General procedure for Enrichment Type 89. Must strictly follow safety guidelines.
+90,Habitat Cleaning Type 90,General procedure for Habitat Cleaning Type 90. Must strictly follow safety guidelines.
+91,Medical Checkup Type 91,General procedure for Medical Checkup Type 91. Must strictly follow safety guidelines.
+92,Habitat Cleaning Type 92,General procedure for Habitat Cleaning Type 92. Must strictly follow safety guidelines.
+93,Enrichment Type 93,General procedure for Enrichment Type 93. Must strictly follow safety guidelines.
+94,Habitat Cleaning Type 94,General procedure for Habitat Cleaning Type 94. Must strictly follow safety guidelines.
+95,Weigh-in Type 95,General procedure for Weigh-in Type 95. Must strictly follow safety guidelines.
+96,Medical Checkup Type 96,General procedure for Medical Checkup Type 96. Must strictly follow safety guidelines.
+97,Feeding Type 97,General procedure for Feeding Type 97. Must strictly follow safety guidelines.
+98,Weigh-in Type 98,General procedure for Weigh-in Type 98. Must strictly follow safety guidelines.
+99,Feeding Type 99,General procedure for Feeding Type 99. Must strictly follow safety guidelines.
+100,Medical Checkup Type 100,General procedure for Medical Checkup Type 100. Must strictly follow safety guidelines.
+101,Medical Checkup Type 101,General procedure for Medical Checkup Type 101. Must strictly follow safety guidelines.
+102,Habitat Cleaning Type 102,General procedure for Habitat Cleaning Type 102. Must strictly follow safety guidelines.
+103,Public Show Type 103,General procedure for Public Show Type 103. Must strictly follow safety guidelines.
+104,Enrichment Type 104,General procedure for Enrichment Type 104. Must strictly follow safety guidelines.
+105,Training Type 105,General procedure for Training Type 105. Must strictly follow safety guidelines.
+106,Habitat Cleaning Type 106,General procedure for Habitat Cleaning Type 106. Must strictly follow safety guidelines.
+107,Feeding Type 107,General procedure for Feeding Type 107. Must strictly follow safety guidelines.
+108,Weigh-in Type 108,General procedure for Weigh-in Type 108. Must strictly follow safety guidelines.
+109,Weigh-in Type 109,General procedure for Weigh-in Type 109. Must strictly follow safety guidelines.
+110,Habitat Cleaning Type 110,General procedure for Habitat Cleaning Type 110. Must strictly follow safety guidelines.
+111,Public Show Type 111,General procedure for Public Show Type 111. Must strictly follow safety guidelines.
+112,Habitat Cleaning Type 112,General procedure for Habitat Cleaning Type 112. Must strictly follow safety guidelines.
+113,Feeding Type 113,General procedure for Feeding Type 113. Must strictly follow safety guidelines.
+114,Training Type 114,General procedure for Training Type 114. Must strictly follow safety guidelines.
+115,Feeding Type 115,General procedure for Feeding Type 115. Must strictly follow safety guidelines.
+116,Habitat Cleaning Type 116,General procedure for Habitat Cleaning Type 116. Must strictly follow safety guidelines.
+117,Weigh-in Type 117,General procedure for Weigh-in Type 117. Must strictly follow safety guidelines.
+118,Medical Checkup Type 118,General procedure for Medical Checkup Type 118. Must strictly follow safety guidelines.
+119,Medical Checkup Type 119,General procedure for Medical Checkup Type 119. Must strictly follow safety guidelines.
+120,Enrichment Type 120,General procedure for Enrichment Type 120. Must strictly follow safety guidelines.
+121,Medical Checkup Type 121,General procedure for Medical Checkup Type 121. Must strictly follow safety guidelines.
+122,Training Type 122,General procedure for Training Type 122. Must strictly follow safety guidelines.
+123,Feeding Type 123,General procedure for Feeding Type 123. Must strictly follow safety guidelines.
+124,Habitat Cleaning Type 124,General procedure for Habitat Cleaning Type 124. Must strictly follow safety guidelines.
+125,Enrichment Type 125,General procedure for Enrichment Type 125. Must strictly follow safety guidelines.
+126,Habitat Cleaning Type 126,General procedure for Habitat Cleaning Type 126. Must strictly follow safety guidelines.
+127,Enrichment Type 127,General procedure for Enrichment Type 127. Must strictly follow safety guidelines.
+128,Public Show Type 128,General procedure for Public Show Type 128. Must strictly follow safety guidelines.
+129,Feeding Type 129,General procedure for Feeding Type 129. Must strictly follow safety guidelines.
+130,Feeding Type 130,General procedure for Feeding Type 130. Must strictly follow safety guidelines.
+131,Feeding Type 131,General procedure for Feeding Type 131. Must strictly follow safety guidelines.
+132,Habitat Cleaning Type 132,General procedure for Habitat Cleaning Type 132. Must strictly follow safety guidelines.
+133,Public Show Type 133,General procedure for Public Show Type 133. Must strictly follow safety guidelines.
+134,Weigh-in Type 134,General procedure for Weigh-in Type 134. Must strictly follow safety guidelines.
+135,Training Type 135,General procedure for Training Type 135. Must strictly follow safety guidelines.
+136,Training Type 136,General procedure for Training Type 136. Must strictly follow safety guidelines.
+137,Medical Checkup Type 137,General procedure for Medical Checkup Type 137. Must strictly follow safety guidelines.
+138,Medical Checkup Type 138,General procedure for Medical Checkup Type 138. Must strictly follow safety guidelines.
+139,Public Show Type 139,General procedure for Public Show Type 139. Must strictly follow safety guidelines.
+140,Feeding Type 140,General procedure for Feeding Type 140. Must strictly follow safety guidelines.
+141,Feeding Type 141,General procedure for Feeding Type 141. Must strictly follow safety guidelines.
+142,Medical Checkup Type 142,General procedure for Medical Checkup Type 142. Must strictly follow safety guidelines.
+143,Weigh-in Type 143,General procedure for Weigh-in Type 143. Must strictly follow safety guidelines.
+144,Public Show Type 144,General procedure for Public Show Type 144. Must strictly follow safety guidelines.
+145,Training Type 145,General procedure for Training Type 145. Must strictly follow safety guidelines.
+146,Habitat Cleaning Type 146,General procedure for Habitat Cleaning Type 146. Must strictly follow safety guidelines.
+147,Feeding Type 147,General procedure for Feeding Type 147. Must strictly follow safety guidelines.
+148,Habitat Cleaning Type 148,General procedure for Habitat Cleaning Type 148. Must strictly follow safety guidelines.
+149,Feeding Type 149,General procedure for Feeding Type 149. Must strictly follow safety guidelines.
+150,Feeding Type 150,General procedure for Feeding Type 150. Must strictly follow safety guidelines.
+151,Habitat Cleaning Type 151,General procedure for Habitat Cleaning Type 151. Must strictly follow safety guidelines.
+152,Enrichment Type 152,General procedure for Enrichment Type 152. Must strictly follow safety guidelines.
+153,Public Show Type 153,General procedure for Public Show Type 153. Must strictly follow safety guidelines.
+154,Feeding Type 154,General procedure for Feeding Type 154. Must strictly follow safety guidelines.
+155,Enrichment Type 155,General procedure for Enrichment Type 155. Must strictly follow safety guidelines.
+156,Training Type 156,General procedure for Training Type 156. Must strictly follow safety guidelines.
+157,Public Show Type 157,General procedure for Public Show Type 157. Must strictly follow safety guidelines.
+158,Training Type 158,General procedure for Training Type 158. Must strictly follow safety guidelines.
+159,Weigh-in Type 159,General procedure for Weigh-in Type 159. Must strictly follow safety guidelines.
+160,Public Show Type 160,General procedure for Public Show Type 160. Must strictly follow safety guidelines.
+161,Medical Checkup Type 161,General procedure for Medical Checkup Type 161. Must strictly follow safety guidelines.
+162,Habitat Cleaning Type 162,General procedure for Habitat Cleaning Type 162. Must strictly follow safety guidelines.
+163,Enrichment Type 163,General procedure for Enrichment Type 163. Must strictly follow safety guidelines.
+164,Enrichment Type 164,General procedure for Enrichment Type 164. Must strictly follow safety guidelines.
+165,Habitat Cleaning Type 165,General procedure for Habitat Cleaning Type 165. Must strictly follow safety guidelines.
+166,Training Type 166,General procedure for Training Type 166. Must strictly follow safety guidelines.
+167,Feeding Type 167,General procedure for Feeding Type 167. Must strictly follow safety guidelines.
+168,Habitat Cleaning Type 168,General procedure for Habitat Cleaning Type 168. Must strictly follow safety guidelines.
+169,Feeding Type 169,General procedure for Feeding Type 169. Must strictly follow safety guidelines.
+170,Training Type 170,General procedure for Training Type 170. Must strictly follow safety guidelines.
+171,Medical Checkup Type 171,General procedure for Medical Checkup Type 171. Must strictly follow safety guidelines.
+172,Medical Checkup Type 172,General procedure for Medical Checkup Type 172. Must strictly follow safety guidelines.
+173,Enrichment Type 173,General procedure for Enrichment Type 173. Must strictly follow safety guidelines.
+174,Training Type 174,General procedure for Training Type 174. Must strictly follow safety guidelines.
+175,Medical Checkup Type 175,General procedure for Medical Checkup Type 175. Must strictly follow safety guidelines.
+176,Enrichment Type 176,General procedure for Enrichment Type 176. Must strictly follow safety guidelines.
+177,Enrichment Type 177,General procedure for Enrichment Type 177. Must strictly follow safety guidelines.
+178,Weigh-in Type 178,General procedure for Weigh-in Type 178. Must strictly follow safety guidelines.
+179,Feeding Type 179,General procedure for Feeding Type 179. Must strictly follow safety guidelines.
+180,Enrichment Type 180,General procedure for Enrichment Type 180. Must strictly follow safety guidelines.
+181,Medical Checkup Type 181,General procedure for Medical Checkup Type 181. Must strictly follow safety guidelines.
+182,Medical Checkup Type 182,General procedure for Medical Checkup Type 182. Must strictly follow safety guidelines.
+183,Habitat Cleaning Type 183,General procedure for Habitat Cleaning Type 183. Must strictly follow safety guidelines.
+184,Training Type 184,General procedure for Training Type 184. Must strictly follow safety guidelines.
+185,Medical Checkup Type 185,General procedure for Medical Checkup Type 185. Must strictly follow safety guidelines.
+186,Medical Checkup Type 186,General procedure for Medical Checkup Type 186. Must strictly follow safety guidelines.
+187,Public Show Type 187,General procedure for Public Show Type 187. Must strictly follow safety guidelines.
+188,Training Type 188,General procedure for Training Type 188. Must strictly follow safety guidelines.
+189,Enrichment Type 189,General procedure for Enrichment Type 189. Must strictly follow safety guidelines.
+190,Habitat Cleaning Type 190,General procedure for Habitat Cleaning Type 190. Must strictly follow safety guidelines.
+191,Weigh-in Type 191,General procedure for Weigh-in Type 191. Must strictly follow safety guidelines.
+192,Medical Checkup Type 192,General procedure for Medical Checkup Type 192. Must strictly follow safety guidelines.
+193,Weigh-in Type 193,General procedure for Weigh-in Type 193. Must strictly follow safety guidelines.
+194,Medical Checkup Type 194,General procedure for Medical Checkup Type 194. Must strictly follow safety guidelines.
+195,Medical Checkup Type 195,General procedure for Medical Checkup Type 195. Must strictly follow safety guidelines.
+196,Weigh-in Type 196,General procedure for Weigh-in Type 196. Must strictly follow safety guidelines.
+197,Feeding Type 197,General procedure for Feeding Type 197. Must strictly follow safety guidelines.
+198,Public Show Type 198,General procedure for Public Show Type 198. Must strictly follow safety guidelines.
+199,Enrichment Type 199,General procedure for Enrichment Type 199. Must strictly follow safety guidelines.
+200,Training Type 200,General procedure for Training Type 200. Must strictly follow safety guidelines.
+201,Feeding Type 201,General procedure for Feeding Type 201. Must strictly follow safety guidelines.
+202,Enrichment Type 202,General procedure for Enrichment Type 202. Must strictly follow safety guidelines.
+203,Feeding Type 203,General procedure for Feeding Type 203. Must strictly follow safety guidelines.
+204,Enrichment Type 204,General procedure for Enrichment Type 204. Must strictly follow safety guidelines.
+205,Training Type 205,General procedure for Training Type 205. Must strictly follow safety guidelines.
+206,Weigh-in Type 206,General procedure for Weigh-in Type 206. Must strictly follow safety guidelines.
+207,Public Show Type 207,General procedure for Public Show Type 207. Must strictly follow safety guidelines.
+208,Medical Checkup Type 208,General procedure for Medical Checkup Type 208. Must strictly follow safety guidelines.
+209,Public Show Type 209,General procedure for Public Show Type 209. Must strictly follow safety guidelines.
+210,Habitat Cleaning Type 210,General procedure for Habitat Cleaning Type 210. Must strictly follow safety guidelines.
+211,Public Show Type 211,General procedure for Public Show Type 211. Must strictly follow safety guidelines.
+212,Enrichment Type 212,General procedure for Enrichment Type 212. Must strictly follow safety guidelines.
+213,Feeding Type 213,General procedure for Feeding Type 213. Must strictly follow safety guidelines.
+214,Public Show Type 214,General procedure for Public Show Type 214. Must strictly follow safety guidelines.
+215,Feeding Type 215,General procedure for Feeding Type 215. Must strictly follow safety guidelines.
+216,Medical Checkup Type 216,General procedure for Medical Checkup Type 216. Must strictly follow safety guidelines.
+217,Feeding Type 217,General procedure for Feeding Type 217. Must strictly follow safety guidelines.
+218,Medical Checkup Type 218,General procedure for Medical Checkup Type 218. Must strictly follow safety guidelines.
+219,Public Show Type 219,General procedure for Public Show Type 219. Must strictly follow safety guidelines.
+220,Training Type 220,General procedure for Training Type 220. Must strictly follow safety guidelines.
+221,Training Type 221,General procedure for Training Type 221. Must strictly follow safety guidelines.
+222,Feeding Type 222,General procedure for Feeding Type 222. Must strictly follow safety guidelines.
+223,Training Type 223,General procedure for Training Type 223. Must strictly follow safety guidelines.
+224,Habitat Cleaning Type 224,General procedure for Habitat Cleaning Type 224. Must strictly follow safety guidelines.
+225,Training Type 225,General procedure for Training Type 225. Must strictly follow safety guidelines.
+226,Training Type 226,General procedure for Training Type 226. Must strictly follow safety guidelines.
+227,Training Type 227,General procedure for Training Type 227. Must strictly follow safety guidelines.
+228,Weigh-in Type 228,General procedure for Weigh-in Type 228. Must strictly follow safety guidelines.
+229,Medical Checkup Type 229,General procedure for Medical Checkup Type 229. Must strictly follow safety guidelines.
+230,Public Show Type 230,General procedure for Public Show Type 230. Must strictly follow safety guidelines.
+231,Weigh-in Type 231,General procedure for Weigh-in Type 231. Must strictly follow safety guidelines.
+232,Public Show Type 232,General procedure for Public Show Type 232. Must strictly follow safety guidelines.
+233,Habitat Cleaning Type 233,General procedure for Habitat Cleaning Type 233. Must strictly follow safety guidelines.
+234,Habitat Cleaning Type 234,General procedure for Habitat Cleaning Type 234. Must strictly follow safety guidelines.
+235,Enrichment Type 235,General procedure for Enrichment Type 235. Must strictly follow safety guidelines.
+236,Medical Checkup Type 236,General procedure for Medical Checkup Type 236. Must strictly follow safety guidelines.
+237,Habitat Cleaning Type 237,General procedure for Habitat Cleaning Type 237. Must strictly follow safety guidelines.
+238,Feeding Type 238,General procedure for Feeding Type 238. Must strictly follow safety guidelines.
+239,Feeding Type 239,General procedure for Feeding Type 239. Must strictly follow safety guidelines.
+240,Habitat Cleaning Type 240,General procedure for Habitat Cleaning Type 240. Must strictly follow safety guidelines.
+241,Training Type 241,General procedure for Training Type 241. Must strictly follow safety guidelines.
+242,Weigh-in Type 242,General procedure for Weigh-in Type 242. Must strictly follow safety guidelines.
+243,Weigh-in Type 243,General procedure for Weigh-in Type 243. Must strictly follow safety guidelines.
+244,Public Show Type 244,General procedure for Public Show Type 244. Must strictly follow safety guidelines.
+245,Training Type 245,General procedure for Training Type 245. Must strictly follow safety guidelines.
+246,Feeding Type 246,General procedure for Feeding Type 246. Must strictly follow safety guidelines.
+247,Public Show Type 247,General procedure for Public Show Type 247. Must strictly follow safety guidelines.
+248,Habitat Cleaning Type 248,General procedure for Habitat Cleaning Type 248. Must strictly follow safety guidelines.
+249,Habitat Cleaning Type 249,General procedure for Habitat Cleaning Type 249. Must strictly follow safety guidelines.
+250,Weigh-in Type 250,General procedure for Weigh-in Type 250. Must strictly follow safety guidelines.
+251,Medical Checkup Type 251,General procedure for Medical Checkup Type 251. Must strictly follow safety guidelines.
+252,Feeding Type 252,General procedure for Feeding Type 252. Must strictly follow safety guidelines.
+253,Feeding Type 253,General procedure for Feeding Type 253. Must strictly follow safety guidelines.
+254,Medical Checkup Type 254,General procedure for Medical Checkup Type 254. Must strictly follow safety guidelines.
+255,Public Show Type 255,General procedure for Public Show Type 255. Must strictly follow safety guidelines.
+256,Enrichment Type 256,General procedure for Enrichment Type 256. Must strictly follow safety guidelines.
+257,Training Type 257,General procedure for Training Type 257. Must strictly follow safety guidelines.
+258,Public Show Type 258,General procedure for Public Show Type 258. Must strictly follow safety guidelines.
+259,Enrichment Type 259,General procedure for Enrichment Type 259. Must strictly follow safety guidelines.
+260,Habitat Cleaning Type 260,General procedure for Habitat Cleaning Type 260. Must strictly follow safety guidelines.
+261,Enrichment Type 261,General procedure for Enrichment Type 261. Must strictly follow safety guidelines.
+262,Training Type 262,General procedure for Training Type 262. Must strictly follow safety guidelines.
+263,Weigh-in Type 263,General procedure for Weigh-in Type 263. Must strictly follow safety guidelines.
+264,Medical Checkup Type 264,General procedure for Medical Checkup Type 264. Must strictly follow safety guidelines.
+265,Habitat Cleaning Type 265,General procedure for Habitat Cleaning Type 265. Must strictly follow safety guidelines.
+266,Weigh-in Type 266,General procedure for Weigh-in Type 266. Must strictly follow safety guidelines.
+267,Public Show Type 267,General procedure for Public Show Type 267. Must strictly follow safety guidelines.
+268,Training Type 268,General procedure for Training Type 268. Must strictly follow safety guidelines.
+269,Enrichment Type 269,General procedure for Enrichment Type 269. Must strictly follow safety guidelines.
+270,Feeding Type 270,General procedure for Feeding Type 270. Must strictly follow safety guidelines.
+271,Feeding Type 271,General procedure for Feeding Type 271. Must strictly follow safety guidelines.
+272,Feeding Type 272,General procedure for Feeding Type 272. Must strictly follow safety guidelines.
+273,Weigh-in Type 273,General procedure for Weigh-in Type 273. Must strictly follow safety guidelines.
+274,Training Type 274,General procedure for Training Type 274. Must strictly follow safety guidelines.
+275,Public Show Type 275,General procedure for Public Show Type 275. Must strictly follow safety guidelines.
+276,Training Type 276,General procedure for Training Type 276. Must strictly follow safety guidelines.
+277,Weigh-in Type 277,General procedure for Weigh-in Type 277. Must strictly follow safety guidelines.
+278,Feeding Type 278,General procedure for Feeding Type 278. Must strictly follow safety guidelines.
+279,Public Show Type 279,General procedure for Public Show Type 279. Must strictly follow safety guidelines.
+280,Enrichment Type 280,General procedure for Enrichment Type 280. Must strictly follow safety guidelines.
+281,Weigh-in Type 281,General procedure for Weigh-in Type 281. Must strictly follow safety guidelines.
+282,Medical Checkup Type 282,General procedure for Medical Checkup Type 282. Must strictly follow safety guidelines.
+283,Weigh-in Type 283,General procedure for Weigh-in Type 283. Must strictly follow safety guidelines.
+284,Feeding Type 284,General procedure for Feeding Type 284. Must strictly follow safety guidelines.
+285,Weigh-in Type 285,General procedure for Weigh-in Type 285. Must strictly follow safety guidelines.
+286,Medical Checkup Type 286,General procedure for Medical Checkup Type 286. Must strictly follow safety guidelines.
+287,Public Show Type 287,General procedure for Public Show Type 287. Must strictly follow safety guidelines.
+288,Feeding Type 288,General procedure for Feeding Type 288. Must strictly follow safety guidelines.
+289,Weigh-in Type 289,General procedure for Weigh-in Type 289. Must strictly follow safety guidelines.
+290,Feeding Type 290,General procedure for Feeding Type 290. Must strictly follow safety guidelines.
+291,Medical Checkup Type 291,General procedure for Medical Checkup Type 291. Must strictly follow safety guidelines.
+292,Training Type 292,General procedure for Training Type 292. Must strictly follow safety guidelines.
+293,Habitat Cleaning Type 293,General procedure for Habitat Cleaning Type 293. Must strictly follow safety guidelines.
+294,Training Type 294,General procedure for Training Type 294. Must strictly follow safety guidelines.
+295,Weigh-in Type 295,General procedure for Weigh-in Type 295. Must strictly follow safety guidelines.
+296,Public Show Type 296,General procedure for Public Show Type 296. Must strictly follow safety guidelines.
+297,Enrichment Type 297,General procedure for Enrichment Type 297. Must strictly follow safety guidelines.
+298,Public Show Type 298,General procedure for Public Show Type 298. Must strictly follow safety guidelines.
+299,Feeding Type 299,General procedure for Feeding Type 299. Must strictly follow safety guidelines.
+300,Medical Checkup Type 300,General procedure for Medical Checkup Type 300. Must strictly follow safety guidelines.
+301,Habitat Cleaning Type 301,General procedure for Habitat Cleaning Type 301. Must strictly follow safety guidelines.
+302,Public Show Type 302,General procedure for Public Show Type 302. Must strictly follow safety guidelines.
+303,Weigh-in Type 303,General procedure for Weigh-in Type 303. Must strictly follow safety guidelines.
+304,Training Type 304,General procedure for Training Type 304. Must strictly follow safety guidelines.
+305,Training Type 305,General procedure for Training Type 305. Must strictly follow safety guidelines.
+306,Enrichment Type 306,General procedure for Enrichment Type 306. Must strictly follow safety guidelines.
+307,Weigh-in Type 307,General procedure for Weigh-in Type 307. Must strictly follow safety guidelines.
+308,Training Type 308,General procedure for Training Type 308. Must strictly follow safety guidelines.
+309,Habitat Cleaning Type 309,General procedure for Habitat Cleaning Type 309. Must strictly follow safety guidelines.
+310,Feeding Type 310,General procedure for Feeding Type 310. Must strictly follow safety guidelines.
+311,Habitat Cleaning Type 311,General procedure for Habitat Cleaning Type 311. Must strictly follow safety guidelines.
+312,Medical Checkup Type 312,General procedure for Medical Checkup Type 312. Must strictly follow safety guidelines.
+313,Feeding Type 313,General procedure for Feeding Type 313. Must strictly follow safety guidelines.
+314,Training Type 314,General procedure for Training Type 314. Must strictly follow safety guidelines.
+315,Weigh-in Type 315,General procedure for Weigh-in Type 315. Must strictly follow safety guidelines.
+316,Habitat Cleaning Type 316,General procedure for Habitat Cleaning Type 316. Must strictly follow safety guidelines.
+317,Training Type 317,General procedure for Training Type 317. Must strictly follow safety guidelines.
+318,Public Show Type 318,General procedure for Public Show Type 318. Must strictly follow safety guidelines.
+319,Habitat Cleaning Type 319,General procedure for Habitat Cleaning Type 319. Must strictly follow safety guidelines.
+320,Habitat Cleaning Type 320,General procedure for Habitat Cleaning Type 320. Must strictly follow safety guidelines.
+321,Training Type 321,General procedure for Training Type 321. Must strictly follow safety guidelines.
+322,Public Show Type 322,General procedure for Public Show Type 322. Must strictly follow safety guidelines.
+323,Habitat Cleaning Type 323,General procedure for Habitat Cleaning Type 323. Must strictly follow safety guidelines.
+324,Enrichment Type 324,General procedure for Enrichment Type 324. Must strictly follow safety guidelines.
+325,Habitat Cleaning Type 325,General procedure for Habitat Cleaning Type 325. Must strictly follow safety guidelines.
+326,Enrichment Type 326,General procedure for Enrichment Type 326. Must strictly follow safety guidelines.
+327,Public Show Type 327,General procedure for Public Show Type 327. Must strictly follow safety guidelines.
+328,Habitat Cleaning Type 328,General procedure for Habitat Cleaning Type 328. Must strictly follow safety guidelines.
+329,Enrichment Type 329,General procedure for Enrichment Type 329. Must strictly follow safety guidelines.
+330,Public Show Type 330,General procedure for Public Show Type 330. Must strictly follow safety guidelines.
+331,Enrichment Type 331,General procedure for Enrichment Type 331. Must strictly follow safety guidelines.
+332,Feeding Type 332,General procedure for Feeding Type 332. Must strictly follow safety guidelines.
+333,Feeding Type 333,General procedure for Feeding Type 333. Must strictly follow safety guidelines.
+334,Feeding Type 334,General procedure for Feeding Type 334. Must strictly follow safety guidelines.
+335,Feeding Type 335,General procedure for Feeding Type 335. Must strictly follow safety guidelines.
+336,Training Type 336,General procedure for Training Type 336. Must strictly follow safety guidelines.
+337,Training Type 337,General procedure for Training Type 337. Must strictly follow safety guidelines.
+338,Feeding Type 338,General procedure for Feeding Type 338. Must strictly follow safety guidelines.
+339,Feeding Type 339,General procedure for Feeding Type 339. Must strictly follow safety guidelines.
+340,Enrichment Type 340,General procedure for Enrichment Type 340. Must strictly follow safety guidelines.
+341,Training Type 341,General procedure for Training Type 341. Must strictly follow safety guidelines.
+342,Habitat Cleaning Type 342,General procedure for Habitat Cleaning Type 342. Must strictly follow safety guidelines.
+343,Feeding Type 343,General procedure for Feeding Type 343. Must strictly follow safety guidelines.
+344,Feeding Type 344,General procedure for Feeding Type 344. Must strictly follow safety guidelines.
+345,Weigh-in Type 345,General procedure for Weigh-in Type 345. Must strictly follow safety guidelines.
+346,Habitat Cleaning Type 346,General procedure for Habitat Cleaning Type 346. Must strictly follow safety guidelines.
+347,Medical Checkup Type 347,General procedure for Medical Checkup Type 347. Must strictly follow safety guidelines.
+348,Medical Checkup Type 348,General procedure for Medical Checkup Type 348. Must strictly follow safety guidelines.
+349,Public Show Type 349,General procedure for Public Show Type 349. Must strictly follow safety guidelines.
+350,Training Type 350,General procedure for Training Type 350. Must strictly follow safety guidelines.
+351,Habitat Cleaning Type 351,General procedure for Habitat Cleaning Type 351. Must strictly follow safety guidelines.
+352,Public Show Type 352,General procedure for Public Show Type 352. Must strictly follow safety guidelines.
+353,Enrichment Type 353,General procedure for Enrichment Type 353. Must strictly follow safety guidelines.
+354,Enrichment Type 354,General procedure for Enrichment Type 354. Must strictly follow safety guidelines.
+355,Enrichment Type 355,General procedure for Enrichment Type 355. Must strictly follow safety guidelines.
+356,Weigh-in Type 356,General procedure for Weigh-in Type 356. Must strictly follow safety guidelines.
+357,Habitat Cleaning Type 357,General procedure for Habitat Cleaning Type 357. Must strictly follow safety guidelines.
+358,Habitat Cleaning Type 358,General procedure for Habitat Cleaning Type 358. Must strictly follow safety guidelines.
+359,Weigh-in Type 359,General procedure for Weigh-in Type 359. Must strictly follow safety guidelines.
+360,Training Type 360,General procedure for Training Type 360. Must strictly follow safety guidelines.
+361,Habitat Cleaning Type 361,General procedure for Habitat Cleaning Type 361. Must strictly follow safety guidelines.
+362,Weigh-in Type 362,General procedure for Weigh-in Type 362. Must strictly follow safety guidelines.
+363,Medical Checkup Type 363,General procedure for Medical Checkup Type 363. Must strictly follow safety guidelines.
+364,Enrichment Type 364,General procedure for Enrichment Type 364. Must strictly follow safety guidelines.
+365,Medical Checkup Type 365,General procedure for Medical Checkup Type 365. Must strictly follow safety guidelines.
+366,Enrichment Type 366,General procedure for Enrichment Type 366. Must strictly follow safety guidelines.
+367,Medical Checkup Type 367,General procedure for Medical Checkup Type 367. Must strictly follow safety guidelines.
+368,Training Type 368,General procedure for Training Type 368. Must strictly follow safety guidelines.
+369,Public Show Type 369,General procedure for Public Show Type 369. Must strictly follow safety guidelines.
+370,Training Type 370,General procedure for Training Type 370. Must strictly follow safety guidelines.
+371,Enrichment Type 371,General procedure for Enrichment Type 371. Must strictly follow safety guidelines.
+372,Public Show Type 372,General procedure for Public Show Type 372. Must strictly follow safety guidelines.
+373,Public Show Type 373,General procedure for Public Show Type 373. Must strictly follow safety guidelines.
+374,Enrichment Type 374,General procedure for Enrichment Type 374. Must strictly follow safety guidelines.
+375,Training Type 375,General procedure for Training Type 375. Must strictly follow safety guidelines.
+376,Training Type 376,General procedure for Training Type 376. Must strictly follow safety guidelines.
+377,Habitat Cleaning Type 377,General procedure for Habitat Cleaning Type 377. Must strictly follow safety guidelines.
+378,Medical Checkup Type 378,General procedure for Medical Checkup Type 378. Must strictly follow safety guidelines.
+379,Habitat Cleaning Type 379,General procedure for Habitat Cleaning Type 379. Must strictly follow safety guidelines.
+380,Medical Checkup Type 380,General procedure for Medical Checkup Type 380. Must strictly follow safety guidelines.
+381,Feeding Type 381,General procedure for Feeding Type 381. Must strictly follow safety guidelines.
+382,Training Type 382,General procedure for Training Type 382. Must strictly follow safety guidelines.
+383,Weigh-in Type 383,General procedure for Weigh-in Type 383. Must strictly follow safety guidelines.
+384,Habitat Cleaning Type 384,General procedure for Habitat Cleaning Type 384. Must strictly follow safety guidelines.
+385,Weigh-in Type 385,General procedure for Weigh-in Type 385. Must strictly follow safety guidelines.
+386,Public Show Type 386,General procedure for Public Show Type 386. Must strictly follow safety guidelines.
+387,Habitat Cleaning Type 387,General procedure for Habitat Cleaning Type 387. Must strictly follow safety guidelines.
+388,Habitat Cleaning Type 388,General procedure for Habitat Cleaning Type 388. Must strictly follow safety guidelines.
+389,Habitat Cleaning Type 389,General procedure for Habitat Cleaning Type 389. Must strictly follow safety guidelines.
+390,Training Type 390,General procedure for Training Type 390. Must strictly follow safety guidelines.
+391,Enrichment Type 391,General procedure for Enrichment Type 391. Must strictly follow safety guidelines.
+392,Training Type 392,General procedure for Training Type 392. Must strictly follow safety guidelines.
+393,Enrichment Type 393,General procedure for Enrichment Type 393. Must strictly follow safety guidelines.
+394,Feeding Type 394,General procedure for Feeding Type 394. Must strictly follow safety guidelines.
+395,Public Show Type 395,General procedure for Public Show Type 395. Must strictly follow safety guidelines.
+396,Enrichment Type 396,General procedure for Enrichment Type 396. Must strictly follow safety guidelines.
+397,Enrichment Type 397,General procedure for Enrichment Type 397. Must strictly follow safety guidelines.
+398,Enrichment Type 398,General procedure for Enrichment Type 398. Must strictly follow safety guidelines.
+399,Habitat Cleaning Type 399,General procedure for Habitat Cleaning Type 399. Must strictly follow safety guidelines.
+400,Habitat Cleaning Type 400,General procedure for Habitat Cleaning Type 400. Must strictly follow safety guidelines.
+401,Feeding Type 401,General procedure for Feeding Type 401. Must strictly follow safety guidelines.
+402,Feeding Type 402,General procedure for Feeding Type 402. Must strictly follow safety guidelines.
+403,Training Type 403,General procedure for Training Type 403. Must strictly follow safety guidelines.
+404,Medical Checkup Type 404,General procedure for Medical Checkup Type 404. Must strictly follow safety guidelines.
+405,Weigh-in Type 405,General procedure for Weigh-in Type 405. Must strictly follow safety guidelines.
+406,Weigh-in Type 406,General procedure for Weigh-in Type 406. Must strictly follow safety guidelines.
+407,Training Type 407,General procedure for Training Type 407. Must strictly follow safety guidelines.
+408,Public Show Type 408,General procedure for Public Show Type 408. Must strictly follow safety guidelines.
+409,Public Show Type 409,General procedure for Public Show Type 409. Must strictly follow safety guidelines.
+410,Public Show Type 410,General procedure for Public Show Type 410. Must strictly follow safety guidelines.
+411,Feeding Type 411,General procedure for Feeding Type 411. Must strictly follow safety guidelines.
+412,Feeding Type 412,General procedure for Feeding Type 412. Must strictly follow safety guidelines.
+413,Habitat Cleaning Type 413,General procedure for Habitat Cleaning Type 413. Must strictly follow safety guidelines.
+414,Enrichment Type 414,General procedure for Enrichment Type 414. Must strictly follow safety guidelines.
+415,Enrichment Type 415,General procedure for Enrichment Type 415. Must strictly follow safety guidelines.
+416,Feeding Type 416,General procedure for Feeding Type 416. Must strictly follow safety guidelines.
+417,Weigh-in Type 417,General procedure for Weigh-in Type 417. Must strictly follow safety guidelines.
+418,Training Type 418,General procedure for Training Type 418. Must strictly follow safety guidelines.
+419,Medical Checkup Type 419,General procedure for Medical Checkup Type 419. Must strictly follow safety guidelines.
+420,Training Type 420,General procedure for Training Type 420. Must strictly follow safety guidelines.
+421,Medical Checkup Type 421,General procedure for Medical Checkup Type 421. Must strictly follow safety guidelines.
+422,Weigh-in Type 422,General procedure for Weigh-in Type 422. Must strictly follow safety guidelines.
+423,Weigh-in Type 423,General procedure for Weigh-in Type 423. Must strictly follow safety guidelines.
+424,Weigh-in Type 424,General procedure for Weigh-in Type 424. Must strictly follow safety guidelines.
+425,Public Show Type 425,General procedure for Public Show Type 425. Must strictly follow safety guidelines.
+426,Weigh-in Type 426,General procedure for Weigh-in Type 426. Must strictly follow safety guidelines.
+427,Habitat Cleaning Type 427,General procedure for Habitat Cleaning Type 427. Must strictly follow safety guidelines.
+428,Enrichment Type 428,General procedure for Enrichment Type 428. Must strictly follow safety guidelines.
+429,Training Type 429,General procedure for Training Type 429. Must strictly follow safety guidelines.
+430,Habitat Cleaning Type 430,General procedure for Habitat Cleaning Type 430. Must strictly follow safety guidelines.
+431,Habitat Cleaning Type 431,General procedure for Habitat Cleaning Type 431. Must strictly follow safety guidelines.
+432,Enrichment Type 432,General procedure for Enrichment Type 432. Must strictly follow safety guidelines.
+433,Weigh-in Type 433,General procedure for Weigh-in Type 433. Must strictly follow safety guidelines.
+434,Public Show Type 434,General procedure for Public Show Type 434. Must strictly follow safety guidelines.
+435,Public Show Type 435,General procedure for Public Show Type 435. Must strictly follow safety guidelines.
+436,Habitat Cleaning Type 436,General procedure for Habitat Cleaning Type 436. Must strictly follow safety guidelines.
+437,Public Show Type 437,General procedure for Public Show Type 437. Must strictly follow safety guidelines.
+438,Enrichment Type 438,General procedure for Enrichment Type 438. Must strictly follow safety guidelines.
+439,Feeding Type 439,General procedure for Feeding Type 439. Must strictly follow safety guidelines.
+440,Feeding Type 440,General procedure for Feeding Type 440. Must strictly follow safety guidelines.
+441,Habitat Cleaning Type 441,General procedure for Habitat Cleaning Type 441. Must strictly follow safety guidelines.
+442,Training Type 442,General procedure for Training Type 442. Must strictly follow safety guidelines.
+443,Medical Checkup Type 443,General procedure for Medical Checkup Type 443. Must strictly follow safety guidelines.
+444,Public Show Type 444,General procedure for Public Show Type 444. Must strictly follow safety guidelines.
+445,Enrichment Type 445,General procedure for Enrichment Type 445. Must strictly follow safety guidelines.
+446,Feeding Type 446,General procedure for Feeding Type 446. Must strictly follow safety guidelines.
+447,Public Show Type 447,General procedure for Public Show Type 447. Must strictly follow safety guidelines.
+448,Medical Checkup Type 448,General procedure for Medical Checkup Type 448. Must strictly follow safety guidelines.
+449,Feeding Type 449,General procedure for Feeding Type 449. Must strictly follow safety guidelines.
+450,Medical Checkup Type 450,General procedure for Medical Checkup Type 450. Must strictly follow safety guidelines.
+451,Habitat Cleaning Type 451,General procedure for Habitat Cleaning Type 451. Must strictly follow safety guidelines.
+452,Feeding Type 452,General procedure for Feeding Type 452. Must strictly follow safety guidelines.
+453,Medical Checkup Type 453,General procedure for Medical Checkup Type 453. Must strictly follow safety guidelines.
+454,Medical Checkup Type 454,General procedure for Medical Checkup Type 454. Must strictly follow safety guidelines.
+455,Feeding Type 455,General procedure for Feeding Type 455. Must strictly follow safety guidelines.
+456,Weigh-in Type 456,General procedure for Weigh-in Type 456. Must strictly follow safety guidelines.
+457,Public Show Type 457,General procedure for Public Show Type 457. Must strictly follow safety guidelines.
+458,Weigh-in Type 458,General procedure for Weigh-in Type 458. Must strictly follow safety guidelines.
+459,Enrichment Type 459,General procedure for Enrichment Type 459. Must strictly follow safety guidelines.
+460,Medical Checkup Type 460,General procedure for Medical Checkup Type 460. Must strictly follow safety guidelines.
+461,Weigh-in Type 461,General procedure for Weigh-in Type 461. Must strictly follow safety guidelines.
+462,Weigh-in Type 462,General procedure for Weigh-in Type 462. Must strictly follow safety guidelines.
+463,Public Show Type 463,General procedure for Public Show Type 463. Must strictly follow safety guidelines.
+464,Medical Checkup Type 464,General procedure for Medical Checkup Type 464. Must strictly follow safety guidelines.
+465,Training Type 465,General procedure for Training Type 465. Must strictly follow safety guidelines.
+466,Feeding Type 466,General procedure for Feeding Type 466. Must strictly follow safety guidelines.
+467,Enrichment Type 467,General procedure for Enrichment Type 467. Must strictly follow safety guidelines.
+468,Weigh-in Type 468,General procedure for Weigh-in Type 468. Must strictly follow safety guidelines.
+469,Enrichment Type 469,General procedure for Enrichment Type 469. Must strictly follow safety guidelines.
+470,Feeding Type 470,General procedure for Feeding Type 470. Must strictly follow safety guidelines.
+471,Feeding Type 471,General procedure for Feeding Type 471. Must strictly follow safety guidelines.
+472,Habitat Cleaning Type 472,General procedure for Habitat Cleaning Type 472. Must strictly follow safety guidelines.
+473,Enrichment Type 473,General procedure for Enrichment Type 473. Must strictly follow safety guidelines.
+474,Habitat Cleaning Type 474,General procedure for Habitat Cleaning Type 474. Must strictly follow safety guidelines.
+475,Habitat Cleaning Type 475,General procedure for Habitat Cleaning Type 475. Must strictly follow safety guidelines.
+476,Medical Checkup Type 476,General procedure for Medical Checkup Type 476. Must strictly follow safety guidelines.
+477,Enrichment Type 477,General procedure for Enrichment Type 477. Must strictly follow safety guidelines.
+478,Training Type 478,General procedure for Training Type 478. Must strictly follow safety guidelines.
+479,Enrichment Type 479,General procedure for Enrichment Type 479. Must strictly follow safety guidelines.
+480,Habitat Cleaning Type 480,General procedure for Habitat Cleaning Type 480. Must strictly follow safety guidelines.
+481,Public Show Type 481,General procedure for Public Show Type 481. Must strictly follow safety guidelines.
+482,Habitat Cleaning Type 482,General procedure for Habitat Cleaning Type 482. Must strictly follow safety guidelines.
+483,Medical Checkup Type 483,General procedure for Medical Checkup Type 483. Must strictly follow safety guidelines.
+484,Training Type 484,General procedure for Training Type 484. Must strictly follow safety guidelines.
+485,Habitat Cleaning Type 485,General procedure for Habitat Cleaning Type 485. Must strictly follow safety guidelines.
+486,Habitat Cleaning Type 486,General procedure for Habitat Cleaning Type 486. Must strictly follow safety guidelines.
+487,Medical Checkup Type 487,General procedure for Medical Checkup Type 487. Must strictly follow safety guidelines.
+488,Public Show Type 488,General procedure for Public Show Type 488. Must strictly follow safety guidelines.
+489,Public Show Type 489,General procedure for Public Show Type 489. Must strictly follow safety guidelines.
+490,Enrichment Type 490,General procedure for Enrichment Type 490. Must strictly follow safety guidelines.
+491,Habitat Cleaning Type 491,General procedure for Habitat Cleaning Type 491. Must strictly follow safety guidelines.
+492,Habitat Cleaning Type 492,General procedure for Habitat Cleaning Type 492. Must strictly follow safety guidelines.
+493,Habitat Cleaning Type 493,General procedure for Habitat Cleaning Type 493. Must strictly follow safety guidelines.
+494,Feeding Type 494,General procedure for Feeding Type 494. Must strictly follow safety guidelines.
+495,Enrichment Type 495,General procedure for Enrichment Type 495. Must strictly follow safety guidelines.
+496,Enrichment Type 496,General procedure for Enrichment Type 496. Must strictly follow safety guidelines.
+497,Public Show Type 497,General procedure for Public Show Type 497. Must strictly follow safety guidelines.
+498,Weigh-in Type 498,General procedure for Weigh-in Type 498. Must strictly follow safety guidelines.
+499,Public Show Type 499,General procedure for Public Show Type 499. Must strictly follow safety guidelines.
+500,Medical Checkup Type 500,General procedure for Medical Checkup Type 500. Must strictly follow safety guidelines.

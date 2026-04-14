@@ -71,3 +71,58 @@ CREATE TABLE DAILYFEEDING
   PRIMARY KEY (FeedingID),
   FOREIGN KEY (AnimalID) REFERENCES ANIMAL(AnimalID)
 );
+
+-- Data Dictionary & Explanations: EMPLOYEE Table
+-- This table stores information about the zoo staff members.
+CREATE TABLE EMPLOYEE
+(
+  EmployeeID INT NOT NULL,
+  FirstName VARCHAR2(50) NOT NULL,
+  LastName VARCHAR2(50) NOT NULL,
+  JobRole VARCHAR2(50) NOT NULL,
+  PRIMARY KEY (EmployeeID)
+);
+
+-- Data Dictionary & Explanations: ACTIVITY_TYPE Table
+-- This table defines the various types of activities and general details.
+CREATE TABLE ACTIVITY_TYPE
+(
+  ActivityTypeID INT NOT NULL,
+  TypeName VARCHAR2(50) NOT NULL,
+  GeneralDetails VARCHAR2(255) NOT NULL,
+  PRIMARY KEY (ActivityTypeID)
+);
+
+-- Data Dictionary & Explanations: ACTIVITY Table
+-- This table logs individual activity instances.
+CREATE TABLE ACTIVITY
+(
+  ActivityID INT NOT NULL,
+  ActivityTypeID INT NOT NULL,
+  ActivityDate DATE NOT NULL,
+  SpecificDetails VARCHAR2(255) NOT NULL,
+  PRIMARY KEY (ActivityID),
+  FOREIGN KEY (ActivityTypeID) REFERENCES ACTIVITY_TYPE(ActivityTypeID)
+);
+
+-- Data Dictionary & Explanations: ACTIVITY_EMPLOYEE Table
+-- Many-to-Many junction mapping multiple employees performing an activity.
+CREATE TABLE ACTIVITY_EMPLOYEE
+(
+  ActivityID INT NOT NULL,
+  EmployeeID INT NOT NULL,
+  PRIMARY KEY (ActivityID, EmployeeID),
+  FOREIGN KEY (ActivityID) REFERENCES ACTIVITY(ActivityID),
+  FOREIGN KEY (EmployeeID) REFERENCES EMPLOYEE(EmployeeID)
+);
+
+-- Data Dictionary & Explanations: ACTIVITY_ANIMAL Table
+-- Many-to-Many junction mapping multiple animals participating in an activity.
+CREATE TABLE ACTIVITY_ANIMAL
+(
+  ActivityID INT NOT NULL,
+  AnimalID INT NOT NULL,
+  PRIMARY KEY (ActivityID, AnimalID),
+  FOREIGN KEY (ActivityID) REFERENCES ACTIVITY(ActivityID),
+  FOREIGN KEY (AnimalID) REFERENCES ANIMAL(AnimalID)
+);

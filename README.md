@@ -34,6 +34,7 @@ The system stores interconnected data across several key domains:
 *   **Animals and Species:** Tracking individual animals (their birth dates, gender, etc.) alongside their broader species classifications and conservation statuses.
 *   **Habitats:** Managing the various enclosure zones, their specific climate types, and maximum holding capacities.
 *   **Medical and Dietary Management:** Logging periodic health checkups, recording animal weights and health statuses over time, as well as assigning specific nutritional diet plans and tracking daily food consumption metrics.
+*   **Staff and Activities:** Managing zoo personnel logging capabilities alongside a Many-to-Many activity tracking layer mapping employees and animals to assigned daily activity logs (shows, training occurrences, facility procedures) via dedicated junction tables.
 
 ---
 
@@ -60,8 +61,7 @@ https://ai.studio/apps/2c40fd05-35c4-457c-aa3e-f2515040b0b5
 The architectural design of the database is visualized in the following diagrams, illustrating the entities, their attributes, and the relational mapping between them.
 
 **Entity Relationship Diagram (ERD)**  
-![alt text](images/StageA/erdplus(1).png)
-
+![alt text](images/StageA/image22.png)
 **Data Structure Diagram (DSD)**  
 ![alt text](images/StageA/ZOO_DSD.png)
 
@@ -74,6 +74,7 @@ When building the database schema, several major design choices were made to ens
 *   **Historical Tracking through Composite Entities:** 
     *   The `HEALTHRECORD` table is separated from the `ANIMAL` table in a 1-to-Many relationship. This decision was deliberately made to maintain a historical log of an animal's health status and weight over time (utilizing `CheckupDate`), rather than merely overwriting a single current health status field.
     *   The `DAILYFEEDING` table acts in a similar capacity, providing a granular, longitudinal record of actual `FoodConsumedQty` per date. This allows the zoo to track dietary analytics and detect consumption anomalies over time.
+*   **Many-to-Many Interconnectivity (Activity Layer):** Rather than limiting an activity occurrence to a single animal or single employee, the schema actively utilizes strict Third Normal Form (3NF) relational junction tracking (`ACTIVITY_EMPLOYEE` and `ACTIVITY_ANIMAL`). This allows dynamic logging mappings (e.g. 3 animals and 5 veterinarians involved in exactly 1 operation) safely without relying on unstable arrays or comma-delineated blocks while assuring flawless Foreign Key adherence.
 *   **Data Integrity Constraints:** Strict `CHECK` constraints (e.g., `MaxCapacity > 0`, `Weight > 0`, `FoodConsumedQty >= 0`) and `NOT NULL` constraints have been enforced at the schema level to guarantee that only valid, logical data enters the system.
 
 ---
@@ -83,7 +84,7 @@ When building the database schema, several major design choices were made to ens
 To thoroughly stress-test the schema and simulate a production-grade environment, we utilized three distinct methodologies to populate the database tables, fulfilling the requirement of having a massive dataset:
 
 1.  **Algorithmic Data Generation (Python Script):**  
-    We developed a custom Python script (`generate_data.py`) using the `csv` and `datetime` libraries to programmatically generate **20,000 records** for both the `ANIMAL` and `HEALTHRECORD` tables. This ensured the generation of heavy, realistic historical data.  
+    We developed a custom Python script (`generate_data.py`) using the `csv` and `datetime` libraries to programmatically generate **20,000 records** for the `ANIMAL` and `HEALTHRECORD` tables. During the latest iteration, it was also upgraded to dynamically generate relational 500-record mock CSVs mapping our new architectural layer: `EMPLOYEE`, `ACTIVITY_TYPE`, `ACTIVITY`, alongside executing mathematically randomized Multi-to-Multi bridge links for `ACTIVITY_EMPLOYEE` and `ACTIVITY_ANIMAL`.
     ![alt text](images/StageA/image-2.png)
 
 2.  **Mockaroo API (JSON Schema):**  

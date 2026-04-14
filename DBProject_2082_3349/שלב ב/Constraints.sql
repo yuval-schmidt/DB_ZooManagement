@@ -4,10 +4,6 @@ ADD CONSTRAINT check_dob_past
 CHECK (DateOfBirth <= CURRENT_DATE);
 
 -- Constraint 2: Ensure valid health statuses in HealthRecord
--- Pre-sanitize any existing random data from Stage A to prevent constraint violations
-UPDATE HEALTHRECORD 
-SET HealthStatus = 'Healthy' 
-WHERE HealthStatus NOT IN ('Healthy', 'Sick', 'Recovering', 'Critical', 'Deceased');
 
 ALTER TABLE HEALTHRECORD 
 ADD CONSTRAINT check_valid_status 
