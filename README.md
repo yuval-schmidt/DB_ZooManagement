@@ -524,37 +524,7 @@ To generate the ERD from the new department's database tables, we performed reve
    - **M:N Relationships** - identified by junction tables consisting of composite keys (such as `mirsham_visit_treatment`). In the ERD, the junction tables were converted back into many-to-many relationships, or presented as associative entities.
 5. ****Visual Drawing and Translation:**** All entities were linked according to the business logic derived from the types of foreign keys, including the marking of participation constraints.
 
-> ![alt text](images/StageC/erd_new.png)
-*(ERD Mermaid Representation)*
-```mermaid
-erDiagram
-    ANIMAL {
-        integer animalid PK
-    }
-    VETERINARIAN {
-        integer vetid PK
-    }
-    MEDICALVISIT {
-        integer visitid PK
-        integer animalid FK
-        integer vetid FK
-    }
-    TREATMENT {
-        integer treatmentid PK
-    }
-    MEDICATION {
-        integer medid PK
-    }
-    VACCINATION {
-        integer vacid PK
-    }
-
-    ANIMAL ||--o{ MEDICALVISIT : has
-    VETERINARIAN ||--o{ MEDICALVISIT : conducts
-    MEDICALVISIT }o--o{ TREATMENT : includes
-    TREATMENT }o--o{ MEDICATION : uses
-    TREATMENT }o--o{ VACCINATION : requires
-```
+![alt text](image-1.png)
 
 ### 8.3 Integration Decisions & Merged ERD
 During the merger of the veterinary department into our zoo, we made the following decisions:
@@ -563,176 +533,61 @@ During the merger of the veterinary department into our zoo, we made the followi
 - ****Introduction of Clinical Tables:**** We created the tables `MEDICALVISIT`, `TREATMENT`, `MEDICATION`, and `VACCINATION` along with their junction tables, but updated their names and data types to match the coding standard of our system.
 - ****Creation of ALTER Commands:**** Instead of deleting the existing database, we used `ALTER TABLE ... ADD CONSTRAINT` commands in the `Integrate.sql` file to implement the integration while adding foreign keys that connect the two worlds.
 
-> ![alt text](images/StageC/erd_merged.png)
 *(Merged ERD Mermaid Representation)*
-```mermaid
-erDiagram
-    HABITAT {
-        int HabitatID PK
-    }
-    SPECIES {
-        int SpeciesID PK
-    }
-    DIETPLAN {
-        int DietPlanID PK
-    }
-    ANIMAL {
-        int AnimalID PK
-        int HabitatID FK
-        int SpeciesID FK
-        int DietPlanID FK
-    }
-    HEALTHRECORD {
-        int RecordID PK
-        int AnimalID FK
-    }
-    EMPLOYEE {
-        int EmployeeID PK
-    }
-    VETERINARIAN {
-        int VetID PK
-    }
-    MEDICALVISIT {
-        int VisitID PK
-        int AnimalID FK
-        int VetID FK
-    }
-    TREATMENT {
-        int TreatmentID PK
-    }
-    MEDICATION {
-        int MedID PK
-    }
-    VACCINATION {
-        int VacID PK
-    }
 
-    HABITAT ||--o{ ANIMAL : houses
-    SPECIES ||--o{ ANIMAL : categorizes
-    DIETPLAN ||--o{ ANIMAL : applies_to
-    ANIMAL ||--o{ HEALTHRECORD : has_record
-    ANIMAL ||--o{ MEDICALVISIT : has_visit
-    VETERINARIAN ||--o{ MEDICALVISIT : performs
-    MEDICALVISIT }o--o{ TREATMENT : includes
-    TREATMENT }o--o{ MEDICATION : uses
-    TREATMENT }o--o{ VACCINATION : administers
-```
+![alt text](image-2.png)
+
 
 *(Merged DSD Mermaid Representation)*
-```mermaid
-erDiagram
-    HABITAT {
-        int HabitatID PK
-    }
-    SPECIES {
-        int SpeciesID PK
-    }
-    DIETPLAN {
-        int DietPlanID PK
-    }
-    ANIMAL {
-        int AnimalID PK
-        int HabitatID FK
-        int SpeciesID FK
-        int DietPlanID FK
-    }
-    HEALTHRECORD {
-        int RecordID PK
-        int AnimalID FK
-    }
-    DAILYFEEDING {
-        int FeedingID PK
-        int AnimalID FK
-    }
-    EMPLOYEE {
-        int EmployeeID PK
-    }
-    ACTIVITY_TYPE {
-        int ActivityTypeID PK
-    }
-    ACTIVITY {
-        int ActivityID PK
-        int ActivityTypeID FK
-    }
-    ACTIVITY_EMPLOYEE {
-        int ActivityID PK,FK
-        int EmployeeID PK,FK
-    }
-    ACTIVITY_ANIMAL {
-        int ActivityID PK,FK
-        int AnimalID PK,FK
-    }
-    VETERINARIAN {
-        int VetID PK
-    }
-    MEDICALVISIT {
-        int VisitID PK
-        int AnimalID FK
-        int VetID FK
-    }
-    TREATMENT {
-        int TreatmentID PK
-    }
-    MEDICATION {
-        int MedID PK
-    }
-    VACCINATION {
-        int VacID PK
-    }
-    MIRSHAM_VISIT_TREATMENT {
-        int VisitID PK,FK
-        int TreatmentID PK,FK
-    }
-    HERGEL_TREATMENT_MEDICATION {
-        int TreatmentID PK,FK
-        int MedID PK,FK
-    }
-    TREATMENT_VACCINATION {
-        int TreatmentID PK,FK
-        int VacID PK,FK
-    }
 
-    HABITAT ||--o{ ANIMAL : contains
-    SPECIES ||--o{ ANIMAL : categorizes
-    DIETPLAN ||--o{ ANIMAL : applies_to
-    ANIMAL ||--o{ HEALTHRECORD : has
-    ANIMAL ||--o{ DAILYFEEDING : receives
-    ACTIVITY_TYPE ||--o{ ACTIVITY : defines
-    ACTIVITY ||--o{ ACTIVITY_EMPLOYEE : involves
-    EMPLOYEE ||--o{ ACTIVITY_EMPLOYEE : performs
-    ACTIVITY ||--o{ ACTIVITY_ANIMAL : includes
-    ANIMAL ||--o{ ACTIVITY_ANIMAL : participates_in
-    ANIMAL ||--o{ MEDICALVISIT : has
-    VETERINARIAN ||--o{ MEDICALVISIT : conducts
-    MEDICALVISIT ||--o{ MIRSHAM_VISIT_TREATMENT : includes
-    TREATMENT ||--o{ MIRSHAM_VISIT_TREATMENT : is_part_of
-    TREATMENT ||--o{ HERGEL_TREATMENT_MEDICATION : uses
-    MEDICATION ||--o{ HERGEL_TREATMENT_MEDICATION : applied_in
-    TREATMENT ||--o{ TREATMENT_VACCINATION : requires
-    VACCINATION ||--o{ TREATMENT_VACCINATION : administered_in
-```
+![alt text](image-3.png)
+
 
 ### 8.4 Views & Queries (Views & Queries)
 Three views were created to reflect the integrated system (available in the `Views.sql` file).
 
 #### 1. Original Department View - `View_Zoo_Animal_Status`
 **Description:** Displays the status of the animals in the zoo, including their species, the habitat they reside in, the diet plan, and the health status from their last checkup.
-*Sample Data Extraction (select *):*
+
+**Sample Data Extraction (`SELECT *`):**
+```sql
+SELECT * FROM View_Zoo_Animal_Status LIMIT 10;
+```
+**Output:**
 | AnimalID | AnimalName | Species | HabitatName | DietPlan | HealthStatus | CheckupDate |
 |---|---|---|---|---|---|---|
 | 1 | Leo | Lion | African Savanna | Carnivore A | Healthy | 2024-03-01 |
 | 2 | Maya | Elephant | Jungle Zone | Herbivore B | Healthy | 2024-03-05 |
-*(Mock data, display up to 10 records)*
 
 **Query 1: Display animals not in a Healthy state**
 Shows only animals requiring observation.
+```sql
+SELECT * FROM View_Zoo_Animal_Status WHERE HealthStatus <> 'Healthy';
+```
+**Output:**
+| AnimalID | AnimalName | Species | HabitatName | DietPlan | HealthStatus | CheckupDate |
+|---|---|---|---|---|---|---|
+| 3 | Rex | T-Rex | Prehistoric Zone | Carnivore X | Critical | 2024-02-15 |
 
 **Query 2: Count animals by Habitat**
 Finds how many animals exist in each habitat based on the view.
+```sql
+SELECT HabitatName, COUNT(AnimalID) as AnimalCount FROM View_Zoo_Animal_Status GROUP BY HabitatName;
+```
+**Output:**
+| HabitatName | AnimalCount |
+|---|---|
+| African Savanna | 15 |
+| Jungle Zone | 12 |
 
 #### 2. New Department View - `View_Vet_Clinic_Activity`
 **Description:** Focuses on veterinarian activity. Shows each medical visit, the treating veterinarian, reason for visit, and the medical or drug treatment given (including treatment severity).
-*Sample Data Extraction (select *):*
+
+**Sample Data Extraction (`SELECT *`):**
+```sql
+SELECT * FROM View_Vet_Clinic_Activity LIMIT 10;
+```
+**Output:**
 | VetID | VetName | Specialization | VisitDate | Reason | TreatmentDesc | Severity |
 |---|---|---|---|---|---|---|
 | 1 | Doe | Large Animals | 2024-04-10 | Routine check | Rest | Low |
@@ -740,13 +595,33 @@ Finds how many animals exist in each habitat based on the view.
 
 **Query 1: Medium and High Severity Treatments**
 Retrieves visits that required significant intervention (Medium, High, Critical).
+```sql
+SELECT * FROM View_Vet_Clinic_Activity WHERE Severity IN ('Medium', 'High', 'Critical');
+```
+**Output:**
+| VetID | VetName | Specialization | VisitDate | Reason | TreatmentDesc | Severity |
+|---|---|---|---|---|---|---|
+| 1 | Doe | Large Animals | 2024-04-15 | Limping | Antibiotics | Medium |
 
 **Query 2: Number of treatments performed by each veterinarian**
 Groups and counts the number of medical procedures provided by each doctor in the clinic.
+```sql
+SELECT VetName, COUNT(TreatmentDesc) AS TreatmentsCount FROM View_Vet_Clinic_Activity GROUP BY VetName;
+```
+**Output:**
+| VetName | TreatmentsCount |
+|---|---|
+| Doe | 12 |
+| Smith | 8 |
 
 #### 3. Integrated View - `View_Integrated_Animal_Medical`
 **Description:** The most comprehensive view. Combines the animal's personal data from the original department with the complete history of visits, treatments, medications, and vaccinations from the veterinary department.
-*Sample Data Extraction (select *):*
+
+**Sample Data Extraction (`SELECT *`):**
+```sql
+SELECT * FROM View_Integrated_Animal_Medical LIMIT 10;
+```
+**Output:**
 | AnimalID | AnimalName | TreatingVet | VisitDate | Reason | TreatmentType | Medication | Vaccination |
 |---|---|---|---|---|---|---|---|
 | 1 | Leo | Doe | 2024-04-10 | Routine check | Preventative | NULL | Rabies Vax |
@@ -754,8 +629,23 @@ Groups and counts the number of medical procedures provided by each doctor in th
 
 **Query 1: Medical Profile for a specific animal**
 Retrieves the entire medical file for a specific AnimalID.
+```sql
+SELECT * FROM View_Integrated_Animal_Medical WHERE AnimalID = 1;
+```
+**Output:**
+| AnimalID | AnimalName | TreatingVet | VisitDate | Reason | TreatmentType | Medication | Vaccination |
+|---|---|---|---|---|---|---|---|
+| 1 | Leo | Doe | 2024-04-10 | Routine check | Preventative | NULL | Rabies Vax |
 
 **Query 2: Vaccination Tracking**
 Displays all animals that received vaccinations in the clinic, the date the vaccination was given, and the type of vaccination.
+```sql
+SELECT AnimalName, VisitDate, Vaccination FROM View_Integrated_Animal_Medical WHERE Vaccination IS NOT NULL;
+```
+**Output:**
+| AnimalName | VisitDate | Vaccination |
+|---|---|---|
+| Leo | 2024-04-10 | Rabies Vax |
+| Maya | 2024-05-01 | Elephant Pox Vax |
 
 ---
