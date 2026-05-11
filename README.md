@@ -63,6 +63,7 @@ The architectural design of the database is visualized in the following diagrams
 
 **Entity Relationship Diagram (ERD)**  
 ![alt text](images/StageA/image22.png)
+
 **Data Structure Diagram (DSD)**  
 ![alt text](images/StageA/ZOO_DSD1.png)
 
@@ -114,7 +115,7 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 ### 1. Dual-Form SELECT Queries
 
 **Double Query 1: Total food consumed per species for animals born after 2020**  
-**תיאור:** חישוב סך הכל כמויות המזון שנצרכו לכל מין (Species), עבור חיות שנולדו לאחר שנת 2020.
+**Description:** Calculate the total food quantities consumed per species, for animals born after the year 2020.
 *   **Version A (JOIN):**
     ```sql
     SELECT S.CommonName, S.ScientificName, SUM(DF.FoodConsumedQty) AS TotalFoodConsumed
@@ -145,7 +146,7 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 ---
 
 **Double Query 2: Habitat population count for animals missing checkups this year**  
-**תיאור:** ספירת כמות החיות בכל אזור מחיה (Habitat), עבור חיות שלא עברו שום בדיקה רפואית בשנה הנוכחית.
+**Description:** Count the number of animals in each habitat, for animals that have not had any medical checkups in the current year.
 *   **Version A (NOT IN):**
     ```sql
     SELECT H.HabitatName, H.ClimateType, COUNT(A.AnimalID) AS AnimalCount
@@ -181,7 +182,7 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 ---
 
 **Double Query 3: Average dietary cost per habitat for feedings in May**  
-**תיאור:** מציאת העלות התזונתית היומית הממוצעת עבור חיות שקיבלו הזנה במהלך חודש מאי, מקובץ לפי אזורי מחיה.
+**Description:** Find the average daily dietary cost for animals that received feeding during May, grouped by habitats.
 *   **Version A (GROUP BY with JOIN):**
     ```sql
     SELECT H.HabitatName, H.ClimateType, AVG(D.DailyCost) AS AverageDietCost
@@ -213,7 +214,7 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 ---
 
 **Double Query 4: Most frequent health status per species in 2024**  
-**תיאור:** מציאת הסטטוס הרפואי השכיח ביותר עבור כל מין של חיה במהלך שנת 2024.
+**Description:** Find the most frequent health status for each animal species during the year 2024.
 *   **Version A (Window Function):**
     ```sql
     WITH StatusAgg AS (
@@ -259,10 +260,10 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 ---
 
-### 2. Additional SELECT Queries (שאילתות רגילות)
+### 2. Additional SELECT Queries 
 
 **Regular Query 1**
-**תיאור:** סך הכל עלות התזונה היומית לכל מין, בהתחשב אך ורק בחיות שעברו בדיקה רפואית בחודש אפריל.
+**Description:** Total daily diet cost per species, considering only animals that had a medical checkup in April.
 ```sql
 SELECT S.CommonName, S.ScientificName, SUM(D.DailyCost) AS TotalSpeciesDietCost
 FROM SPECIES S
@@ -276,7 +277,7 @@ ORDER BY TotalSpeciesDietCost DESC;
 > ![alt text](images/StageB/image-4.png)
 
 **Regular Query 2**
-**תיאור:** מציאת הקיבולת הממוצעת של אזורי מחיה, מקובץ לפי סוג אקלים, עבור אזורים בהם חיות הוזנו ב-15 לכל חודש.
+**Description:** Find the average capacity of habitats, grouped by climate type, for habitats where animals were fed on the 15th of any month.
 ```sql
 SELECT H.ClimateType, S.CommonName, AVG(H.MaxCapacity) AS AvgCapacity
 FROM HABITAT H
@@ -290,7 +291,7 @@ ORDER BY AvgCapacity DESC;
 > ![alt text](images/StageB/image-5.png)
 
 **Regular Query 3**
-**תיאור:** ספירת מספר החיות החיות (שאינן מתות) המשויכות לכל תוכנית תזונה, אשר תאריך הלידה שלהן אינו בשנת 2020.
+**Description:** Count the number of alive animals (not deceased) assigned to each diet plan, whose birth year is not 2020.
 ```sql
 SELECT DP.PlanName, DP.DailyCost, COUNT(A.AnimalID) AS AssignedAnimalsCount
 FROM DIETPLAN DP
@@ -304,7 +305,7 @@ ORDER BY AssignedAnimalsCount DESC;
 > ![alt text](images/StageB/image-6.png)
 
 **Regular Query 4**
-**תיאור:** חישוב סך כל המשקל שנמדד בבדיקות רפואיות שנערכו בחודש דצמבר, מקובץ לפי אזורי מחיה.
+**Description:** Calculate the total weight measured in medical checkups conducted in December, grouped by habitats.
 ```sql
 SELECT H.HabitatName, H.ClimateType, SUM(HR.Weight) AS TotalWeightRecorded
 FROM HABITAT H
@@ -318,10 +319,10 @@ ORDER BY TotalWeightRecorded DESC;
 
 ---
 
-### 3. UPDATE & DELETE Queries (עדכון ומחיקה)
+### 3. UPDATE & DELETE Queries 
 
 #### UPDATE Queries
-**UPDATE 1:** העלאת העלות היומית ב-15% עבור תוכניות תזונה המשויכות לחייות שמוגדרות בסכנת הכחדה (Endangered).
+**UPDATE 1:** Increase daily cost by 15% for diet plans assigned to endangered animals.
 ```sql
 UPDATE DIETPLAN SET DailyCost = DailyCost * 1.15
 WHERE DietPlanID IN (
@@ -334,7 +335,7 @@ WHERE DietPlanID IN (
 > ![alt text](images/StageB/image-10.png)
 
 
-**UPDATE 2:** העברת חיות שנולדו לפני שנת 2015 לאזור המחיה בעל הקיבולת המקסימלית הגדולה ביותר.
+**UPDATE 2:** Transfer animals born before 2015 to the habitat with the largest maximum capacity.
 ```sql
 UPDATE ANIMAL SET HabitatID = (
     SELECT HabitatID FROM HABITAT ORDER BY MaxCapacity DESC LIMIT 1
@@ -344,7 +345,7 @@ WHERE EXTRACT(YEAR FROM DateOfBirth) < 2015;
 > ![alt text](images/StageB/image-11.png) | ![alt text](images/StageB/image-13.png)
 > ![alt text](images/StageB/image-12.png)
 
-**UPDATE 3:** עדכון הסטטוס הרפואי ל-'Critical' (קריטי) עבור חיות שצרכו כמות מזון נמוכה במיוחד במהלך החודש הנוכחי.
+**UPDATE 3:** Update health status to 'Critical' for animals that consumed exceptionally low food quantities during the current month.
 ```sql
 UPDATE HEALTHRECORD SET HealthStatus = 'Critical'
 WHERE AnimalID IN (
@@ -356,7 +357,7 @@ WHERE AnimalID IN (
 > ![alt text](images/StageB/image-15.png)
 
 #### DELETE Queries
-**DELETE 1:** מחיקת תיעודי הזנה משנים קודמות עבור חיות הנמצאות באזורי מחיה בעלי אקלים 'Continental'.
+**DELETE 1:** Delete feeding records from previous years for animals located in 'Continental' climate habitats.
 ```sql
 DELETE FROM DAILYFEEDING
 WHERE EXTRACT(YEAR FROM FeedingDate) < EXTRACT(YEAR FROM CURRENT_DATE)
@@ -368,7 +369,7 @@ WHERE EXTRACT(YEAR FROM FeedingDate) < EXTRACT(YEAR FROM CURRENT_DATE)
 > ![alt text](images/StageB/image-19.png) |![alt text](images/StageB/image-18.png)
 > ![alt text](images/StageB/image-17.png)
 
-**DELETE 2:** מחיקת רשומות רפואיות של חיות שצרכו מתחת ל10 יחידות מזון בשנים האחרונות.
+**DELETE 2:** Delete health records of animals that consumed less than 10 food units in recent years.
 ```sql
 DELETE FROM HEALTHRECORD
 WHERE AnimalID IN (
@@ -379,7 +380,7 @@ WHERE AnimalID IN (
 > ![alt text](images/StageB/image-20.png) | ![alt text](images/StageB/image-22.png)
 > ![alt text](images/StageB/image-21.png)
 
-**DELETE 3:** מחיקת רשומות הזנה יומיות מהרבעון הראשון של השנה (ינואר-מרץ) עבור חיות באזורי מחיה בעלי אקלים 'Arid'.
+**DELETE 3:** Delete daily feeding records from the first quarter (January-March) for animals in 'Arid' climate habitats.
 ```sql
 DELETE FROM DAILYFEEDING
 WHERE EXTRACT(MONTH FROM FeedingDate) IN (1, 2, 3)
@@ -394,10 +395,10 @@ WHERE EXTRACT(MONTH FROM FeedingDate) IN (1, 2, 3)
 
 ---
 
-### 4. Constraints (אילוצי מסד נתונים)
+### 4. Constraints 
 
 **Constraint 1: `check_dob_past`**
-**תיאור השינוי:** אילוץ `ALTER TABLE` המוודא שתאריך הלידה של בעל חיים אינו יכול להתרחש בעתיד.
+**Change Description:** An ALTER TABLE constraint ensuring that an animal's date of birth cannot be in the future.
 ```sql
 ALTER TABLE ANIMAL ADD CONSTRAINT check_dob_past CHECK (DateOfBirth <= CURRENT_DATE);
 ```
@@ -409,7 +410,7 @@ VALUES (9999, 'Future Animal', CURRENT_DATE + INTERVAL '10 days', 'Male', 1, 1, 
 > ![alt text](images/StageB/image-26.png)
 
 **Constraint 2: `check_valid_status`**
-**תיאור השינוי:** הגבלת ערכי 'HealthStatus' לאוסף ערכים מורשים בלבד בכדי למנוע טעויות הקלדה.
+**Change Description:** Restricting 'HealthStatus' values to an authorized set only, in order to prevent typos.
 ```sql
 ALTER TABLE HEALTHRECORD ADD CONSTRAINT check_valid_status CHECK (HealthStatus IN ('Healthy', 'Sick', 'Recovering', 'Critical', 'Deceased'));
 ```
@@ -421,7 +422,7 @@ VALUES (9999, CURRENT_DATE, 50.0, 'Super Healthy', 1);
 > ![alt text](images/StageB/image-27.png)
 
 **Constraint 3: `check_feeding_past`**
-**תיאור השינוי:** אילוץ המונע הכנסת תאריכי הזנה עתידיים לטבלת תעודי ההזנה היומיים בניגוד להיגיון הזמן.
+**Change Description:** A constraint preventing the insertion of future feeding dates into the daily feeding records table, contrary to time logic.
 ```sql
 ALTER TABLE DAILYFEEDING ADD CONSTRAINT check_feeding_past CHECK (FeedingDate <= CURRENT_DATE);
 ```
@@ -437,11 +438,11 @@ VALUES (9999, CURRENT_DATE + INTERVAL '5 days', 10.0, 1);
 ## 8. Phase C: Integration (Veterinary Dept)
 
 ### 8.1 New Department Details
-במסגרת שלב האינטגרציה קיבלנו לגן החיות שלנו את בסיס הנתונים של ה**מרפאה הווטרינרית**. 
-תרשים ה-DSD של האגף החדש לפני האינטגרציה:
+As part of the integration phase, our zoo received the database of the **Veterinary Clinic**.
+The new department's DSD diagram prior to integration:
 
 > ![alt text](images/StageC/dsd_new.png)
-*(יש להחליף בתמונה מ-ERDPlus. מצורף קוד Mermaid במידת הצורך)*
+*(Replace with ERDPlus image. Mermaid code provided below if needed)*
 ```mermaid
 erDiagram
     ANIMAL {
@@ -513,73 +514,248 @@ erDiagram
     VACCINATION ||--o{ TREATMENT_VACCINATION : administered_in
 ```
 
-### 8.2 אלגוריתם הנדוס לאחור (Reverse Engineering Algorithm)
-כדי לייצר את תרשים ה-ERD מתוך טבלאות בסיס הנתונים של האגף החדש, ביצענו הנדוס לאחור על פי השלבים הבאים:
-1. **זיהוי ישויות (Entities):** כל טבלה רגילה במערכת (כמו `animal`, `veterinarian`, `treatment`) הומרה לישות בסיסית ב-ERD.
-2. **זיהוי מפתחות ראשיים (Primary Keys):** העמודות המוגדרות כ-PK בכל טבלה סומנו כתכונות מפתח ב-ERD.
-3. **זיהוי תכונות (Attributes):** יתר העמודות (כגון `name`, `birthdate`) שויכו לישויות בהתאמה.
-4. **זיהוי קשרים ומפתחות זרים (Foreign Keys):**
-   - **קשרי 1:N** - אותרו באמצעות מפתחות זרים (למשל `animalid` בתוך טבלת `medicalvisit` שמצביע ל-`animal`).
-   - **קשרי M:N** - זוהו על ידי טבלאות הקישור (Junction Tables) המורכבות ממפתחות מורכבים (כגון `mirsham_visit_treatment`). ב-ERD, טבלאות הקישור הומרו בחזרה לקשר מסוג רבים-לרבים, או הוצגו כישויות חלשות/ישויות קשר.
-5. **שרטוט ותרגום חזותי:** כל הישויות קושרו בהתאם ללוגיקה העסקית שנגזרה מסוגי המפתחות הזרים, כולל סימון של אילוצי השתתפות.
+### 8.2 Reverse Engineering Algorithm (Reverse Engineering Algorithm)
+To generate the ERD from the new department's database tables, we performed reverse engineering according to the following steps:
+1. ****Entity Identification:**** Every regular table in the system (like `animal`, `veterinarian`, `treatment`) was converted to a basic entity in the ERD.
+2. ****Primary Key Identification:**** Columns defined as PK in each table were marked as key attributes in the ERD.
+3. ****Attribute Identification:**** The remaining columns (such as `name`, `birthdate`) were associated with their respective entities.
+4. ****Relationships and Foreign Keys Identification:****
+   - **1:N Relationships** - located using foreign keys (e.g. `animalid` inside the `medicalvisit` table pointing to `animal`).
+   - **M:N Relationships** - identified by junction tables consisting of composite keys (such as `mirsham_visit_treatment`). In the ERD, the junction tables were converted back into many-to-many relationships, or presented as associative entities.
+5. ****Visual Drawing and Translation:**** All entities were linked according to the business logic derived from the types of foreign keys, including the marking of participation constraints.
 
 > ![alt text](images/StageC/erd_new.png)
-*(יש להחליף בתמונה מ-ERDPlus של המערכת החדשה)*
+*(ERD Mermaid Representation)*
+```mermaid
+erDiagram
+    ANIMAL {
+        integer animalid PK
+    }
+    VETERINARIAN {
+        integer vetid PK
+    }
+    MEDICALVISIT {
+        integer visitid PK
+        integer animalid FK
+        integer vetid FK
+    }
+    TREATMENT {
+        integer treatmentid PK
+    }
+    MEDICATION {
+        integer medid PK
+    }
+    VACCINATION {
+        integer vacid PK
+    }
 
-### 8.3 החלטות אינטגרציה ו-ERD משולב
-במהלך מיזוג האגף הווטרינרי לתוך גן החיות שלנו, קיבלנו את ההחלטות הבאות:
-- **איחוד ישות ANIMAL:** החלטנו לוותר על טבלת `animal` של המרפאה הווטרינרית ולהשתמש בטבלת ה-`ANIMAL` המקיפה שיצרנו בשלבים קודמים. טבלת `MEDICALVISIT` עברה הסבה ועתה המפתח הזר שלה `AnimalID` מצביע לטבלת החיות הקיימת שלנו.
-- **הפרדת תפקידים - VETERINARIAN:** בחרנו להשאיר את ישות הווטרינרים בנפרד (ולא למזג עם `EMPLOYEE`) מאחר ויש להם ייחודיות רבה (כגון מספר רישיון מיוחד והתמחות רפואית).
-- **הכנסת הטבלאות הקליניות:** יצרנו את הטבלאות `MEDICALVISIT`, `TREATMENT`, `MEDICATION` ו-`VACCINATION` וטבלאות הקישור שלהן, אך עדכנו את שמותיהן וסוגי הנתונים כך שיתאימו לסטנדרט הכתיבה של המערכת שלנו.
-- **יצירת פקודות ALTER:** במקום למחוק את בסיס הנתונים הקיים, השתמשנו בפקודות `ALTER TABLE ... ADD CONSTRAINT` בקובץ `Integrate.sql` כדי ליישם את האינטגרציה תוך הוספת מפתחות זרים המחברים את העולמות.
+    ANIMAL ||--o{ MEDICALVISIT : has
+    VETERINARIAN ||--o{ MEDICALVISIT : conducts
+    MEDICALVISIT }o--o{ TREATMENT : includes
+    TREATMENT }o--o{ MEDICATION : uses
+    TREATMENT }o--o{ VACCINATION : requires
+```
+
+### 8.3 Integration Decisions & Merged ERD
+During the merger of the veterinary department into our zoo, we made the following decisions:
+- ****Unification of the ANIMAL entity:**** We decided to drop the `animal` table of the veterinary clinic and use the comprehensive `ANIMAL` table we created in previous stages. The `MEDICALVISIT` table was modified and its foreign key `AnimalID` now points to our existing animal table.
+- ****Separation of Roles - VETERINARIAN:**** We chose to keep the veterinarian entity separate (rather than merge with `EMPLOYEE`) since they have many unique attributes (such as a special license number and medical specialization).
+- ****Introduction of Clinical Tables:**** We created the tables `MEDICALVISIT`, `TREATMENT`, `MEDICATION`, and `VACCINATION` along with their junction tables, but updated their names and data types to match the coding standard of our system.
+- ****Creation of ALTER Commands:**** Instead of deleting the existing database, we used `ALTER TABLE ... ADD CONSTRAINT` commands in the `Integrate.sql` file to implement the integration while adding foreign keys that connect the two worlds.
 
 > ![alt text](images/StageC/erd_merged.png)
-*(יש להחליף בתמונה מ-ERDPlus של המערכת המשולבת)*
+*(Merged ERD Mermaid Representation)*
+```mermaid
+erDiagram
+    HABITAT {
+        int HabitatID PK
+    }
+    SPECIES {
+        int SpeciesID PK
+    }
+    DIETPLAN {
+        int DietPlanID PK
+    }
+    ANIMAL {
+        int AnimalID PK
+        int HabitatID FK
+        int SpeciesID FK
+        int DietPlanID FK
+    }
+    HEALTHRECORD {
+        int RecordID PK
+        int AnimalID FK
+    }
+    EMPLOYEE {
+        int EmployeeID PK
+    }
+    VETERINARIAN {
+        int VetID PK
+    }
+    MEDICALVISIT {
+        int VisitID PK
+        int AnimalID FK
+        int VetID FK
+    }
+    TREATMENT {
+        int TreatmentID PK
+    }
+    MEDICATION {
+        int MedID PK
+    }
+    VACCINATION {
+        int VacID PK
+    }
 
-### 8.4 מבטים ושאילתות (Views & Queries)
-שלושה מבטים נוצרו כדי לשקף את המערכת המשולבת (מופיעים בקובץ `Views.sql`).
+    HABITAT ||--o{ ANIMAL : houses
+    SPECIES ||--o{ ANIMAL : categorizes
+    DIETPLAN ||--o{ ANIMAL : applies_to
+    ANIMAL ||--o{ HEALTHRECORD : has_record
+    ANIMAL ||--o{ MEDICALVISIT : has_visit
+    VETERINARIAN ||--o{ MEDICALVISIT : performs
+    MEDICALVISIT }o--o{ TREATMENT : includes
+    TREATMENT }o--o{ MEDICATION : uses
+    TREATMENT }o--o{ VACCINATION : administers
+```
 
-#### 1. מבט האגף המקורי - `View_Zoo_Animal_Status`
-**תיאור:** מציג את מצב בעלי החיים בגן החיות, כולל המין שלהם, אזור המחיה בו הם נמצאים, תוכנית התזונה והסטטוס הבריאותי מהבדיקה האחרונה.
-*שליפה לדוגמה (select *):*
+*(Merged DSD Mermaid Representation)*
+```mermaid
+erDiagram
+    HABITAT {
+        int HabitatID PK
+    }
+    SPECIES {
+        int SpeciesID PK
+    }
+    DIETPLAN {
+        int DietPlanID PK
+    }
+    ANIMAL {
+        int AnimalID PK
+        int HabitatID FK
+        int SpeciesID FK
+        int DietPlanID FK
+    }
+    HEALTHRECORD {
+        int RecordID PK
+        int AnimalID FK
+    }
+    DAILYFEEDING {
+        int FeedingID PK
+        int AnimalID FK
+    }
+    EMPLOYEE {
+        int EmployeeID PK
+    }
+    ACTIVITY_TYPE {
+        int ActivityTypeID PK
+    }
+    ACTIVITY {
+        int ActivityID PK
+        int ActivityTypeID FK
+    }
+    ACTIVITY_EMPLOYEE {
+        int ActivityID PK,FK
+        int EmployeeID PK,FK
+    }
+    ACTIVITY_ANIMAL {
+        int ActivityID PK,FK
+        int AnimalID PK,FK
+    }
+    VETERINARIAN {
+        int VetID PK
+    }
+    MEDICALVISIT {
+        int VisitID PK
+        int AnimalID FK
+        int VetID FK
+    }
+    TREATMENT {
+        int TreatmentID PK
+    }
+    MEDICATION {
+        int MedID PK
+    }
+    VACCINATION {
+        int VacID PK
+    }
+    MIRSHAM_VISIT_TREATMENT {
+        int VisitID PK,FK
+        int TreatmentID PK,FK
+    }
+    HERGEL_TREATMENT_MEDICATION {
+        int TreatmentID PK,FK
+        int MedID PK,FK
+    }
+    TREATMENT_VACCINATION {
+        int TreatmentID PK,FK
+        int VacID PK,FK
+    }
+
+    HABITAT ||--o{ ANIMAL : contains
+    SPECIES ||--o{ ANIMAL : categorizes
+    DIETPLAN ||--o{ ANIMAL : applies_to
+    ANIMAL ||--o{ HEALTHRECORD : has
+    ANIMAL ||--o{ DAILYFEEDING : receives
+    ACTIVITY_TYPE ||--o{ ACTIVITY : defines
+    ACTIVITY ||--o{ ACTIVITY_EMPLOYEE : involves
+    EMPLOYEE ||--o{ ACTIVITY_EMPLOYEE : performs
+    ACTIVITY ||--o{ ACTIVITY_ANIMAL : includes
+    ANIMAL ||--o{ ACTIVITY_ANIMAL : participates_in
+    ANIMAL ||--o{ MEDICALVISIT : has
+    VETERINARIAN ||--o{ MEDICALVISIT : conducts
+    MEDICALVISIT ||--o{ MIRSHAM_VISIT_TREATMENT : includes
+    TREATMENT ||--o{ MIRSHAM_VISIT_TREATMENT : is_part_of
+    TREATMENT ||--o{ HERGEL_TREATMENT_MEDICATION : uses
+    MEDICATION ||--o{ HERGEL_TREATMENT_MEDICATION : applied_in
+    TREATMENT ||--o{ TREATMENT_VACCINATION : requires
+    VACCINATION ||--o{ TREATMENT_VACCINATION : administered_in
+```
+
+### 8.4 Views & Queries (Views & Queries)
+Three views were created to reflect the integrated system (available in the `Views.sql` file).
+
+#### 1. Original Department View - `View_Zoo_Animal_Status`
+**Description:** Displays the status of the animals in the zoo, including their species, the habitat they reside in, the diet plan, and the health status from their last checkup.
+*Sample Data Extraction (select *):*
 | AnimalID | AnimalName | Species | HabitatName | DietPlan | HealthStatus | CheckupDate |
 |---|---|---|---|---|---|---|
 | 1 | Leo | Lion | African Savanna | Carnivore A | Healthy | 2024-03-01 |
 | 2 | Maya | Elephant | Jungle Zone | Herbivore B | Healthy | 2024-03-05 |
-*(נתונים מדומים, הצג עד 10 רשומות)*
+*(Mock data, display up to 10 records)*
 
-**שאילתה 1: הצגת חיות שאינן במצב Healthy**
-מציגה רק חיות שדורשות השגחה.
+**Query 1: Display animals not in a Healthy state**
+Shows only animals requiring observation.
 
-**שאילתה 2: ספירת חיות לפי Habitat**
-מוצאת כמה חיות יש בכל אזור מחיה בהתבסס על המבט.
+**Query 2: Count animals by Habitat**
+Finds how many animals exist in each habitat based on the view.
 
-#### 2. מבט האגף החדש - `View_Vet_Clinic_Activity`
-**תיאור:** מתמקד בפעילות הווטרינרים. מציג כל ביקור רפואי, מי הווטרינר המטפל, סיבת הביקור, ואיזה טיפול רפואי או תרופתי ניתן (כולל חומרת הטיפול).
-*שליפה לדוגמה (select *):*
+#### 2. New Department View - `View_Vet_Clinic_Activity`
+**Description:** Focuses on veterinarian activity. Shows each medical visit, the treating veterinarian, reason for visit, and the medical or drug treatment given (including treatment severity).
+*Sample Data Extraction (select *):*
 | VetID | VetName | Specialization | VisitDate | Reason | TreatmentDesc | Severity |
 |---|---|---|---|---|---|---|
 | 1 | Doe | Large Animals | 2024-04-10 | Routine check | Rest | Low |
 | 1 | Doe | Large Animals | 2024-04-15 | Limping | Antibiotics | Medium |
 
-**שאילתה 1: טיפולים בחומרה בינונית וגבוהה**
-שולפת ביקורים שדרשו התערבות משמעותית (Medium, High, Critical).
+**Query 1: Medium and High Severity Treatments**
+Retrieves visits that required significant intervention (Medium, High, Critical).
 
-**שאילתה 2: מספר הטיפולים שביצע כל ווטרינר**
-מקבצת וסופרת את כמות ההליכים הרפואיים שכל רופא במרפאה העניק.
+**Query 2: Number of treatments performed by each veterinarian**
+Groups and counts the number of medical procedures provided by each doctor in the clinic.
 
-#### 3. מבט משולב - `View_Integrated_Animal_Medical`
-**תיאור:** המבט המקיף ביותר. משלב נתונים אישיים של החיה מהאגף המקורי, יחד עם היסטוריית הביקורים המלאה, הטיפולים, התרופות והחיסונים מהאגף הווטרינרי.
-*שליפה לדוגמה (select *):*
+#### 3. Integrated View - `View_Integrated_Animal_Medical`
+**Description:** The most comprehensive view. Combines the animal's personal data from the original department with the complete history of visits, treatments, medications, and vaccinations from the veterinary department.
+*Sample Data Extraction (select *):*
 | AnimalID | AnimalName | TreatingVet | VisitDate | Reason | TreatmentType | Medication | Vaccination |
 |---|---|---|---|---|---|---|---|
 | 1 | Leo | Doe | 2024-04-10 | Routine check | Preventative | NULL | Rabies Vax |
 | 2 | Maya | Smith | 2024-04-15 | Limping | Medical | Amoxicillin | NULL |
 
-**שאילתה 1: פרופיל רפואי לחיה ספציפית**
-שליפת כל התיק הרפואי עבור AnimalID מסוים.
+**Query 1: Medical Profile for a specific animal**
+Retrieves the entire medical file for a specific AnimalID.
 
-**שאילתה 2: מעקב חיסונים**
-הצגת כל בעלי החיים שקיבלו חיסונים במרפאה, תאריך קבלת החיסון וסוג החיסון שניתן.
+**Query 2: Vaccination Tracking**
+Displays all animals that received vaccinations in the clinic, the date the vaccination was given, and the type of vaccination.
 
 ---
