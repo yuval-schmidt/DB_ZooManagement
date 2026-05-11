@@ -23,6 +23,7 @@ Yedidya Bar-Gad & Yuval Schmidet
    * [Additional SELECT Queries](#2-additional-select-queries)
    * [UPDATE & DELETE Queries](#3-update--delete-queries)
    * [Constraints](#4-constraints)
+8. [Phase C: Integration (Veterinary Dept)](#8-phase-c-integration-veterinary-dept)
 
 ---
 
@@ -430,5 +431,155 @@ INSERT INTO DAILYFEEDING (FeedingID, FeedingDate, FoodConsumedQty, AnimalID)
 VALUES (9999, CURRENT_DATE + INTERVAL '5 days', 10.0, 1);
 ```
 > ![alt text](images/StageB/image-28.png)
+
+---
+
+## 8. Phase C: Integration (Veterinary Dept)
+
+### 8.1 New Department Details
+במסגרת שלב האינטגרציה קיבלנו לגן החיות שלנו את בסיס הנתונים של ה**מרפאה הווטרינרית**. 
+תרשים ה-DSD של האגף החדש לפני האינטגרציה:
+
+> ![alt text](images/StageC/dsd_new.png)
+*(יש להחליף בתמונה מ-ERDPlus. מצורף קוד Mermaid במידת הצורך)*
+```mermaid
+erDiagram
+    ANIMAL {
+        integer animalid PK
+        varchar name
+        varchar species
+        date birthdate
+        varchar gender
+        numeric weight
+    }
+    VETERINARIAN {
+        integer vetid PK
+        varchar firstname
+        varchar lastname
+        varchar licensenumber
+        varchar specialization
+        date hiredate
+    }
+    MEDICALVISIT {
+        integer visitid PK
+        date visitdate
+        varchar reason
+        text summary
+        numeric cost
+        integer animalid FK
+        integer vetid FK
+    }
+    TREATMENT {
+        integer treatmentid PK
+        varchar description
+        varchar duration
+        varchar type
+        varchar severity
+    }
+    MEDICATION {
+        integer medid PK
+        varchar commercialname
+        varchar activeingredient
+        varchar dosageunit
+        date expirationdate
+    }
+    VACCINATION {
+        integer vacid PK
+        varchar name
+        varchar manufacturer
+        integer frequencymonths
+        varchar storagetemp
+    }
+    MIRSHAM_VISIT_TREATMENT {
+        integer visitid PK,FK
+        integer treatmentid PK,FK
+    }
+    HERGEL_TREATMENT_MEDICATION {
+        integer treatmentid PK,FK
+        integer medid PK,FK
+    }
+    TREATMENT_VACCINATION {
+        integer treatmentid PK,FK
+        integer vacid PK,FK
+    }
+
+    ANIMAL ||--o{ MEDICALVISIT : has
+    VETERINARIAN ||--o{ MEDICALVISIT : conducts
+    MEDICALVISIT ||--o{ MIRSHAM_VISIT_TREATMENT : includes
+    TREATMENT ||--o{ MIRSHAM_VISIT_TREATMENT : is_part_of
+    TREATMENT ||--o{ HERGEL_TREATMENT_MEDICATION : uses
+    MEDICATION ||--o{ HERGEL_TREATMENT_MEDICATION : applied_in
+    TREATMENT ||--o{ TREATMENT_VACCINATION : requires
+    VACCINATION ||--o{ TREATMENT_VACCINATION : administered_in
+```
+
+### 8.2 אלגוריתם הנדוס לאחור (Reverse Engineering Algorithm)
+כדי לייצר את תרשים ה-ERD מתוך טבלאות בסיס הנתונים של האגף החדש, ביצענו הנדוס לאחור על פי השלבים הבאים:
+1. **זיהוי ישויות (Entities):** כל טבלה רגילה במערכת (כמו `animal`, `veterinarian`, `treatment`) הומרה לישות בסיסית ב-ERD.
+2. **זיהוי מפתחות ראשיים (Primary Keys):** העמודות המוגדרות כ-PK בכל טבלה סומנו כתכונות מפתח ב-ERD.
+3. **זיהוי תכונות (Attributes):** יתר העמודות (כגון `name`, `birthdate`) שויכו לישויות בהתאמה.
+4. **זיהוי קשרים ומפתחות זרים (Foreign Keys):**
+   - **קשרי 1:N** - אותרו באמצעות מפתחות זרים (למשל `animalid` בתוך טבלת `medicalvisit` שמצביע ל-`animal`).
+   - **קשרי M:N** - זוהו על ידי טבלאות הקישור (Junction Tables) המורכבות ממפתחות מורכבים (כגון `mirsham_visit_treatment`). ב-ERD, טבלאות הקישור הומרו בחזרה לקשר מסוג רבים-לרבים, או הוצגו כישויות חלשות/ישויות קשר.
+5. **שרטוט ותרגום חזותי:** כל הישויות קושרו בהתאם ללוגיקה העסקית שנגזרה מסוגי המפתחות הזרים, כולל סימון של אילוצי השתתפות.
+
+> ![alt text](images/StageC/erd_new.png)
+*(יש להחליף בתמונה מ-ERDPlus של המערכת החדשה)*
+
+### 8.3 החלטות אינטגרציה ו-ERD משולב
+במהלך מיזוג האגף הווטרינרי לתוך גן החיות שלנו, קיבלנו את ההחלטות הבאות:
+- **איחוד ישות ANIMAL:** החלטנו לוותר על טבלת `animal` של המרפאה הווטרינרית ולהשתמש בטבלת ה-`ANIMAL` המקיפה שיצרנו בשלבים קודמים. טבלת `MEDICALVISIT` עברה הסבה ועתה המפתח הזר שלה `AnimalID` מצביע לטבלת החיות הקיימת שלנו.
+- **הפרדת תפקידים - VETERINARIAN:** בחרנו להשאיר את ישות הווטרינרים בנפרד (ולא למזג עם `EMPLOYEE`) מאחר ויש להם ייחודיות רבה (כגון מספר רישיון מיוחד והתמחות רפואית).
+- **הכנסת הטבלאות הקליניות:** יצרנו את הטבלאות `MEDICALVISIT`, `TREATMENT`, `MEDICATION` ו-`VACCINATION` וטבלאות הקישור שלהן, אך עדכנו את שמותיהן וסוגי הנתונים כך שיתאימו לסטנדרט הכתיבה של המערכת שלנו.
+- **יצירת פקודות ALTER:** במקום למחוק את בסיס הנתונים הקיים, השתמשנו בפקודות `ALTER TABLE ... ADD CONSTRAINT` בקובץ `Integrate.sql` כדי ליישם את האינטגרציה תוך הוספת מפתחות זרים המחברים את העולמות.
+
+> ![alt text](images/StageC/erd_merged.png)
+*(יש להחליף בתמונה מ-ERDPlus של המערכת המשולבת)*
+
+### 8.4 מבטים ושאילתות (Views & Queries)
+שלושה מבטים נוצרו כדי לשקף את המערכת המשולבת (מופיעים בקובץ `Views.sql`).
+
+#### 1. מבט האגף המקורי - `View_Zoo_Animal_Status`
+**תיאור:** מציג את מצב בעלי החיים בגן החיות, כולל המין שלהם, אזור המחיה בו הם נמצאים, תוכנית התזונה והסטטוס הבריאותי מהבדיקה האחרונה.
+*שליפה לדוגמה (select *):*
+| AnimalID | AnimalName | Species | HabitatName | DietPlan | HealthStatus | CheckupDate |
+|---|---|---|---|---|---|---|
+| 1 | Leo | Lion | African Savanna | Carnivore A | Healthy | 2024-03-01 |
+| 2 | Maya | Elephant | Jungle Zone | Herbivore B | Healthy | 2024-03-05 |
+*(נתונים מדומים, הצג עד 10 רשומות)*
+
+**שאילתה 1: הצגת חיות שאינן במצב Healthy**
+מציגה רק חיות שדורשות השגחה.
+
+**שאילתה 2: ספירת חיות לפי Habitat**
+מוצאת כמה חיות יש בכל אזור מחיה בהתבסס על המבט.
+
+#### 2. מבט האגף החדש - `View_Vet_Clinic_Activity`
+**תיאור:** מתמקד בפעילות הווטרינרים. מציג כל ביקור רפואי, מי הווטרינר המטפל, סיבת הביקור, ואיזה טיפול רפואי או תרופתי ניתן (כולל חומרת הטיפול).
+*שליפה לדוגמה (select *):*
+| VetID | VetName | Specialization | VisitDate | Reason | TreatmentDesc | Severity |
+|---|---|---|---|---|---|---|
+| 1 | Doe | Large Animals | 2024-04-10 | Routine check | Rest | Low |
+| 1 | Doe | Large Animals | 2024-04-15 | Limping | Antibiotics | Medium |
+
+**שאילתה 1: טיפולים בחומרה בינונית וגבוהה**
+שולפת ביקורים שדרשו התערבות משמעותית (Medium, High, Critical).
+
+**שאילתה 2: מספר הטיפולים שביצע כל ווטרינר**
+מקבצת וסופרת את כמות ההליכים הרפואיים שכל רופא במרפאה העניק.
+
+#### 3. מבט משולב - `View_Integrated_Animal_Medical`
+**תיאור:** המבט המקיף ביותר. משלב נתונים אישיים של החיה מהאגף המקורי, יחד עם היסטוריית הביקורים המלאה, הטיפולים, התרופות והחיסונים מהאגף הווטרינרי.
+*שליפה לדוגמה (select *):*
+| AnimalID | AnimalName | TreatingVet | VisitDate | Reason | TreatmentType | Medication | Vaccination |
+|---|---|---|---|---|---|---|---|
+| 1 | Leo | Doe | 2024-04-10 | Routine check | Preventative | NULL | Rabies Vax |
+| 2 | Maya | Smith | 2024-04-15 | Limping | Medical | Amoxicillin | NULL |
+
+**שאילתה 1: פרופיל רפואי לחיה ספציפית**
+שליפת כל התיק הרפואי עבור AnimalID מסוים.
+
+**שאילתה 2: מעקב חיסונים**
+הצגת כל בעלי החיים שקיבלו חיסונים במרפאה, תאריך קבלת החיסון וסוג החיסון שניתן.
 
 ---
