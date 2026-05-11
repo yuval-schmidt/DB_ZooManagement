@@ -441,7 +441,7 @@ VALUES (9999, CURRENT_DATE + INTERVAL '5 days', 10.0, 1);
 As part of the integration phase, our zoo received the database of the **Veterinary Clinic**.
 The new department's DSD diagram prior to integration:
 
-![alt text](image-4.png)
+![alt text](<DBProject_2082_3349/שלב ג/image-4.png>)
 
 ### 8.2 Reverse Engineering Algorithm (Reverse Engineering Algorithm)
 To generate the ERD from the new department's database tables, we performed reverse engineering according to the following steps:
@@ -453,7 +453,7 @@ To generate the ERD from the new department's database tables, we performed reve
    - **M:N Relationships** - identified by junction tables consisting of composite keys (such as `mirsham_visit_treatment`). In the ERD, the junction tables were converted back into many-to-many relationships, or presented as associative entities.
 5. ****Visual Drawing and Translation:**** All entities were linked according to the business logic derived from the types of foreign keys, including the marking of participation constraints.
 
-![alt text](image-1.png)
+![alt text](<DBProject_2082_3349/שלב ג/image-1.png>)
 
 ### 8.3 Integration Decisions & Merged ERD
 During the merger of the veterinary department into our zoo, we made the following decisions:
@@ -464,12 +464,12 @@ During the merger of the veterinary department into our zoo, we made the followi
 
 *(Merged ERD Mermaid Representation)*
 
-![alt text](image-2.png)
+![alt text](<DBProject_2082_3349/שלב ג/image-2.png>)
 
 
 *(Merged DSD Mermaid Representation)*
 
-![alt text](image-3.png)
+![alt text](<DBProject_2082_3349/שלב ג/image-3.png>)
 
 
 ### 8.4 Views & Queries (Views & Queries)
