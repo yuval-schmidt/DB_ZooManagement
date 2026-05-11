@@ -441,78 +441,7 @@ VALUES (9999, CURRENT_DATE + INTERVAL '5 days', 10.0, 1);
 As part of the integration phase, our zoo received the database of the **Veterinary Clinic**.
 The new department's DSD diagram prior to integration:
 
-> ![alt text](images/StageC/dsd_new.png)
-*(Replace with ERDPlus image. Mermaid code provided below if needed)*
-```mermaid
-erDiagram
-    ANIMAL {
-        integer animalid PK
-        varchar name
-        varchar species
-        date birthdate
-        varchar gender
-        numeric weight
-    }
-    VETERINARIAN {
-        integer vetid PK
-        varchar firstname
-        varchar lastname
-        varchar licensenumber
-        varchar specialization
-        date hiredate
-    }
-    MEDICALVISIT {
-        integer visitid PK
-        date visitdate
-        varchar reason
-        text summary
-        numeric cost
-        integer animalid FK
-        integer vetid FK
-    }
-    TREATMENT {
-        integer treatmentid PK
-        varchar description
-        varchar duration
-        varchar type
-        varchar severity
-    }
-    MEDICATION {
-        integer medid PK
-        varchar commercialname
-        varchar activeingredient
-        varchar dosageunit
-        date expirationdate
-    }
-    VACCINATION {
-        integer vacid PK
-        varchar name
-        varchar manufacturer
-        integer frequencymonths
-        varchar storagetemp
-    }
-    MIRSHAM_VISIT_TREATMENT {
-        integer visitid PK,FK
-        integer treatmentid PK,FK
-    }
-    HERGEL_TREATMENT_MEDICATION {
-        integer treatmentid PK,FK
-        integer medid PK,FK
-    }
-    TREATMENT_VACCINATION {
-        integer treatmentid PK,FK
-        integer vacid PK,FK
-    }
-
-    ANIMAL ||--o{ MEDICALVISIT : has
-    VETERINARIAN ||--o{ MEDICALVISIT : conducts
-    MEDICALVISIT ||--o{ MIRSHAM_VISIT_TREATMENT : includes
-    TREATMENT ||--o{ MIRSHAM_VISIT_TREATMENT : is_part_of
-    TREATMENT ||--o{ HERGEL_TREATMENT_MEDICATION : uses
-    MEDICATION ||--o{ HERGEL_TREATMENT_MEDICATION : applied_in
-    TREATMENT ||--o{ TREATMENT_VACCINATION : requires
-    VACCINATION ||--o{ TREATMENT_VACCINATION : administered_in
-```
+![alt text](image-4.png)
 
 ### 8.2 Reverse Engineering Algorithm (Reverse Engineering Algorithm)
 To generate the ERD from the new department's database tables, we performed reverse engineering according to the following steps:
