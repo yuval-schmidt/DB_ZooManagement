@@ -507,7 +507,9 @@ Three views were created to reflect the integrated system (available in the `Vie
 
 **Query 1: Display animals not in a Healthy state**
 **Description:** Shows only animals requiring observation.
+
 **Business Relevance:** Immediate identification of sick or recovering animals is paramount for preventing cross-contamination and providing timely medical intervention, reducing mortality rates.
+
 **Scenario:** Every morning, the head zookeeper runs this query to generate a priority watch-list, ensuring that staff allocate extra time to monitor and care for these specific animals during their shifts.
 
 ![alt text](images/StageC/query-8.png)
@@ -516,7 +518,9 @@ Three views were created to reflect the integrated system (available in the `Vie
 
 **Query 2: Count animals by Habitat**
 **Description:** Finds how many animals exist in each habitat based on the view.
+
 **Business Relevance:** Maintaining optimal animal density in habitats prevents overcrowding, reduces stress-induced aggression, and complies with spatial welfare standards.
+
 **Scenario:** The animal relocation committee uses this report during their weekly meetings to decide if certain fast-breeding populations need to be transferred to other enclosures or partner zoos to avoid exceeding capacity.
 
 ![alt text](images/StageC/query-10.png)
@@ -537,8 +541,11 @@ Three views were created to reflect the integrated system (available in the `Vie
 ![alt text](images/StageC/query-5.png)
 
 **Query 2: Number of treatments performed by each veterinarian**
+
 **Description:** Groups and counts the number of medical procedures provided by each doctor in the clinic.
+
 **Business Relevance:** Tracking individual veterinary workload ensures fair labor distribution, helps in performance evaluations, and highlights staffing shortages.
+
 **Scenario:** The HR department and Clinic Director use this metric during quarterly reviews to determine if a specific veterinarian is overburdened and whether the clinic needs to hire additional specialized staff.
 
 ![alt text](images/StageC/query-6.png)
@@ -550,7 +557,9 @@ Three views were created to reflect the integrated system (available in the `Vie
 
 **Query 1: Medical Profile for a specific animal**
 **Description:** Retrieves the entire medical file for a specific AnimalID.
+
 **Business Relevance:** Instant access to an animal's comprehensive medical history is essential for making accurate diagnoses and avoiding dangerous drug interactions during emergencies.
+
 **Scenario:** An animal is unexpectedly found unconscious in its enclosure. The responding veterinarian instantly pulls this profile to check past illnesses, current medications, and allergies before administering emergency treatment.
 
 
@@ -561,7 +570,9 @@ Three views were created to reflect the integrated system (available in the `Vie
 
 **Query 2: Vaccination Tracking**
 **Description:** Displays all animals that received vaccinations in the clinic, the date the vaccination was given, and the type of vaccination.
+
 **Business Relevance:** Strict vaccination tracking is a legal requirement for zoo licensing, prevents devastating viral outbreaks, and ensures the safety of both animals and interacting staff.
+
 **Scenario:** During an annual health and safety inspection by external regulators, the zoo administration uses this query to provide immediate proof of compliance with mandated animal vaccination protocols.
 
 ![alt text](images/StageC/query-2.png)
