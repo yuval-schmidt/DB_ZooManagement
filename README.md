@@ -24,6 +24,7 @@ Yedidya Bar-Gad & Yuval Schmidet
    * [UPDATE & DELETE Queries](#3-update--delete-queries)
    * [Constraints](#4-constraints)
 8. [Phase C: Integration (Veterinary Dept)](#8-phase-c-integration-veterinary-dept)
+9. [Phase D: Programming (PL/pgSQL)](#9-phase-d-programming-plpgsql)
 
 ---
 
@@ -116,7 +117,9 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 1: Total food consumed per species for animals born after 2020**  
 **Description:** Calculate the total food quantities consumed per species, for animals born after the year 2020.
+
 **Business Relevance:** Understanding food consumption for younger animals helps zoo management estimate and allocate future budget requirements for growing populations.
+
 **Scenario:** The zoo's financial planning department is preparing the budget for the upcoming year and needs to project the dietary costs for the newest generation of animals, as they tend to have changing dietary needs as they mature.
 *   **Version A (JOIN):**
     ```sql
@@ -149,7 +152,9 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 2: Habitat population count for animals missing checkups this year**  
 **Description:** Count the number of animals in each habitat, for animals that have not had any medical checkups in the current year.
+
 **Business Relevance:** Proactively identifying gaps in medical surveillance prevents potential disease outbreaks and ensures compliance with animal welfare regulations.
+
 **Scenario:** The Chief Veterinarian wants to deploy mobile medical teams to specific habitats. They use this query to prioritize habitats that contain the highest number of unchecked animals to optimize the teams' schedules.
 *   **Version A (NOT IN):**
     ```sql
@@ -187,7 +192,9 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 3: Average dietary cost per habitat for feedings in May**  
 **Description:** Find the average daily dietary cost for animals that received feeding during May, grouped by habitats.
+
 **Business Relevance:** Evaluating feeding costs on a per-habitat basis allows for accurate distribution of operational funds and identifies unusually expensive enclosures.
+
 **Scenario:** Following a seasonal change, the procurement team reviews dietary expenses to see if certain habitats experienced a spike in feeding costs due to increased activity levels or spoiling of perishable foods.
 *   **Version A (GROUP BY with JOIN):**
     ```sql
@@ -221,7 +228,9 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 4: Most frequent health status per species in 2024**  
 **Description:** Find the most frequent health status for each animal species during the year 2024.
+
 **Business Relevance:** Tracking the prevailing health trends across species enables the zoo to identify potential systemic issues, such as species-specific genetic vulnerabilities or environmental stressors.
+
 **Scenario:** During the annual zoo performance review, the zoology department uses this data to prepare a health report for stakeholders, highlighting which species thrived and which might need modified care protocols.
 *   **Version A (Window Function):**
     ```sql
@@ -272,7 +281,9 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Regular Query 1**
 **Description:** Total daily diet cost per species, considering only animals that had a medical checkup in April.
+
 **Business Relevance:** Correlating dietary costs with recent medical checkups helps assess whether specialized, potentially more expensive diets are being prescribed following routine medical evaluations.
+
 **Scenario:** After the major spring checkup drive in April, the finance team investigates if the post-checkup diet plans have significantly inflated the feeding budget for certain species.
 ```sql
 SELECT S.CommonName, S.ScientificName, SUM(D.DailyCost) AS TotalSpeciesDietCost
@@ -288,7 +299,9 @@ ORDER BY TotalSpeciesDietCost DESC;
 
 **Regular Query 2**
 **Description:** Find the average capacity of habitats, grouped by climate type, for habitats where animals were fed on the 15th of any month.
+
 **Business Relevance:** Analyzing habitat capacities based on climate helps in strategic planning for acquiring new animals and designing future enclosures.
+
 **Scenario:** The zoo is considering acquiring new species that require specific climates. Management uses this query to evaluate the current average capacity of existing habitats (verified active via feeding logs) to determine where space is available.
 ```sql
 SELECT H.ClimateType, S.CommonName, AVG(H.MaxCapacity) AS AvgCapacity
@@ -304,7 +317,9 @@ ORDER BY AvgCapacity DESC;
 
 **Regular Query 3**
 **Description:** Count the number of alive animals (not deceased) assigned to each diet plan, whose birth year is not 2020.
+
 **Business Relevance:** Knowing exactly how many active animals rely on each diet plan is critical for supply chain management and negotiating bulk purchases with food vendors.
+
 **Scenario:** The procurement manager is renegotiating annual contracts with suppliers and needs an accurate, up-to-date count of animals consuming each diet plan.
 ```sql
 SELECT DP.PlanName, DP.DailyCost, COUNT(A.AnimalID) AS AssignedAnimalsCount
@@ -320,7 +335,9 @@ ORDER BY AssignedAnimalsCount DESC;
 
 **Regular Query 4**
 **Description:** Calculate the total weight measured in medical checkups conducted in December, grouped by habitats.
+
 **Business Relevance:** Monitoring the aggregate weight of animals per habitat before winter helps adjust heating requirements, spatial planning, and seasonal dietary adjustments.
+
 **Scenario:** In preparation for the peak of winter, the facility management team reviews total animal mass in various habitats to calibrate heating systems and ensure structural safety of indoor enclosures.
 ```sql
 SELECT H.HabitatName, H.ClimateType, SUM(HR.Weight) AS TotalWeightRecorded
@@ -339,7 +356,9 @@ ORDER BY TotalWeightRecorded DESC;
 
 #### UPDATE Queries
 **UPDATE 1:** Increase daily cost by 15% for diet plans assigned to endangered animals.
+
 **Business Relevance:** Ensures that the budget accurately reflects the premium costs of specialized conservation diets required for endangered species.
+
 **Scenario:** A new international conservation directive mandates upgraded nutritional standards for endangered species. The finance department runs this update to immediately adjust the projected daily costs in the database by 15% to secure appropriate funding.
 ```sql
 UPDATE DIETPLAN SET DailyCost = DailyCost * 1.15
@@ -354,7 +373,9 @@ WHERE DietPlanID IN (
 
 
 **UPDATE 2:** Transfer animals born before 2015 to the habitat with the largest maximum capacity.
+
 **Business Relevance:** Proactively managing space for older animals improves their quality of life, reduces injury risks, and aligns with senior animal care standards.
+
 **Scenario:** The zoo is undergoing renovations, and older animals (born before 2015) need more roaming space to mitigate arthritis and stress. Management runs this query to automatically reassign them to the most spacious enclosure available.
 ```sql
 UPDATE ANIMAL SET HabitatID = (
@@ -366,7 +387,9 @@ WHERE EXTRACT(YEAR FROM DateOfBirth) < 2015;
 > ![alt text](images/StageB/image-12.png)
 
 **UPDATE 3:** Update health status to 'Critical' for animals that consumed exceptionally low food quantities during the current month.
+
 **Business Relevance:** Automating health alerts based on dietary intake ensures rapid medical response, preventing animal loss due to undetected illnesses.
+
 **Scenario:** To prevent human error in monitoring thousands of animals, the system automatically flags any animal eating dangerously low amounts as 'Critical', instantly triggering an emergency veterinary checkup alert.
 ```sql
 UPDATE HEALTHRECORD SET HealthStatus = 'Critical'
@@ -380,7 +403,9 @@ WHERE AnimalID IN (
 
 #### DELETE Queries
 **DELETE 1:** Delete feeding records from previous years for animals located in 'Continental' climate habitats.
+
 **Business Relevance:** Routine data archiving/purging optimizes database performance and reduces cloud storage costs by removing obsolete operational data.
+
 **Scenario:** The IT department conducts its annual database cleanup. Since Continental habitats had a standardized diet last year that is no longer medically relevant, they purge old feeding logs to free up database index space and speed up daily queries.
 ```sql
 DELETE FROM DAILYFEEDING
@@ -394,7 +419,9 @@ WHERE EXTRACT(YEAR FROM FeedingDate) < EXTRACT(YEAR FROM CURRENT_DATE)
 > ![alt text](images/StageB/image-17.png)
 
 **DELETE 2:** Delete health records of animals that consumed less than 10 food units in recent years.
+
 **Business Relevance:** Cleaning up anomalous or corrupted historical records ensures that longitudinal health analytics and ML models are not skewed by bad data.
+
 **Scenario:** A data audit reveals that a faulty scale previously recorded impossibly low food consumption (<10 units over a year). Data engineers run this query to delete these corrupted historical health records to maintain data integrity for future research.
 ```sql
 DELETE FROM HEALTHRECORD
@@ -407,7 +434,9 @@ WHERE AnimalID IN (
 > ![alt text](images/StageB/image-21.png)
 
 **DELETE 3:** Delete daily feeding records from the first quarter (January-March) for animals in 'Arid' climate habitats.
+
 **Business Relevance:** Facilitates legal compliance with data retention policies regarding seasonal experimental diets that must be purged after evaluation.
+
 **Scenario:** The zoo completed a 3-month experimental winter diet study in the Arid zones. Following the study's conclusion and external publication, the research agreement requires purging the granular daily feeding logs from that specific quarter to comply with data privacy policies of the partner institute.
 ```sql
 DELETE FROM DAILYFEEDING
@@ -533,7 +562,9 @@ Three views were created to reflect the integrated system (available in the `Vie
 
 **Query 1: Medium and High Severity Treatments**
 **Description:** Retrieves visits that required significant intervention (Medium, High, Critical).
+
 **Business Relevance:** Auditing severe medical cases allows the clinic to evaluate the quality of care, manage inventory of critical medical supplies, and justify veterinary budget requests.
+
 **Scenario:** At the end of the month, the Chief of Veterinary Medicine reviews this list to ensure that all critical cases received appropriate follow-up care and to assess if there is an unusual spike in severe injuries indicating a safety hazard.
 
 ![alt text](images/StageC/query-4.png)
@@ -578,3 +609,97 @@ Three views were created to reflect the integrated system (available in the `Vie
 ![alt text](images/StageC/query-2.png)
 
 ![alt text](images/StageC/query-3.png)
+
+---
+
+## 9. Phase D: Programming (PL/pgSQL)
+
+In this phase, we implemented advanced database programming using PL/pgSQL to automate processes, enforce complex business logic, and perform automated database management tasks.
+
+### 9.1 Functions
+
+#### Function 1: `Get_Habitat_Diet_Cost`
+**Description:** Calculates the total daily dietary cost for all animals residing in a specific habitat. It utilizes an explicit cursor to loop through all animals in the habitat, fetches their diet plan IDs, and uses an implicit cursor to retrieve the cost.
+
+**Scenario:** The zoo's financial planning department needs to estimate the total daily dietary budget required for all animals living within a specific enclosure (e.g., the Savannah) to optimize upcoming bulk food purchases.
+- **Programming Elements:** Explicit Cursor, Loop, Branching (IF/THEN), Exception Handling, Implicit Cursor, Records, DML.
+- **Code Reference:** `Function_GetHabitatDietCost.sql`
+
+![Function 1 code](images/StageD/function1_code.png)
+
+> ![Execution result of Get_Habitat_Diet_Cost function](images/StageD/function1.png)
+
+#### Function 2: `Get_Animals_By_Vet_RefCursor`
+**Description:** Returns a Ref Cursor containing a list of animals treated by a specific veterinarian. It validates the vet's existence and then opens a cursor pointing to the complex join query.
+
+**Scenario:** The head veterinarian needs to quickly pull a full list of all animals historically treated by a specific junior vet to audit the quality of their medical diagnoses during an annual performance review.
+- **Programming Elements:** Ref Cursor, Branching, Exception Handling, Explicit/Implicit Cursors, Loops, Records, DML.
+
+![Function 2 code](images/StageD/function2_code.png)
+
+> ![Execution result of Get_Animals_By_Vet_RefCursor function](images/StageD/function2.png)
+
+### 9.2 Procedures
+
+#### Procedure 1: `Process_Routine_Checkups`
+**Description:** Automatically generates a new 'Healthy' health record for animals that have not had a checkup in over a year. It finds their last known weight and creates a new checkup record with the current date.
+
+**Scenario:** To ensure compliance with international animal welfare standards, the system automatically creates baseline routine health checkups for any animal that slipped through the cracks and wasn't examined by staff in the past 12 months.
+- **Programming Elements:** DML (INSERT), Implicit Cursor, Explicit Cursor, Records, Loop, Exception Handling, Branching, Ref Cursor.
+
+![alt text](images/StageD/procedure1_code.png)
+
+> ![Database state after running Process_Routine_Checkups procedure](images/StageD/procedure1.png)
+
+#### Procedure 2: `Adjust_Diet_Cost_By_Species`
+**Description:** Increases the daily cost of diet plans for all animals of a specific species by a percentage parameter. It uses a cursor to find all distinct diet plans associated with the species and updates them.
+
+**Scenario:** A sudden supply chain shortage increases the market price of specialized imported bamboo. The procurement team uses this procedure to instantly inflate the daily dietary costs of all pandas by a set percentage across the board.
+- **Programming Elements:** DML (UPDATE), Explicit/Implicit Cursors, Records, Loop, Branching, Exception Handling, Ref Cursor.
+
+![Procedure 2 Code](images/StageD/procedure2_code.png)
+
+> ![Database state after running Adjust_Diet_Cost_By_Species procedure](images/StageD/procedure2.png)
+
+### 9.3 Triggers
+
+#### Trigger 1: `Trg_Prevent_Invalid_Medical_Cost` (BEFORE UPDATE)
+**Description:** Validates modifications to the `MEDICALVISIT` table. It ensures that costs cannot be negative, and if a cost is significantly increased (to > 500), it requires the veterinarian to provide a detailed summary of the visit, otherwise it raises an exception.
+
+**Scenario:** A vet mistakenly enters a routine checkup cost as $5000 instead of $50. The system automatically blocks the transaction, demanding a detailed medical summary to justify the unusually high expense, thereby preventing financial data entry anomalies.
+- **Programming Elements:** Trigger on UPDATE, Branching, Exceptions.
+
+![Trigger 1 code](images/StageD/trigger1_code.png)
+
+> ![Exception thrown by Trg_Prevent_Invalid_Medical_Cost trigger](images/StageD/trigger1.png)
+
+#### Trigger 2: `Trg_Habitat_Capacity_Log` (AFTER UPDATE)
+**Description:** Logs any changes made to the `MaxCapacity` of a habitat into a dedicated auditing table (`HABITAT_CAPACITY_LOG`). This is crucial for tracking structural changes to enclosures.
+
+**Scenario:** The engineering team expands the physical capacity of the aquatic habitat. The system transparently logs this structural upgrade into an audit table, providing zoo management with a historical track record of facility growth over time.
+- **Programming Elements:** Trigger on UPDATE, DML (INSERT).
+
+![alt text](images/StageD/trigger2_code.png)
+
+
+> ![Log entry created by Trg_Habitat_Capacity_Log trigger](images/StageD/trigger2.png)
+
+### 9.4 Main Programs
+
+We created two main PL/pgSQL anonymous blocks to demonstrate and test the execution of our functions and procedures.
+
+**Main Program 1:** 
+Calls the `Process_Routine_Checkups()` procedure to ensure all outdated health records are updated, and then calls `Get_Habitat_Diet_Cost(1)` to analyze the resulting financial impact on Habitat #1.
+
+**Scenario:** At the start of the fiscal year, the zoo director runs this automated management script that simultaneously updates all lagging health records to baseline standards, and immediately calculates the new dietary cost overhead for the primary habitat to ensure enough funds are allocated for the upcoming quarter.
+
+> ![Console output of Main Program 1 execution](images/StageD/main_program1.png)
+
+**Main Program 2:** 
+Executes `Adjust_Diet_Cost_By_Species(1, 10.5)` to increase dietary costs due to inflation, and then opens and iterates through the Ref Cursor generated by `Get_Animals_By_Vet_RefCursor(1)` to log all animals treated by Vet #1.
+
+**Scenario:** Due to a sudden national vendor price hike, the accounting department bulk-adjusts the feed costs for a specific species by 10.5%. Simultaneously, they pull a cross-referenced medical history report from the treating veterinarian to ensure the budget adjustments won't negatively impact the animals currently undergoing medical care.
+
+![Main Program 2 Code](images/StageD/main_program2_code.png)
+
+> ![Console output of Main Program 2 execution](images/StageD/main_program2.png)
