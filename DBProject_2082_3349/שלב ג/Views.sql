@@ -1,8 +1,5 @@
--- Views.sql
--- מבטים ושאילתות לשלב ג'
-
 -- ====================================================================================
--- 1. מבט מנקודת המבט של האגף המקורי (ניהול בעלי חיים ותזונה)
+-- 1. View from the perspective of the original department (Animal and Diet Management)
 -- ====================================================================================
 CREATE OR REPLACE VIEW View_Zoo_Animal_Status AS
 SELECT A.AnimalID, A.Name AS AnimalName, S.CommonName AS Species, H.HabitatName, DP.PlanName AS DietPlan, HR.HealthStatus, HR.CheckupDate
@@ -12,14 +9,14 @@ JOIN HABITAT H ON A.HabitatID = H.HabitatID
 JOIN DIETPLAN DP ON A.DietPlanID = DP.DietPlanID
 LEFT JOIN HEALTHRECORD HR ON A.AnimalID = HR.AnimalID;
 
--- שאילתה 1.1: הצגת חיות שאינן במצב בריאותי "Healthy"
+-- Query 1.1: Display animals that are not in a "Healthy" health status
 SELECT * FROM View_Zoo_Animal_Status WHERE HealthStatus <> 'Healthy';
 
--- שאילתה 1.2: ספירת כמות החיות בכל אזור מחיה דרך המבט
+-- Query 1.2: Count the number of animals in each habitat via the view
 SELECT HabitatName, COUNT(AnimalID) as AnimalCount FROM View_Zoo_Animal_Status GROUP BY HabitatName;
 
 -- ====================================================================================
--- 2. מבט מנקודת המבט של האגף החדש (מרפאה ווטרינרית)
+-- 2. View from the perspective of the new department (Veterinary Clinic)
 -- ====================================================================================
 CREATE OR REPLACE VIEW View_Vet_Clinic_Activity AS
 SELECT V.VetID, V.LastName AS VetName, V.Specialization, MV.VisitDate, MV.Reason, T.Description AS TreatmentDesc, T.Severity
@@ -28,14 +25,14 @@ JOIN MEDICALVISIT MV ON V.VetID = MV.VetID
 JOIN MIRSHAM_VISIT_TREATMENT MVT ON MV.VisitID = MVT.VisitID
 JOIN TREATMENT T ON MVT.TreatmentID = T.TreatmentID;
 
--- שאילתה 2.1: הצגת כל פעילויות המרפאה בדרגות חומרה Medium ומעלה
+-- Query 2.1: Display all clinic activities with Severity 'Medium' or higher
 SELECT * FROM View_Vet_Clinic_Activity WHERE Severity IN ('Medium', 'High', 'Critical');
 
--- שאילתה 2.2: מספר הטיפולים שבוצעו על ידי כל ווטרינר
+-- Query 2.2: Number of treatments performed by each veterinarian
 SELECT VetName, COUNT(TreatmentDesc) AS TreatmentsCount FROM View_Vet_Clinic_Activity GROUP BY VetName;
 
 -- ====================================================================================
--- 3. מבט משולב - האגף המקורי והאגף החדש יחד
+-- 3. Integrated view - The original department and the new department together
 -- ====================================================================================
 CREATE OR REPLACE VIEW View_Integrated_Animal_Medical AS
 SELECT A.AnimalID, A.Name AS AnimalName, A.DateOfBirth, 
@@ -51,8 +48,8 @@ LEFT JOIN MEDICATION MED ON HTM.MedID = MED.MedID
 LEFT JOIN TREATMENT_VACCINATION TV ON T.TreatmentID = TV.TreatmentID
 LEFT JOIN VACCINATION VAC ON TV.VacID = VAC.VacID;
 
--- שאילתה 3.1: הצגת הפרופיל הרפואי המלא עבור חיה ספציפית (לדוגמה AnimalID = 1)
+-- Query 3.1: Display the complete medical profile for a specific animal (e.g., AnimalID = 1)
 SELECT * FROM View_Integrated_Animal_Medical WHERE AnimalID = 1;
 
--- שאילתה 3.2: רשימת כל החיסונים שניתנו אי פעם בגן החיות
+-- Query 3.2: List of all vaccinations ever given in the zoo
 SELECT AnimalName, VisitDate, Vaccination FROM View_Integrated_Animal_Medical WHERE Vaccination IS NOT NULL;

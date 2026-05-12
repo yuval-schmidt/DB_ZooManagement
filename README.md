@@ -116,6 +116,8 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 1: Total food consumed per species for animals born after 2020**  
 **Description:** Calculate the total food quantities consumed per species, for animals born after the year 2020.
+**Business Relevance:** Understanding food consumption for younger animals helps zoo management estimate and allocate future budget requirements for growing populations.
+**Scenario:** The zoo's financial planning department is preparing the budget for the upcoming year and needs to project the dietary costs for the newest generation of animals, as they tend to have changing dietary needs as they mature.
 *   **Version A (JOIN):**
     ```sql
     SELECT S.CommonName, S.ScientificName, SUM(DF.FoodConsumedQty) AS TotalFoodConsumed
@@ -147,6 +149,8 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 2: Habitat population count for animals missing checkups this year**  
 **Description:** Count the number of animals in each habitat, for animals that have not had any medical checkups in the current year.
+**Business Relevance:** Proactively identifying gaps in medical surveillance prevents potential disease outbreaks and ensures compliance with animal welfare regulations.
+**Scenario:** The Chief Veterinarian wants to deploy mobile medical teams to specific habitats. They use this query to prioritize habitats that contain the highest number of unchecked animals to optimize the teams' schedules.
 *   **Version A (NOT IN):**
     ```sql
     SELECT H.HabitatName, H.ClimateType, COUNT(A.AnimalID) AS AnimalCount
@@ -183,6 +187,8 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 3: Average dietary cost per habitat for feedings in May**  
 **Description:** Find the average daily dietary cost for animals that received feeding during May, grouped by habitats.
+**Business Relevance:** Evaluating feeding costs on a per-habitat basis allows for accurate distribution of operational funds and identifies unusually expensive enclosures.
+**Scenario:** Following a seasonal change, the procurement team reviews dietary expenses to see if certain habitats experienced a spike in feeding costs due to increased activity levels or spoiling of perishable foods.
 *   **Version A (GROUP BY with JOIN):**
     ```sql
     SELECT H.HabitatName, H.ClimateType, AVG(D.DailyCost) AS AverageDietCost
@@ -215,6 +221,8 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Double Query 4: Most frequent health status per species in 2024**  
 **Description:** Find the most frequent health status for each animal species during the year 2024.
+**Business Relevance:** Tracking the prevailing health trends across species enables the zoo to identify potential systemic issues, such as species-specific genetic vulnerabilities or environmental stressors.
+**Scenario:** During the annual zoo performance review, the zoology department uses this data to prepare a health report for stakeholders, highlighting which species thrived and which might need modified care protocols.
 *   **Version A (Window Function):**
     ```sql
     WITH StatusAgg AS (
@@ -264,6 +272,8 @@ To ensure data resilience and disaster recovery compliance, a full backup and re
 
 **Regular Query 1**
 **Description:** Total daily diet cost per species, considering only animals that had a medical checkup in April.
+**Business Relevance:** Correlating dietary costs with recent medical checkups helps assess whether specialized, potentially more expensive diets are being prescribed following routine medical evaluations.
+**Scenario:** After the major spring checkup drive in April, the finance team investigates if the post-checkup diet plans have significantly inflated the feeding budget for certain species.
 ```sql
 SELECT S.CommonName, S.ScientificName, SUM(D.DailyCost) AS TotalSpeciesDietCost
 FROM SPECIES S
@@ -278,6 +288,8 @@ ORDER BY TotalSpeciesDietCost DESC;
 
 **Regular Query 2**
 **Description:** Find the average capacity of habitats, grouped by climate type, for habitats where animals were fed on the 15th of any month.
+**Business Relevance:** Analyzing habitat capacities based on climate helps in strategic planning for acquiring new animals and designing future enclosures.
+**Scenario:** The zoo is considering acquiring new species that require specific climates. Management uses this query to evaluate the current average capacity of existing habitats (verified active via feeding logs) to determine where space is available.
 ```sql
 SELECT H.ClimateType, S.CommonName, AVG(H.MaxCapacity) AS AvgCapacity
 FROM HABITAT H
@@ -292,6 +304,8 @@ ORDER BY AvgCapacity DESC;
 
 **Regular Query 3**
 **Description:** Count the number of alive animals (not deceased) assigned to each diet plan, whose birth year is not 2020.
+**Business Relevance:** Knowing exactly how many active animals rely on each diet plan is critical for supply chain management and negotiating bulk purchases with food vendors.
+**Scenario:** The procurement manager is renegotiating annual contracts with suppliers and needs an accurate, up-to-date count of animals consuming each diet plan.
 ```sql
 SELECT DP.PlanName, DP.DailyCost, COUNT(A.AnimalID) AS AssignedAnimalsCount
 FROM DIETPLAN DP
@@ -306,6 +320,8 @@ ORDER BY AssignedAnimalsCount DESC;
 
 **Regular Query 4**
 **Description:** Calculate the total weight measured in medical checkups conducted in December, grouped by habitats.
+**Business Relevance:** Monitoring the aggregate weight of animals per habitat before winter helps adjust heating requirements, spatial planning, and seasonal dietary adjustments.
+**Scenario:** In preparation for the peak of winter, the facility management team reviews total animal mass in various habitats to calibrate heating systems and ensure structural safety of indoor enclosures.
 ```sql
 SELECT H.HabitatName, H.ClimateType, SUM(HR.Weight) AS TotalWeightRecorded
 FROM HABITAT H
@@ -323,6 +339,8 @@ ORDER BY TotalWeightRecorded DESC;
 
 #### UPDATE Queries
 **UPDATE 1:** Increase daily cost by 15% for diet plans assigned to endangered animals.
+**Business Relevance:** Ensures that the budget accurately reflects the premium costs of specialized conservation diets required for endangered species.
+**Scenario:** A new international conservation directive mandates upgraded nutritional standards for endangered species. The finance department runs this update to immediately adjust the projected daily costs in the database by 15% to secure appropriate funding.
 ```sql
 UPDATE DIETPLAN SET DailyCost = DailyCost * 1.15
 WHERE DietPlanID IN (
@@ -336,6 +354,8 @@ WHERE DietPlanID IN (
 
 
 **UPDATE 2:** Transfer animals born before 2015 to the habitat with the largest maximum capacity.
+**Business Relevance:** Proactively managing space for older animals improves their quality of life, reduces injury risks, and aligns with senior animal care standards.
+**Scenario:** The zoo is undergoing renovations, and older animals (born before 2015) need more roaming space to mitigate arthritis and stress. Management runs this query to automatically reassign them to the most spacious enclosure available.
 ```sql
 UPDATE ANIMAL SET HabitatID = (
     SELECT HabitatID FROM HABITAT ORDER BY MaxCapacity DESC LIMIT 1
@@ -346,6 +366,8 @@ WHERE EXTRACT(YEAR FROM DateOfBirth) < 2015;
 > ![alt text](images/StageB/image-12.png)
 
 **UPDATE 3:** Update health status to 'Critical' for animals that consumed exceptionally low food quantities during the current month.
+**Business Relevance:** Automating health alerts based on dietary intake ensures rapid medical response, preventing animal loss due to undetected illnesses.
+**Scenario:** To prevent human error in monitoring thousands of animals, the system automatically flags any animal eating dangerously low amounts as 'Critical', instantly triggering an emergency veterinary checkup alert.
 ```sql
 UPDATE HEALTHRECORD SET HealthStatus = 'Critical'
 WHERE AnimalID IN (
@@ -358,6 +380,8 @@ WHERE AnimalID IN (
 
 #### DELETE Queries
 **DELETE 1:** Delete feeding records from previous years for animals located in 'Continental' climate habitats.
+**Business Relevance:** Routine data archiving/purging optimizes database performance and reduces cloud storage costs by removing obsolete operational data.
+**Scenario:** The IT department conducts its annual database cleanup. Since Continental habitats had a standardized diet last year that is no longer medically relevant, they purge old feeding logs to free up database index space and speed up daily queries.
 ```sql
 DELETE FROM DAILYFEEDING
 WHERE EXTRACT(YEAR FROM FeedingDate) < EXTRACT(YEAR FROM CURRENT_DATE)
@@ -370,6 +394,8 @@ WHERE EXTRACT(YEAR FROM FeedingDate) < EXTRACT(YEAR FROM CURRENT_DATE)
 > ![alt text](images/StageB/image-17.png)
 
 **DELETE 2:** Delete health records of animals that consumed less than 10 food units in recent years.
+**Business Relevance:** Cleaning up anomalous or corrupted historical records ensures that longitudinal health analytics and ML models are not skewed by bad data.
+**Scenario:** A data audit reveals that a faulty scale previously recorded impossibly low food consumption (<10 units over a year). Data engineers run this query to delete these corrupted historical health records to maintain data integrity for future research.
 ```sql
 DELETE FROM HEALTHRECORD
 WHERE AnimalID IN (
@@ -381,6 +407,8 @@ WHERE AnimalID IN (
 > ![alt text](images/StageB/image-21.png)
 
 **DELETE 3:** Delete daily feeding records from the first quarter (January-March) for animals in 'Arid' climate habitats.
+**Business Relevance:** Facilitates legal compliance with data retention policies regarding seasonal experimental diets that must be purged after evaluation.
+**Scenario:** The zoo completed a 3-month experimental winter diet study in the Arid zones. Following the study's conclusion and external publication, the research agreement requires purging the granular daily feeding logs from that specific quarter to comply with data privacy policies of the partner institute.
 ```sql
 DELETE FROM DAILYFEEDING
 WHERE EXTRACT(MONTH FROM FeedingDate) IN (1, 2, 3)
@@ -441,7 +469,7 @@ VALUES (9999, CURRENT_DATE + INTERVAL '5 days', 10.0, 1);
 As part of the integration phase, our zoo received the database of the **Veterinary Clinic**.
 The new department's DSD diagram prior to integration:
 
-![alt text](<DBProject_2082_3349/שלב ג/image-4.png>)
+![alt text](images/StageC/design-4.png)
 
 ### 8.2 Reverse Engineering Algorithm (Reverse Engineering Algorithm)
 To generate the ERD from the new department's database tables, we performed reverse engineering according to the following steps:
@@ -453,7 +481,7 @@ To generate the ERD from the new department's database tables, we performed reve
    - **M:N Relationships** - identified by junction tables consisting of composite keys (such as `mirsham_visit_treatment`). In the ERD, the junction tables were converted back into many-to-many relationships, or presented as associative entities.
 5. ****Visual Drawing and Translation:**** All entities were linked according to the business logic derived from the types of foreign keys, including the marking of participation constraints.
 
-![alt text](<DBProject_2082_3349/שלב ג/image-1.png>)
+![alt text](images/StageC/design-1.png)
 
 ### 8.3 Integration Decisions & Merged ERD
 During the merger of the veterinary department into our zoo, we made the following decisions:
@@ -462,15 +490,13 @@ During the merger of the veterinary department into our zoo, we made the followi
 - ****Introduction of Clinical Tables:**** We created the tables `MEDICALVISIT`, `TREATMENT`, `MEDICATION`, and `VACCINATION` along with their junction tables, but updated their names and data types to match the coding standard of our system.
 - ****Creation of ALTER Commands:**** Instead of deleting the existing database, we used `ALTER TABLE ... ADD CONSTRAINT` commands in the `Integrate.sql` file to implement the integration while adding foreign keys that connect the two worlds.
 
-*(Merged ERD Mermaid Representation)*
+ERD
 
-![alt text](<DBProject_2082_3349/שלב ג/image-2.png>)
+![alt text](images/StageC/design-2.png)
 
 
-*(Merged DSD Mermaid Representation)*
-
-![alt text](<DBProject_2082_3349/שלב ג/image-3.png>)
-
+Merged DSD
+![alt text](<images/StageC/design-3 (1).png>)
 
 ### 8.4 Views & Queries (Views & Queries)
 Three views were created to reflect the integrated system (available in the `Views.sql` file).
@@ -478,103 +504,66 @@ Three views were created to reflect the integrated system (available in the `Vie
 #### 1. Original Department View - `View_Zoo_Animal_Status`
 **Description:** Displays the status of the animals in the zoo, including their species, the habitat they reside in, the diet plan, and the health status from their last checkup.
 
-**Sample Data Extraction (`SELECT *`):**
-```sql
-SELECT * FROM View_Zoo_Animal_Status LIMIT 10;
-```
-**Output:**
-| AnimalID | AnimalName | Species | HabitatName | DietPlan | HealthStatus | CheckupDate |
-|---|---|---|---|---|---|---|
-| 1 | Leo | Lion | African Savanna | Carnivore A | Healthy | 2024-03-01 |
-| 2 | Maya | Elephant | Jungle Zone | Herbivore B | Healthy | 2024-03-05 |
 
 **Query 1: Display animals not in a Healthy state**
-Shows only animals requiring observation.
-```sql
-SELECT * FROM View_Zoo_Animal_Status WHERE HealthStatus <> 'Healthy';
-```
-**Output:**
-| AnimalID | AnimalName | Species | HabitatName | DietPlan | HealthStatus | CheckupDate |
-|---|---|---|---|---|---|---|
-| 3 | Rex | T-Rex | Prehistoric Zone | Carnivore X | Critical | 2024-02-15 |
+**Description:** Shows only animals requiring observation.
+**Business Relevance:** Immediate identification of sick or recovering animals is paramount for preventing cross-contamination and providing timely medical intervention, reducing mortality rates.
+**Scenario:** Every morning, the head zookeeper runs this query to generate a priority watch-list, ensuring that staff allocate extra time to monitor and care for these specific animals during their shifts.
+
+![alt text](images/StageC/query-8.png)
+
+![alt text](images/StageC/query-9.png)
 
 **Query 2: Count animals by Habitat**
-Finds how many animals exist in each habitat based on the view.
-```sql
-SELECT HabitatName, COUNT(AnimalID) as AnimalCount FROM View_Zoo_Animal_Status GROUP BY HabitatName;
-```
-**Output:**
-| HabitatName | AnimalCount |
-|---|---|
-| African Savanna | 15 |
-| Jungle Zone | 12 |
+**Description:** Finds how many animals exist in each habitat based on the view.
+**Business Relevance:** Maintaining optimal animal density in habitats prevents overcrowding, reduces stress-induced aggression, and complies with spatial welfare standards.
+**Scenario:** The animal relocation committee uses this report during their weekly meetings to decide if certain fast-breeding populations need to be transferred to other enclosures or partner zoos to avoid exceeding capacity.
+
+![alt text](images/StageC/query-10.png)
+
+![alt text](images/StageC/query-11.png)
 
 #### 2. New Department View - `View_Vet_Clinic_Activity`
 **Description:** Focuses on veterinarian activity. Shows each medical visit, the treating veterinarian, reason for visit, and the medical or drug treatment given (including treatment severity).
 
-**Sample Data Extraction (`SELECT *`):**
-```sql
-SELECT * FROM View_Vet_Clinic_Activity LIMIT 10;
-```
-**Output:**
-| VetID | VetName | Specialization | VisitDate | Reason | TreatmentDesc | Severity |
-|---|---|---|---|---|---|---|
-| 1 | Doe | Large Animals | 2024-04-10 | Routine check | Rest | Low |
-| 1 | Doe | Large Animals | 2024-04-15 | Limping | Antibiotics | Medium |
 
 **Query 1: Medium and High Severity Treatments**
-Retrieves visits that required significant intervention (Medium, High, Critical).
-```sql
-SELECT * FROM View_Vet_Clinic_Activity WHERE Severity IN ('Medium', 'High', 'Critical');
-```
-**Output:**
-| VetID | VetName | Specialization | VisitDate | Reason | TreatmentDesc | Severity |
-|---|---|---|---|---|---|---|
-| 1 | Doe | Large Animals | 2024-04-15 | Limping | Antibiotics | Medium |
+**Description:** Retrieves visits that required significant intervention (Medium, High, Critical).
+**Business Relevance:** Auditing severe medical cases allows the clinic to evaluate the quality of care, manage inventory of critical medical supplies, and justify veterinary budget requests.
+**Scenario:** At the end of the month, the Chief of Veterinary Medicine reviews this list to ensure that all critical cases received appropriate follow-up care and to assess if there is an unusual spike in severe injuries indicating a safety hazard.
+
+![alt text](images/StageC/query-4.png)
+
+![alt text](images/StageC/query-5.png)
 
 **Query 2: Number of treatments performed by each veterinarian**
-Groups and counts the number of medical procedures provided by each doctor in the clinic.
-```sql
-SELECT VetName, COUNT(TreatmentDesc) AS TreatmentsCount FROM View_Vet_Clinic_Activity GROUP BY VetName;
-```
-**Output:**
-| VetName | TreatmentsCount |
-|---|---|
-| Doe | 12 |
-| Smith | 8 |
+**Description:** Groups and counts the number of medical procedures provided by each doctor in the clinic.
+**Business Relevance:** Tracking individual veterinary workload ensures fair labor distribution, helps in performance evaluations, and highlights staffing shortages.
+**Scenario:** The HR department and Clinic Director use this metric during quarterly reviews to determine if a specific veterinarian is overburdened and whether the clinic needs to hire additional specialized staff.
+
+![alt text](images/StageC/query-6.png)
+
+![alt text](images/StageC/query-7.png)
 
 #### 3. Integrated View - `View_Integrated_Animal_Medical`
 **Description:** The most comprehensive view. Combines the animal's personal data from the original department with the complete history of visits, treatments, medications, and vaccinations from the veterinary department.
 
-**Sample Data Extraction (`SELECT *`):**
-```sql
-SELECT * FROM View_Integrated_Animal_Medical LIMIT 10;
-```
-**Output:**
-| AnimalID | AnimalName | TreatingVet | VisitDate | Reason | TreatmentType | Medication | Vaccination |
-|---|---|---|---|---|---|---|---|
-| 1 | Leo | Doe | 2024-04-10 | Routine check | Preventative | NULL | Rabies Vax |
-| 2 | Maya | Smith | 2024-04-15 | Limping | Medical | Amoxicillin | NULL |
-
 **Query 1: Medical Profile for a specific animal**
-Retrieves the entire medical file for a specific AnimalID.
-```sql
-SELECT * FROM View_Integrated_Animal_Medical WHERE AnimalID = 1;
-```
-**Output:**
-| AnimalID | AnimalName | TreatingVet | VisitDate | Reason | TreatmentType | Medication | Vaccination |
-|---|---|---|---|---|---|---|---|
-| 1 | Leo | Doe | 2024-04-10 | Routine check | Preventative | NULL | Rabies Vax |
+**Description:** Retrieves the entire medical file for a specific AnimalID.
+**Business Relevance:** Instant access to an animal's comprehensive medical history is essential for making accurate diagnoses and avoiding dangerous drug interactions during emergencies.
+**Scenario:** An animal is unexpectedly found unconscious in its enclosure. The responding veterinarian instantly pulls this profile to check past illnesses, current medications, and allergies before administering emergency treatment.
+
+
+![alt text](images/StageC/query-0.png)
+
+![alt text](images/StageC/query-1.png)
+
 
 **Query 2: Vaccination Tracking**
-Displays all animals that received vaccinations in the clinic, the date the vaccination was given, and the type of vaccination.
-```sql
-SELECT AnimalName, VisitDate, Vaccination FROM View_Integrated_Animal_Medical WHERE Vaccination IS NOT NULL;
-```
-**Output:**
-| AnimalName | VisitDate | Vaccination |
-|---|---|---|
-| Leo | 2024-04-10 | Rabies Vax |
-| Maya | 2024-05-01 | Elephant Pox Vax |
+**Description:** Displays all animals that received vaccinations in the clinic, the date the vaccination was given, and the type of vaccination.
+**Business Relevance:** Strict vaccination tracking is a legal requirement for zoo licensing, prevents devastating viral outbreaks, and ensures the safety of both animals and interacting staff.
+**Scenario:** During an annual health and safety inspection by external regulators, the zoo administration uses this query to provide immediate proof of compliance with mandated animal vaccination protocols.
 
----
+![alt text](images/StageC/query-2.png)
+
+![alt text](images/StageC/query-3.png)
