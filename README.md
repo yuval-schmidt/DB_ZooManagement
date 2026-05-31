@@ -709,104 +709,93 @@ Executes `Adjust_Diet_Cost_By_Species(1, 10.5)` to increase dietary costs due to
 
 ## 10. Phase E: Graphical User Interface
 
-In this phase we built a desktop **Graphical User Interface (GUI)** for the Zoo Animal Management System, allowing full interaction with the PostgreSQL database through a user-friendly application.
+In this phase, we built **two options** for the Graphical User Interface (GUI) for the Zoo Animal Management System, allowing full interaction with the PostgreSQL database through user-friendly applications:
 
-### 10.1 Technology Stack
+1. 🌐 **Modern Web Application (Recommended) - React + FastAPI**  
+   A premium, dynamic web application featuring:
+   * **Dashboard:** Real-time KPI cards with count-up animations, interactive animated bar charts of animal distribution, and recent veterinary health logs with visual status indicators.
+   * **Universal CRUD Engine:** Full pagination, live interactive searching, and dynamic modal forms with automatic foreign key dropdown select lists for all 10 tables.
+   * **Analytical SQL Queries:** Run Phase B queries directly in the UI and view results in paginated tables.
+   * **PL/pgSQL Routines:** Interactive input forms to launch Phase D functions and procedures, featuring full refcursor fetching for procedure results.
+   * **Design:** Sleek Dark Mode, custom Google fonts, cohesive color system, and subtle micro-interactions.
+
+2. 🖥️ **Desktop Application - Python + Tkinter**  
+   A classic desktop GUI complying with the basic requirements using standard Tkinter windows, tabs for CRUD operations, query screens, and procedure executors.
+
+---
+
+### 10.1 Web GUI Technology Stack
 
 | Component | Choice |
 |-----------|--------|
-| Language | **Python 3.10+** |
-| GUI Toolkit | **Tkinter / ttk** (built-in, cross-platform) |
-| Database Driver | **psycopg2** |
-| Database | **PostgreSQL** (same instance as phases A–D) |
+| **Frontend Framework** | **React 18** (scaffolded via Vite) |
+| **Styling** | **Premium Vanilla CSS** (Glassmorphism, custom animations) |
+| **Backend API** | **FastAPI** (Python 3.10+) |
+| **Database Driver** | **psycopg2-binary** |
+| **Database** | **PostgreSQL** |
 
-The GUI extends the mockups from Phase A (AI Studio prototype) into a working application with real CRUD operations, analytical queries, and PL/pgSQL routines.
+### 10.2 Desktop GUI Technology Stack
 
-### 10.2 Application Structure
+| Component | Choice |
+|-----------|--------|
+| **Language** | **Python 3.10+** |
+| **GUI Toolkit** | **Tkinter / ttk** (built-in, cross-platform) |
+| **Database Driver** | **psycopg2** |
 
-Source code is located in:
+---
 
-`DBProject_2082_3349/שלב ה/gui_app/`
+### 10.3 Directory Structure
 
-| Module | Purpose |
-|--------|---------|
-| `main.py` | Application entry point |
-| `config.py` | Database connection settings (env vars) |
-| `database.py` | Connection pool helpers, query execution |
-| `table_metadata.py` | Table definitions, FK display mappings |
-| `queries_data.py` | Phase B SQL queries |
-| `ui/main_menu.py` | Main navigation hub |
-| `ui/crud_window.py` | Generic CRUD per table |
-| `ui/queries_window.py` | Run Phase B queries |
-| `ui/routines_window.py` | Run Phase D functions/procedures |
-| `ui/connection_dialog.py` | Login / DB connection screen |
+Source code is structured as follows:
 
-Detailed Hebrew instructions: [`DBProject_2082_3349/שלב ה/הוראות_הפעלה.md`](DBProject_2082_3349/שלב%20ה/הוראות_הפעלה.md)
+```
+שלב ה/
+├── backend/            ← FastAPI Python REST API Server
+│   ├── main.py          ← API endpoints & router mapping
+│   ├── database.py      ← Database connection and query helper modules
+│   └── requirements.txt ← Backend package dependencies
+├── frontend/           ← React + Vite Web Client
+│   ├── src/
+│   │   ├── pages/       ← Dashboard, CRUD, Queries, and Routines pages
+│   │   ├── components.jsx ← Toast system, Modals, DataTables, StatCards
+│   │   ├── api.js       ← Centralized API communication client
+│   │   └── index.css    ← Design system stylesheet
+│   └── vite.config.js   ← Proxy mapping for /api calls to backend:8000
+└── gui_app/            ← Desktop Tkinter Application
+```
 
-### 10.3 Running the Application
+Detailed operating instructions (Hebrew): [`DBProject_2082_3349/שלב ה/הוראות_הפעלה.md`](DBProject_2082_3349/שלב%20ה/הוראות_הפעלה.md)
+
+---
+
+### 10.4 Running the Web Application
+
+1. **Start the Backend API Server:**
+   ```bash
+   cd "DBProject_2082_3349/שלב ה/backend"
+   pip install fastapi uvicorn psycopg2-binary python-multipart
+   uvicorn main:app --reload
+   ```
+   *The server runs on:* `http://localhost:8000`
+
+2. **Start the React Frontend Client:**
+   ```bash
+   cd "DBProject_2082_3349/שלב ה/frontend"
+   npm install
+   npm run dev
+   ```
+   *Open your browser and navigate to:* `http://localhost:5173`
+
+---
+
+### 10.5 Running the Desktop Tkinter Application
 
 ```bash
-cd DBProject_2082_3349/שלב ה/gui_app
+cd "DBProject_2082_3349/שלב ה/gui_app"
 pip install -r requirements.txt
 python main.py
 ```
-
 1. Enter database credentials on the connection screen.
-2. Use the **main menu** to open any table or utility screen.
+2. Navigate via the main menu tabs.
 
-### 10.4 Features (Requirements Compliance)
 
-#### Main Entry Screen
-A connection dialog followed by a central **main menu** with access to all system screens, grouped by domain (Zoo core, Staff & Activities, Veterinary, Audit logs).
-
-#### CRUD for All Tables
-Each table has a dedicated window with four tabs:
-
-- **Read** – Grid view with **foreign keys resolved to human-readable names** (e.g. species name instead of `SpeciesID`). Primary keys are hidden from the grid.
-- **Create** – Form with dropdowns for FK fields.
-- **Update** – User enters primary key(s) → **Load Record** → fields populate → save.
-- **Delete** – Delete by primary key.
-
-Tables covered: `HABITAT`, `SPECIES`, `DIETPLAN`, `ANIMAL`, `HEALTHRECORD`, `DAILYFEEDING`, `EMPLOYEE`, `ACTIVITY_TYPE`, `ACTIVITY`, junction tables, full veterinary schema, and `HABITAT_CAPACITY_LOG` (read-only, populated by trigger).
-
-#### Phase B Queries (≥ 2)
-Available from **"שאילתות שלב ב'"**:
-
-1. Total food consumed per species (animals born after 2020) – JOIN version.
-2. Habitats with animals missing checkups this year – NOT EXISTS version.
-3. Total diet cost per species (April checkups).
-4. Total weight in December checkups by habitat.
-
-#### Phase D Routines (≥ 2 functions + 2 procedures)
-Available from **"פונקציות ופרוצדורות שלב ד'"**:
-
-| Routine | Type |
-|---------|------|
-| `Get_Habitat_Diet_Cost` | Function |
-| `Get_Animals_By_Vet_RefCursor` | Function |
-| `Process_Routine_Checkups` | Procedure |
-| `Adjust_Diet_Cost_By_Species` | Procedure |
-
-Additionally, a **Trigger demo** tab updates habitat capacity and displays `HABITAT_CAPACITY_LOG` entries created by `Trg_Habitat_Capacity_Log`.
-
-### 10.5 Screenshots
-
-> Add screenshots to `images/StageE/` after running the application locally.
-
-| Screen | File (suggested) |
-|--------|------------------|
-| Connection dialog | `connection.png` |
-| Main menu | `main_menu.png` |
-| CRUD – Read (FK names) | `crud_read.png` |
-| CRUD – Update flow | `crud_update.png` |
-| Phase B queries | `queries.png` |
-| Phase D routines | `routines.png` |
-
-### 10.6 Git Tag
-
-Submit Phase E with a Git tag, e.g.:
-
-```bash
-git tag -a phase-e -m "Phase E: Graphical User Interface"
-git push origin phase-e
-```
